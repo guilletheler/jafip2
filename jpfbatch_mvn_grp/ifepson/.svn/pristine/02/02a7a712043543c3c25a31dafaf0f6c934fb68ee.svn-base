@@ -1,0 +1,67 @@
+package com.gt.ifepson.comandos.tiqueNcAbcm;
+
+import com.gt.ifepson.comandos.CampoFiscal;
+import com.gt.ifepson.comandos.TipoComando;
+import com.gt.ifepson.comandos.ClasificacionComando;
+import com.gt.ifepson.comandos.Extension;
+
+public class CancelarTiqueNCABCM extends TipoComando {
+
+    public CancelarTiqueNCABCM() {
+    }
+
+    @Override
+    public String[] getNames() {
+        return new String[]{"CancelarTiqueNCABCM"};
+    }
+
+    @Override
+    public String getDescripcion() {
+        return "Cancelar";
+    }
+
+    @Override
+    public int getCodigo() {
+        return 0x0D07;
+    }
+
+    @Override
+    public ClasificacionComando getClasificacionComando() {
+        return ClasificacionComando.TNC;
+    }
+
+    @Override
+    public int[] getComando() {
+        int[] ret = new int[2];
+        ret[0] = 0x0D;
+        ret[1] = 0x07;
+        return ret;
+    }
+
+    @Override
+    public String getNotas() {
+        return "Se incrementa en uno el contador de documentos cancelados correspondiente.";
+    }
+
+    @Override
+    public String getRequerimientos() {
+        return "Mecanismo impresor en línea y con papel ó poco papel disponible.";
+    }
+
+    @Override
+    public Extension[] getExtensiones() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public CampoFiscal[] getCamposEntrada() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public CampoFiscal[] getCamposSalida() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    
+}

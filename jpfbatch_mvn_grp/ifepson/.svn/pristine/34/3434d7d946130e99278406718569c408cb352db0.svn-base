@@ -1,0 +1,73 @@
+package com.gt.ifepson.comandos.inicializacion;
+
+import com.gt.ifepson.comandos.CampoFiscal;
+import com.gt.ifepson.comandos.TipoComando;
+import com.gt.ifepson.comandos.ClasificacionComando;
+import com.gt.ifepson.comandos.Extension;
+import com.gt.ifepson.comandos.TipoDato;
+
+public class InicializacionContinuarDescargaDeSolicitudDeBajaFiscal_SBF extends TipoComando {
+
+    public InicializacionContinuarDescargaDeSolicitudDeBajaFiscal_SBF() {
+    }
+
+    @Override
+    public String[] getNames() {
+        return new String[]{"InicializacionContinuarDescargaDeSolicitudDeBajaFiscal_SBF"};
+    }
+
+    @Override
+    public String getDescripcion() {
+        return "Envía el archivo por partes. La descarga se completa con sucesivas llamadas hasta que se indique que\n"
+                + "no hay más datos para descargar.";
+    }
+
+    @Override
+    public int getCodigo() {
+        return 0x0411;
+    }
+
+    @Override
+    public ClasificacionComando getClasificacionComando() {
+        return ClasificacionComando.INICIALIZACION;
+    }
+
+    @Override
+    public int[] getComando() {
+        int[] ret = new int[2];
+        ret[0] = 0x04;
+        ret[1] = 0x11;
+        return ret;
+    }
+
+    @Override
+    public String getNotas() {
+        return "No posee notas";
+    }
+
+    @Override
+    public String getRequerimientos() {
+        return "Haber iniciado la descarga de SBF.";
+    }
+
+    @Override
+    public Extension[] getExtensiones() {
+        return new Extension[]{};
+    }
+
+    @Override
+    public CampoFiscal[] getCamposEntrada() {
+        return new CampoFiscal[]{};
+    }
+
+    @Override
+    public CampoFiscal[] getCamposSalida() {
+        return new CampoFiscal[]{
+            new CampoFiscal(1, "Datos de informe a descargar", TipoDato.B, -1, false),
+            new CampoFiscal(2, "Indicador de datos por descargar", TipoDato.Y, 1, false),
+        };
+    }
+    
+    
+
+}

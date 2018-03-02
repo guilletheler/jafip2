@@ -1,0 +1,73 @@
+package com.gt.ifepson.comandos.tiqueFact;
+
+import com.gt.ifepson.comandos.CampoFiscal;
+import com.gt.ifepson.comandos.TipoComando;
+import com.gt.ifepson.comandos.ClasificacionComando;
+import com.gt.ifepson.comandos.Extension;
+import com.gt.ifepson.comandos.TipoDato;
+
+public class InformacionDeUltimaRespuestaTiqueFactNDABCM extends TipoComando {
+
+    public InformacionDeUltimaRespuestaTiqueFactNDABCM() {
+    }
+
+    @Override
+    public String[] getNames() {
+        return new String[]{"InformacionDeUltimaRespuestaTiqueFactNDABCM"};
+    }
+
+    @Override
+    public String getDescripcion() {
+        return "Obtiene información sobre la respuesta enviada por el comando de cierre del último tique-factura o nota\n"
+                + "de débito A/B/C/M cerrado exitosamente.";
+    }
+
+    @Override
+    public int getCodigo() {
+        return 0x0B10;
+    }
+
+    @Override
+    public ClasificacionComando getClasificacionComando() {
+        return ClasificacionComando.TFND;
+    }
+
+    @Override
+    public int[] getComando() {
+        int[] ret = new int[2];
+        ret[0] = 0x0B;
+        ret[1] = 0x10;
+        return ret;
+    }
+    
+    @Override
+    public String getNotas() {
+        return "No posee notas";
+    }
+
+    @Override
+    public String getRequerimientos() {
+        return "No posee requerimientos";
+    }
+
+    @Override
+    public Extension[] getExtensiones() {
+        return new Extension[]{};
+    }
+
+    @Override
+    public CampoFiscal[] getCamposEntrada() {
+        return new CampoFiscal[]{};
+    }
+
+    @Override
+    public CampoFiscal[] getCamposSalida() {
+        return new CampoFiscal[]{
+            new CampoFiscal(1, "Número del tique fiscal o tique nota de crédito", TipoDato.N_E, 8, false),
+            new CampoFiscal(2, "Tipo de tique-factura o nota de débito (A B C M)", TipoDato.L, 1, false),
+            new CampoFiscal(3, "Monto total del tique fiscal o tique nota de crédito", TipoDato.N_10_2, 12, false),
+            new CampoFiscal(4, "Monto total de IVA del tique fiscal o tique nota de crédito", TipoDato.N_10_2, 12, false),
+            new CampoFiscal(5, "Vuelto final", TipoDato.N_10_2, 12, false),};
+    }
+
+}

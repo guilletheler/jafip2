@@ -1,0 +1,68 @@
+package com.gt.ifepson.comandos.inicializacion;
+
+import com.gt.ifepson.comandos.CampoFiscal;
+import com.gt.ifepson.comandos.TipoComando;
+import com.gt.ifepson.comandos.ClasificacionComando;
+import com.gt.ifepson.comandos.Extension;
+
+public class InicializacionFinalizarCargaDeConfirmacionDeAltaFiscal_CAF extends TipoComando {
+
+    public InicializacionFinalizarCargaDeConfirmacionDeAltaFiscal_CAF() {
+    }
+
+    @Override
+    public String[] getNames() {
+        return new String[]{"InicializacionFinalizarCargaDeConfirmacionDeAltaFiscal_CAF"};
+    }
+
+    @Override
+    public String getDescripcion() {
+        return "Finalizar Carga de Confirmación de Alta Fiscal (CAF)";
+    }
+
+    @Override
+    public int getCodigo() {
+        return 0x0452;
+    }
+
+    @Override
+    public ClasificacionComando getClasificacionComando() {
+        return ClasificacionComando.INICIALIZACION;
+    }
+
+    @Override
+    public int[] getComando() {
+        int[] ret = new int[2];
+        ret[0] = 0x04;
+        ret[1] = 0x52;
+        return ret;
+    }
+
+    @Override
+    public String getNotas() {
+        return " Si la verificación falla, o algún dato es erróneo, no se realizan cambios en la impresora.\n"
+                + " Una vez finalizada la carga el equipo pasará a modo fiscal.";
+    }
+
+    @Override
+    public String getRequerimientos() {
+        return " Haber cargado la CAF mediante el comando ’04 51’.\n"
+                + " No haber alcanzado la cantidad máxima de cambios de CUIT.";
+    }
+
+    @Override
+    public Extension[] getExtensiones() {
+        return new Extension[]{};
+    }
+
+    @Override
+    public CampoFiscal[] getCamposEntrada() {
+        return new CampoFiscal[]{};
+    }
+
+    @Override
+    public CampoFiscal[] getCamposSalida() {
+        return new CampoFiscal[]{};
+    }
+
+}

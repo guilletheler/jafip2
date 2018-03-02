@@ -1,0 +1,77 @@
+package com.gt.ifepson.comandos.controlImpresor;
+
+import com.gt.ifepson.comandos.CampoFiscal;
+import com.gt.ifepson.comandos.TipoComando;
+import com.gt.ifepson.comandos.ClasificacionComando;
+import com.gt.ifepson.comandos.Extension;
+import com.gt.ifepson.comandos.TipoDato;
+
+public class ObtenerDensidadDeImpresion extends TipoComando {
+
+    public ObtenerDensidadDeImpresion() {
+    }
+
+    @Override
+    public String[] getNames() {
+        return new String[]{"ObtenerDensidadDeImpresion"};
+    }
+
+    @Override
+    public String getDescripcion() {
+        return "Obtener Densidad de Impresión";
+    }
+
+    @Override
+    public int getCodigo() {
+        return 0x0778;
+    }
+
+    @Override
+    public ClasificacionComando getClasificacionComando() {
+        return ClasificacionComando.CONTROL_IMPRESORA;
+    }
+
+    @Override
+    public int[] getComando() {
+        int[] ret = new int[2];
+        ret[0] = 0x07;
+        ret[1] = 0x78;
+        return ret;
+    }
+
+    @Override
+    public Extension[] getExtensiones() {
+        return new Extension[]{};
+    }
+    
+    @Override
+    public String getNotas() {
+        return " El valor retornado en el campo de salida corresponde a la siguiente tabla:\n"
+                + "1. 120 %\n"
+                + "2. 115 %\n"
+                + "3. 110 %\n"
+                + "4. 105 %\n"
+                + "5. 100 % ( Valor por defecto )\n"
+                + "6.  95 %\n"
+                + "7.  90 %\n"
+                + "8.  85 %\n"
+                + "9.  80 %\n"
+                + "10. 75 %";
+    }
+
+    @Override
+    public String getRequerimientos() {
+        return "";
+    }
+
+    @Override
+    public CampoFiscal[] getCamposSalida() {
+        return new CampoFiscal[]{new CampoFiscal(1, "Densidad de impresión", TipoDato.N_E, 2, false)};
+    }
+
+    @Override
+    public CampoFiscal[] getCamposEntrada() {
+        return new CampoFiscal[]{};
+    }
+
+}

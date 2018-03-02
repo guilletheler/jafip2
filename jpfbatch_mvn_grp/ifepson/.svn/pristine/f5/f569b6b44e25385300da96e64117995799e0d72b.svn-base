@@ -1,0 +1,40 @@
+package com.gt.ifepson.comandos.inicializacion;
+
+import com.gt.ifepson.comandos.TipoComando;
+import com.gt.ifepson.comandos.ClasificacionComando;
+
+
+public class ComandosDeInicializacionFinalizarCargaDeConfirmacionDeAltaFiscal_CAF extends TipoComando {
+
+	public ComandosDeInicializacionFinalizarCargaDeConfirmacionDeAltaFiscal_CAF() {
+	}
+
+	@Override
+	public String[] getNames() {
+		return new String[] {"ComandosDeInicializacionFinalizarCargaDeConfirmacionDeAltaFiscal_CAF"};
+	}
+
+	@Override
+	public String getDescripcion() {
+		return "Finalizar Carga de Confirmación de Alta Fiscal (CAF)";
+	}
+
+	@Override
+	public int getCodigo() {
+		return 0x0452;
+	}
+
+	@Override
+	public ClasificacionComando getClasificacionComando() {
+		return ClasificacionComando.INICIALIZACION;
+	}
+
+	@Override
+	public int[] getComando() {
+		int[] ret = new int[2];
+		ret[0] = 0x04;
+		ret[1] = 0x52;
+		return ret;
+	}
+
+}

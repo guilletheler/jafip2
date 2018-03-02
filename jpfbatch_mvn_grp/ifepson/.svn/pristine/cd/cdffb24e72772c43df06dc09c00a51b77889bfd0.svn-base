@@ -1,0 +1,67 @@
+package com.gt.ifepson.comandos.jornadaFiscal;
+
+import com.gt.ifepson.comandos.CampoFiscal;
+import com.gt.ifepson.comandos.TipoComando;
+import com.gt.ifepson.comandos.ClasificacionComando;
+import com.gt.ifepson.comandos.Extension;
+
+
+public class JornadaFiscalCancelarAuditoriaDetalladaDeJornadasFiscales extends TipoComando {
+
+	public JornadaFiscalCancelarAuditoriaDetalladaDeJornadasFiscales() {
+	}
+
+	@Override
+	public String[] getNames() {
+		return new String[] {"JornadaFiscalCancelarAuditoriaDetalladaDeJornadasFiscales"};
+	}
+
+	@Override
+	public String getDescripcion() {
+		return "Cancela el informe de Auditoría en proceso de descarga.";
+	}
+
+	@Override
+	public int getCodigo() {
+		return 0x0816;
+	}
+
+	@Override
+	public ClasificacionComando getClasificacionComando() {
+		return ClasificacionComando.JORNADA_FISCAL;
+	}
+
+	@Override
+	public int[] getComando() {
+		int[] ret = new int[2];
+		ret[0] = 0x08;
+		ret[1] = 0x16;
+		return ret;
+	}
+        
+        @Override
+    public String getNotas() {
+        return "No posee notas";
+    }
+
+    @Override
+    public String getRequerimientos() {
+        return " Informe de cierres Z iniciado.";
+    }
+
+    @Override
+    public Extension[] getExtensiones() {
+        return new Extension[]{};
+    }
+
+    @Override
+    public CampoFiscal[] getCamposEntrada() {
+        return new CampoFiscal[]{};
+    }
+
+    @Override
+    public CampoFiscal[] getCamposSalida() {
+        return new CampoFiscal[]{};
+    }
+
+}

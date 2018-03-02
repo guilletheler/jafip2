@@ -1,0 +1,182 @@
+package com.gt.ifepson.comandos.tiqueNc;
+
+import com.gt.ifepson.comandos.CampoFiscal;
+import com.gt.ifepson.comandos.TipoComando;
+import com.gt.ifepson.comandos.ClasificacionComando;
+import com.gt.ifepson.comandos.Extension;
+import com.gt.ifepson.comandos.TipoDato;
+
+public class ItemTiqueNC extends TipoComando {
+
+    public ItemTiqueNC() {
+    }
+
+    @Override
+    public String[] getNames() {
+        return new String[]{"ItemTiqueNC"};
+    }
+
+    @Override
+    public String getDescripcion() {
+        return "Item";
+    }
+
+    @Override
+    public String getNotas() {
+        return "La impresión de las líneas de descripción extra y de descripción será truncada de acuerdo al máximo\n"
+                + "permitido por línea.\n"
+                + "Un ítem será igual a otro cuando sean coincidentes en tipo (venta o retorno), descripciones extras\n"
+                + "(sin truncar), descripción (sin truncar), tasa de IVA, impuestos internos, precio unitario y\n"
+                + "preferencias.\n"
+                + "El monto facturado de la línea de ítem surge de multiplicar la cantidad por el precio unitario y\n"
+                + "redondear el valor obtenido a dos dígitos decimales.\n"
+                + "Debe existir el ‘código del item MTX’ o el ‘código interno’. En caso de que se envie ‘código del ítem\n"
+                + "MTX’ pero no el campo ‘unidad de referencia MTX’, este toma como valor por defecto “1”.\n"
+                + "Los valores posibles para el campo de entrada “Código de condición frente al IVA” son:\n"
+                + "7.- Gravado.\n"
+                + "2.- Exento.\n"
+                + "1.- No Gravado\n"
+                + "0.- No Corresponde (utilizado en Documentos tipo C)\n"
+                + "Si el emisor es monotributista el código de condición frente al IVA será ignorado y tendrá el valor 0\n"
+                + "Si el código de condición frente al IVA no es gravado la tasa de IVA será ignorada\n"
+                + "Los bits Bit 6-7 son sólo aceptados en un ítem de venta o anulación ítem de venta.\n"
+                + "Los bits Bit 12-13 no son aceptados en un ítem de venta o en una anulación de ítem de venta. (bit 0\n"
+                + "en estado activo o inactivo).\n"
+                + "El contador de ítems contabilizados como unidad (bulto) no disminuye a menos de cero.\n"
+                + "Sólo se permite un tipo de impuesto interno por ítem.";
+    }
+
+    @Override
+    public String getRequerimientos() {
+        return " No superar los máximos permitidos para las operaciones matemáticas.\n"
+                + " El total facturado de un mismo ítem no puede ser negativo.\n"
+                + " No haber alcanzado el máximo número de ítems dentro de un tique.\n"
+                + " No haber efectuado descuentos o ajustes o pagos dentro del tique.\n"
+                + " Mecanismo impresor en línea y con papel ó poco papel disponible.\n"
+                + " Los valores para el campo “Código unidad de medida” se interpretan como:\n"
+                + "0 - Sin descripcion\n"
+                + "1 - Kilogramo\n"
+                + "2 - Metros\n"
+                + "3 - Metro cuadrado\n"
+                + "4 - Metro cubico\n"
+                + "5 - Litros\n"
+                + "7 - Unidad\n"
+                + "8 - Par\n"
+                + "9 - Docena\n"
+                + "10 - Quilate\n"
+                + "11 - Millar\n"
+                + "12 - Mega u. inter. act. antib.\n"
+                + "13 - Unidad int. act. inmung.\n"
+                + "14 - Gramo\n"
+                + "15 - Milimetro\n"
+                + "16 - Milimetro cubico\n"
+                + "17 - Kilometro\n"
+                + "18 - Hectolitro\n"
+                + "19 - Mega unidad int. act. inmung.\n"
+                + "20 - Centimetro\n"
+                + "21 - Kilogramo activo\n"
+                + "22 - Gramo activo\n"
+                + "23 - Gramo base\n"
+                + "24 - Uiacthor\n"
+                + "25 – Jgo. pqt. mazo naipes\n"
+                + "26 - Muiacthor\n"
+                + "27 - Centimetro cubico\n"
+                + "28 - Uiactant\n"
+                + "29 - Tonelada\n"
+                + "30 - Decametro cubico\n"
+                + "31 - Hectometro cubico\n"
+                + "32 - Kilometro cubico\n"
+                + "33 - Microgramo\n"
+                + "34 - Nanogramo\n"
+                + "35 - Picogramo\n"
+                + "36 - Muiactant\n"
+                + "37 - Uiactig\n"
+                + "41 - Miligramo\n"
+                + "47 - Mililitro\n"
+                + "48 - Curie\n"
+                + "49 - Milicurie\n"
+                + "50 - Microcurie\n"
+                + "51 - U inter. act. hormonal\n"
+                + "52 - Mega u. inter. act. hormonal\n"
+                + "53 - Kilogramo base\n"
+                + "54 - Gruesa\n"
+                + "55 - Muiactig\n"
+                + "61 - Kilogramo bruto\n"
+                + "62 - Pack\n"
+                + "63 - Horma\n"
+                + "90 - Reservado\n"
+                + "91 - Reservado\n"
+                + "96 - Reservado\n"
+                + "97 - Reservado\n"
+                + "99 - Reservado";
+    }
+
+    @Override
+    public int getCodigo() {
+        return 0x0A02;
+    }
+
+    @Override
+    public ClasificacionComando getClasificacionComando() {
+        return ClasificacionComando.TIQUE;
+    }
+
+    @Override
+    public int[] getComando() {
+        int[] ret = new int[2];
+        ret[0] = 0x0A;
+        ret[1] = 0x02;
+        return ret;
+    }
+
+    @Override
+    public Extension[] getExtensiones() {
+        return new Extension[]{
+            new Extension(0b0000000000001111, "Tipo Item",
+            "Item de venta", 0b0000000000000000,
+            "Anulación de ítem de venta", 0b0000000000000001,
+            "Item 'Retorno Envases' o 'ENVASES'", 0b0000000000000010,
+            "Ajuste de ítem de retornod e envases", 0b0000000000000011,
+            "Item 'Bonificacion' o 'BONIF'", 0b0000000000000100,
+            "Ajuste de ítem de bonificacion", 0b0000000000000101,
+            "Item 'Descuento' o 'DTO'", 0b0000000000000110,
+            "Ajuste de item de descuento", 0b0000000000000111,
+            "Item 'Seña-anticipo' o '0SEÑA'", 0b0000000000001000,
+            "Ajuste de ítem seña/anticipo", 0b0000000000001001,
+            "Item descuento 'Seña-Anticipo' o 'SEÑA'", 0b0000000000001010,
+            "Ajuste de item descuento por seña/anticipo", 0b0000000000001011),
+            new Extension(0b0000000000010000, "Campo subtotal",
+            "No envía campo subtotal parcial del tique", 0b0000000000000000,
+            "Envía campo subtotal parcial del tique", 0b0000000000010000),
+            new Extension(0b0000000000100000, "Marcar item",
+            "No marca ítem", 0b0000000000000000,
+            "Marca ítem", 0b0000000000100000),
+            new Extension(0b0000000011000000, "Contabilizar",
+            "Contabilizar ítem de venta igual a la cantidad Q.", 0b0000000000000000,
+            "Contabilizar ítem de venta como cantidad unitaria (bulto).", 0b0000000001000000,
+            "No contabilizar ítem de venta en cantidad de unidades.", 0b0000000010000000),
+            new Extension(0b0001000000000000, "largo Leyenda",
+            "Imprime leyenda corta", 0b0000000000000000,
+            "Imprime leyenda larga", 0b0001000000000000),
+            new Extension(0b0010000000000000, "leyenda en importe",
+            "Imprime leyenda en linea de importe del item", 0b0000000000000000,
+            "Imprime leyenda en la primera linea de desripción", 0b0010000000000000)
+        };
+    }
+
+    @Override
+    public CampoFiscal[] getCamposEntrada() {
+        return new CampoFiscal[]{
+            new CampoFiscal(1, "Descripcion extra #1", TipoDato.RT, -1, true),
+            new CampoFiscal(2, "Descripcion extra #2", TipoDato.RT, -1, true),
+            new CampoFiscal(3, "Descripcion extra #3", TipoDato.RT, -1, true),
+            new CampoFiscal(4, "Descripcion extra #4", TipoDato.RT, -1, true),
+        };
+    }
+
+    @Override
+    public CampoFiscal[] getCamposSalida() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+}

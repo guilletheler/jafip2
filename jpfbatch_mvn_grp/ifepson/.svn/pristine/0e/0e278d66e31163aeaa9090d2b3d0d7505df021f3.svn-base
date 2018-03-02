@@ -1,0 +1,81 @@
+package com.gt.ifepson.comandos.notaCreditoAbcm;
+
+import com.gt.ifepson.comandos.CampoFiscal;
+import com.gt.ifepson.comandos.TipoComando;
+import com.gt.ifepson.comandos.ClasificacionComando;
+import com.gt.ifepson.comandos.Extension;
+import com.gt.ifepson.comandos.TipoDato;
+
+public class SubtotalNotaCreditoABCM extends TipoComando {
+
+    public SubtotalNotaCreditoABCM() {
+    }
+
+    @Override
+    public String[] getNames() {
+        return new String[]{"SubtotalNotaCreditoABCM"};
+    }
+
+    @Override
+    public String getDescripcion() {
+        return "Subtotal";
+    }
+
+    @Override
+    public String getNotas() {
+        return "";
+    }
+
+    @Override
+    public String getRequerimientos() {
+        return "Debe haberse emitido un ítem\n"
+                + "La impresión del subtotal se realiza solamente si no se han efectuado descuentos, ajustes, otros\n"
+                + "tributos o pagos dentro del tique-nota de crédito.\n"
+                + "Mecanismo impresor en línea y con papel ó poco papel disponible.";
+    }
+
+    @Override
+    public int getCodigo() {
+        return 0x0D03;
+    }
+
+    @Override
+    public ClasificacionComando getClasificacionComando() {
+        return ClasificacionComando.TNC;
+    }
+
+    @Override
+    public int[] getComando() {
+        int[] ret = new int[2];
+        ret[0] = 0x0D;
+        ret[1] = 0x03;
+        return ret;
+    }
+
+    @Override
+    public Extension[] getExtensiones() {
+        return new Extension[]{
+            new Extension(0b0000000000000001, "Imprime",
+            "IMPRIMIR_SUBTOTAL", 0b0000000000000000,
+            "NO_IMPRIMIR_SUBTOTAL", 0b0000000000000001),
+            new Extension(0b0000000000001100, "Devolucion",
+            "DEVUELVE_SOLO_CAMPO_TOTAL_BRUTO", 0b0000000000000000,
+            "DEVUELVE_SOLO_CAMPO_TOTAL_NETO", 0b0000000000000100,
+            "DEVUELVE_AMBOS_TOTALES", 0b0000000000001000,
+            "NO_DEVUELVE_NADA", 0b0000000000001100)
+        };
+    }
+
+    @Override
+    public CampoFiscal[] getCamposEntrada() {
+        return new CampoFiscal[]{};
+    }
+
+    @Override
+    public CampoFiscal[] getCamposSalida() {
+        return new CampoFiscal[]{
+            new CampoFiscal(1, "Subtotal parcial del tique-nota de crédito (bruto)", TipoDato.N_10_2, 12, true),
+            new CampoFiscal(1, "Subtotal parcial del tique-nota de crédito (neto)", TipoDato.N_10_2, 12, true)
+        };
+    }
+}

@@ -1,0 +1,187 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package com.gt.ifepson;
+
+import com.google.common.reflect.ClassPath;
+import com.gt.ifepson.capaFisica.EpsonFiscalDriverJNA;
+import com.gt.ifepson.comandos.MapaRetornos;
+import com.gt.ifepson.comandos.TipoComandoFiscal;
+import com.gt.ifepson.enums.estadoFiscal.*;
+import com.gt.ifepson.enums.estadoImpresor.*;
+import com.sun.jna.Native;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+/**
+ *
+ * @author guillermot
+ */
+public class IFEpsonHelper {
+
+    static final List<TipoComandoFiscal> COMANDOS = new ArrayList<>();
+    
+    static final MapaRetornos MAPA_RETORNOS = new MapaRetornos();
+
+    public static List<TipoComandoFiscal> getTiposComandos() {
+
+        if (COMANDOS.isEmpty()) {
+
+            final ClassLoader loader = Thread.currentThread().getContextClassLoader();
+
+            try {
+                for (final ClassPath.ClassInfo info : ClassPath.from(loader).getTopLevelClasses()) {
+                    if (info.getName().startsWith("com.gt.ifepson.comandos.")) {
+                        final Class<?> clazz = info.load();
+                        if (clazz != TipoComandoFiscal.class && TipoComandoFiscal.class.isAssignableFrom(clazz)) {
+                            try {
+                                COMANDOS.add((TipoComandoFiscal) clazz.newInstance());
+                            } catch (InstantiationException ex) {
+                                Logger.getLogger(IFEpsonHelper.class.getName()).log(Level.SEVERE, null, ex);
+                                Logger.getLogger(IFEpsonHelper.class.getName()).log(Level.FINE, "No se puede instanciar la clase {0}", clazz.getName());
+                            } catch (IllegalAccessException ex) {
+                                Logger.getLogger(IFEpsonHelper.class.getName()).log(Level.SEVERE, null, ex);
+                                Logger.getLogger(IFEpsonHelper.class.getName()).log(Level.FINE, "No se puede instanciar (acceso) la clase {0}", clazz.getName());
+                            }
+                        }
+                    }
+                }
+            } catch (IOException ex) {
+                Logger.getLogger(IFEpsonHelper.class.getName()).log(Level.FINE, "que se yo");
+            }
+
+        }
+
+        return COMANDOS;
+    }
+
+    public static MapaRetornos getMapaRetornos() {
+        return MAPA_RETORNOS;
+    }
+
+    
+    
+    public static String getAyuda(String comando) {
+        TipoComandoFiscal tipoComando = IFEpsonHelper.findComand(comando);
+        if(tipoComando == null) {
+            return "comando '" + comando + "' no reconocido";
+        }
+        return tipoComando.getAyuda();
+    }
+    
+    public static String getAyuda() {
+        StringBuilder sb = new StringBuilder();
+        for (TipoComandoFiscal tc : IFEpsonHelper.getTiposComandos()) {
+            sb.append(tc.getAyuda());
+            sb.append("\n\n");
+        }
+        return sb.toString();
+    }
+
+    public static EpsonFiscalDriverJNA newEpsonFiscalDriver() {
+        return newEpsonFiscalDriver(null, (byte) 0);
+    }
+
+    /**
+     *
+     * @param logPath
+     * @param logAction 0, sin log, 1 log con fecha, 2 log en temp.txt
+     * @return
+     */
+    public static EpsonFiscalDriverJNA newEpsonFiscalDriver(String logPath, byte logAction) {
+        EpsonFiscalDriverJNA epsonDriver = (EpsonFiscalDriverJNA) Native.loadLibrary("EpsonFiscalDriver", EpsonFiscalDriverJNA.class);
+
+        byte[] Version = new byte[16];
+
+        epsonDriver.GetAPIVersion(Version);
+        String strVersion = new String(Version);
+        Logger.getLogger(IFEpsonHelper.class.getName()).log(Level.INFO, "EpsonFiscalDriver JNA GetApiVersion: {0}", strVersion);
+
+        if (logPath == null || logPath.isEmpty()) {
+            logPath = "./";
+        }
+
+        epsonDriver.SetLog(logPath, logAction);
+        epsonDriver.setProtocolType(1);
+
+        return epsonDriver;
+    }
+
+    public static int openPort(EpsonFiscalDriverJNA epsonDriver, int port, int baudRate) {
+        epsonDriver.setComPort(1);
+        epsonDriver.setBaudRate(9600);
+        epsonDriver.OpenPort();
+
+        int lastComError = epsonDriver.getLastError();
+
+        Logger.getLogger(IFEpsonHelper.class.getName()).log(Level.INFO, "OpenPort: {0}", lastComError);
+
+        return lastComError;
+    }
+
+    public static int closePort(EpsonFiscalDriverJNA epsonDriver) {
+        epsonDriver.ClosePort();
+        while (epsonDriver.getState() == 2) {
+            Logger.getLogger(IFEpsonHelper.class.getName()).log(Level.INFO, "esperando se cierre el puerto");
+            try {
+                Thread.sleep(50);
+            } catch (InterruptedException ex) {
+                Logger.getLogger(IFEpsonHelper.class.getName()).log(Level.SEVERE, "Error en Thread.sleep", ex);
+            }
+        }
+
+        return epsonDriver.getState();
+    }
+    
+    public static List<String> traducirEstadoFiscal(int estadoFiscal) {
+        
+        List<String> ret = new ArrayList<>();
+        
+        ret.add("EstadoFiscalModoFunqEquipo : " + EstadoFiscalModoFunqEquipo.parseEstado(estadoFiscal));
+        ret.add("EstadoFiscalEstadoCertDigital : " + EstadoFiscalEstadoCertDigital.parseEstado(estadoFiscal));
+        ret.add("EstadoFiscalModoTecnico : " + EstadoFiscalModoTecnico.parseEstado(estadoFiscal));
+        ret.add("EstadoFiscalEstadoMemoriaFiscal : " + EstadoFiscalEstadoMemoriaFiscal.parseEstado(estadoFiscal));
+        ret.add("EstadoFiscalEstadoMemoriaTransacciones : " + EstadoFiscalEstadoMemoriaTransacciones.parseEstado(estadoFiscal));
+        ret.add("EstadoFiscalJornadaFiscal : " + EstadoFiscalJornadaFiscal.parseEstado(estadoFiscal));
+        ret.add("EstadoFiscalSubestados : " + EstadoFiscalSubestados.parseEstado(estadoFiscal));
+        ret.add("EstadoFiscalDocumentoEnProgreso : " + EstadoFiscalDocumentoEnProgreso.parseEstado(estadoFiscal));
+        
+        return ret;
+    }
+    
+    public static List<String> traducirEstadoImpresora(int estadoFiscal) {
+        
+        List<String> ret = new ArrayList<>();
+        
+        ret.add("EstadoImpresor : " + EstadoImpresor.parseEstado(estadoFiscal));
+        ret.add("EstadoImpresorError : " + EstadoImpresorError.parseEstado(estadoFiscal));
+        ret.add("EstadoImpresorTapa : " + EstadoImpresorTapa.parseEstado(estadoFiscal));
+        ret.add("EstadoImpresorEstacion : " + EstadoImpresorEstacion.parseEstado(estadoFiscal));
+        ret.add("EstadoImpresorSlipValidaSensorEsperaCargaRemocion : " + EstadoImpresorSlipValidaSensorEsperaCargaRemocion.parseEstado(estadoFiscal));
+        ret.add("EstadoImpresorSlipValidaSensorEsperaCargaRemocion : " + EstadoImpresorSlipValidaSensorEsperaCargaRemocion.parseEstado(estadoFiscal));
+        ret.add("EstadoImpresorSlipIniCarga : " + EstadoImpresorSlipIniCarga.parseEstado(estadoFiscal));
+        ret.add("EstadoImpresorSlipFinCarga : " + EstadoImpresorSlipFinCarga.parseEstado(estadoFiscal));
+        ret.add("EstadoImpresorSlipValida : " + EstadoImpresorSlipValida.parseEstado(estadoFiscal));
+        ret.add("EstadoImpresorJournal : " + EstadoImpresorJournal.parseEstado(estadoFiscal));
+        ret.add("EstadoImpresorReceipt : " + EstadoImpresorReceipt.parseEstado(estadoFiscal));
+        
+        return ret;
+    }
+
+    private static TipoComandoFiscal findComand(String comando) {
+        for(TipoComandoFiscal tcf : IFEpsonHelper.getTiposComandos()) {
+            for(String nombreComando : tcf.getNames()) {
+                if(nombreComando.equalsIgnoreCase(comando)) {
+                    return tcf;
+                }
+            }
+        }
+        
+        return null;
+    }
+}

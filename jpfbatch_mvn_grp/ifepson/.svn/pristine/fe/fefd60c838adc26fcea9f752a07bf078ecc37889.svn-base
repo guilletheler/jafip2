@@ -1,0 +1,105 @@
+package com.gt.ifepson.comandos.tiqueFact;
+
+import com.gt.ifepson.comandos.CampoFiscal;
+import com.gt.ifepson.comandos.TipoComando;
+import com.gt.ifepson.comandos.ClasificacionComando;
+import com.gt.ifepson.comandos.Extension;
+
+public class AbrirTiqueFactNDABCM extends TipoComando {
+
+    public AbrirTiqueFactNDABCM() {
+    }
+
+    @Override
+    public String[] getNames() {
+        return new String[]{"AbrirTiqueFactNDABCM"};
+    }
+
+    @Override
+    public String getDescripcion() {
+        return "Realiza la apertura de un documento tique-factura o nota de débito A/B/C/M.";
+    }
+
+    @Override
+    public int getCodigo() {
+        return 0x0B01;
+    }
+
+    @Override
+    public ClasificacionComando getClasificacionComando() {
+        return ClasificacionComando.TFND;
+    }
+
+    @Override
+    public int[] getComando() {
+        int[] ret = new int[2];
+        ret[0] = 0x0B;
+        ret[1] = 0x01;
+        return ret;
+    }
+
+    @Override
+    public String getNotas() {
+        return " Imprime el logo configurado por el usuario 46\n"
+                + " Para que una línea no sea impresa se debe enviar el campo texto vacío.\n"
+                + " Para que la impresión resulte en una línea en blanco se debe enviar el caracter espacio ASCII(32).\n"
+                + " Los atributos de impresión serán ignorados, para todas las líneas de texto\n"
+                + " En las líneas de nombre y domicilio se aceptarán las siguientes combinaciones de la palabra “Total”:\n"
+                + "“TOTAL”, “total”, “Total”, pero al momento de ser impresas, siempre se imprimirán como “Total”.\n"
+                + " Se incrementa en uno el contador de documento correspondiente.\n"
+                + " Los valores posibles del campo de entrada #6 son:\n"
+                + "D = DNI\n"
+                + "L = CUIL\n"
+                + "T = CUIT\n"
+                + "C = Cédula de Identidad\n"
+                + "P = Pasaporte\n"
+                + "V = Libreta Cívica\n"
+                + "E = Libreta de Enrolamiento\n"
+                + " Los valores posibles del campo de entrada #8 son:\n"
+                + "I = Responsable Inscripto\n"
+                + "N = No Responsable\n"
+                + "M = Monotributista\n"
+                + "E = Exento\n"
+                + "U = No Categorizado\n"
+                + "F = Consumidor Final\n"
+                + "T = Monotributista Social\n"
+                + "P = Monotributo Trabajador Independiente Promovido";
+    }
+
+    @Override
+    public String getRequerimientos() {
+        return " Memoria fiscal no llena.\n"
+                + " Memoria de transacciones no llena.\n"
+                + " Mecanismo impresor en línea y con papel.\n"
+                + " Se deben haber configurado previamente los datos de fiscalización y del establecimiento que sean\n"
+                + "obligatorios.\n"
+                + " No se aceptan códigos de barra en las líneas de texto.\n"
+                + " El formato de la línea de documento asociado es la siguiente: “ddd-ppppp-nnnnnnnn”\n"
+                + "Siendo: \n"
+                + "     ddd: el tipo de documento. (ejemplo: “081”)\n"
+                + "   ppppp: número de caja. (ejemplo: “00001”)\n"
+                + "nnnnnnnn: el número de documento. (ejemplo: “00000027”)";
+    }
+
+    @Override
+    public Extension[] getExtensiones() {
+        return new Extension[]{
+            new Extension(0b0000000000000010, "IMPRESION_ORIGINAL_Y_TRIPLICADO",
+            "IMPRESION_ORIGINAL", 0b0000000000000000,
+            "IMPRESION_ORIGINAL_Y_TRIPLICADO", 0b0000000000000010),
+            new Extension(0b0000000010000000, "ATRIBUTOS_IMPRESION (DNFH de farmacia, talón de envío a domicilio, talón de cambio).",
+            "NO_ALMACENA_DESCRIPCIONES_ITEMS", 0b0000000000000000,
+            "ALMACENA_DESCRIPCIONES_ITEMS", 0b0000000010000000),};
+    }
+
+    @Override
+    public CampoFiscal[] getCamposEntrada() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public CampoFiscal[] getCamposSalida() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+}

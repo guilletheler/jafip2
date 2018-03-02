@@ -1,0 +1,79 @@
+package com.gt.ifepson.comandos.jornadaFiscal;
+
+import com.gt.ifepson.comandos.CampoFiscal;
+import com.gt.ifepson.comandos.TipoComando;
+import com.gt.ifepson.comandos.ClasificacionComando;
+import com.gt.ifepson.comandos.Extension;
+import com.gt.ifepson.comandos.TipoDato;
+
+public class JornadaFiscalAuditoriaResumidaComenzarAuditoriaDetalladaDeJornadasFiscalesPorRangoDeCierresZ extends TipoComando {
+
+    public JornadaFiscalAuditoriaResumidaComenzarAuditoriaDetalladaDeJornadasFiscalesPorRangoDeCierresZ() {
+    }
+
+    @Override
+    public String[] getNames() {
+        return new String[]{"JornadaFiscalAuditoriaResumidaComenzarAuditoriaDetalladaDeJornadasFiscalesPorRangoDeCierresZ"};
+    }
+
+    @Override
+    public String getDescripcion() {
+        return "Inicia un informe de Auditoría detallada de Jornadas Fiscales. Obtiene la información de acuerdo a los\n"
+                + "parámetros solicitados y prepara la descarga electrónica de datos.";
+    }
+
+    @Override
+    public int getCodigo() {
+        return 0x0813;
+    }
+
+    @Override
+    public ClasificacionComando getClasificacionComando() {
+        return ClasificacionComando.JORNADA_FISCAL;
+    }
+
+    @Override
+    public int[] getComando() {
+        int[] ret = new int[2];
+        ret[0] = 0x08;
+        ret[1] = 0x13;
+        return ret;
+    }
+
+    @Override
+    public String getNotas() {
+        return " El reporte impreso siempre es detallado por número de cierre Z.\n"
+                + " Al no enviar el valor del campo “Número del último cierre Z” el mismo tomará el valor máximo posible\n"
+                + "(valor igual a 9999).";
+    }
+
+    @Override
+    public String getRequerimientos() {
+        return " Mecanismo impresor en línea y con papel. (En caso de impresion del documento)";
+    }
+
+    @Override
+    public Extension[] getExtensiones() {
+        return new Extension[]{
+            new Extension(0b0000000000000001, "IMPRIME_REPORTE",
+            "IMPRIME_REPORTE", 0b0000000000000000,
+            "NO_IMPRIME_REPORTE", 0b0000000000000001),
+            new Extension(0b0000000000000010, "AUDITORIA_RESUMIDA_O_DETALLADA",
+            "AUDITORIA_RESUMIDA", 0b0000000000000000,
+            "AUDITORIA_DETALLADA", 0b0000000000000010),};
+    }
+
+    @Override
+    public CampoFiscal[] getCamposEntrada() {
+        return new CampoFiscal[]{
+          new CampoFiscal(1, "Número de cierre de Z inicial", TipoDato.N_E, 4, false),
+          new CampoFiscal(2, "Número de cierre de Z final", TipoDato.N_E, 4, true),
+        };
+    }
+
+    @Override
+    public CampoFiscal[] getCamposSalida() {
+        return new CampoFiscal[]{};
+    }
+
+}

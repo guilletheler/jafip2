@@ -1,0 +1,5 @@
+[000]CierreDeJornadaFiscal()
+[000]LastComError:0
+[000]EstadoImpresor:EstadoImpresor: ONLINE|EstadoImpresorError: SIN_ERROR|EstadoImpresorTapa: CERRADA|EstadoImpresorEstacion: RECEIPT_RECIBOS|EstadoImpresorSlipValidaSensorEsperaCargaRemocion: NORMAL_SIN_ESPERA|EstadoImpresorSlipValidaSensorEsperaCargaRemocion: NORMAL_SIN_ESPERA|EstadoImpresorSlipIniCarga: SIN_PAPEL|EstadoImpresorSlipFinCarga: SIN_PAPEL|EstadoImpresorSlipValida: SIN_PAPEL|EstadoImpresorJournal: SIN_PROBLEMAS|EstadoImpresorReceipt: SIN_PROBLEMAS
+[000]EstadoFiscalModoFunqEquipo: ENTRENAMIENTO|EstadoFiscalEstadoCertDigital: VALIDOS|EstadoFiscalModoTecnico: INACTIVO|EstadoFiscalEstadoMemoriaFiscal: PERFECTO_ESTADO|EstadoFiscalEstadoMemoriaTransacciones: PERFECTO_ESTADO|EstadoFiscalJornadaFiscal: ABIERTA|EstadoFiscalSubestados: SIN_SUBESTADOS|EstadoFiscalDocumentoEnProgreso: SIN_DOCUMENTO
+[000]Retorno CierreDeJornadaFiscal: 19

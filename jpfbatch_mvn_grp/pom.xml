@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.gt</groupId>
+    <artifactId>jpfbatch_mvn_grp</artifactId>
+    <version>2.0-SNAPSHOT</version>
+    <packaging>pom</packaging>
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+    <name>jpfbatch_mvn_grp_2</name>
+    <description>JPFBatch versión 2 implementando interface nativa de EPSON</description>
+    <modules>
+        <module>ifepson</module>
+        <module>jpfbatch</module>
+        <module>jpfbatchsc</module>
+    </modules>
+</project>

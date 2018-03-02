@@ -1,0 +1,78 @@
+package com.gt.ifepson.comandos.controlImpresor;
+
+import com.gt.ifepson.comandos.CampoFiscal;
+import com.gt.ifepson.comandos.TipoComando;
+import com.gt.ifepson.comandos.ClasificacionComando;
+import com.gt.ifepson.comandos.Extension;
+import com.gt.ifepson.comandos.TipoDato;
+
+public class ConfigurarDensidadDeImpresion extends TipoComando {
+
+    public ConfigurarDensidadDeImpresion() {
+    }
+
+    @Override
+    public String[] getNames() {
+        return new String[]{"ConfigurarDensidadDeImpresion", "setDensidadImpresion"};
+    }
+
+    @Override
+    public String getDescripcion() {
+        return "Configurar Densidad de Impresión";
+    }
+
+    @Override
+    public int getCodigo() {
+        return 0x0777;
+    }
+
+    @Override
+    public ClasificacionComando getClasificacionComando() {
+        return ClasificacionComando.CONTROL_IMPRESORA;
+    }
+
+    @Override
+    public int[] getComando() {
+        int[] ret = new int[2];
+        ret[0] = 0x07;
+        ret[1] = 0x77;
+        return ret;
+    }
+
+    @Override
+    public Extension[] getExtensiones() {
+        return new Extension[]{};
+    }
+    
+    @Override
+    public String getNotas() {
+        return "No ejecute este comando en forma reiterada ya que podría dañar el módulo impresor\n"
+                + "El valor de densidad de impresión deseada debe corresponder a la siguiente tabla:\n"
+                + "1. 120 %\n"
+                + "2. 115 %\n"
+                + "3. 110 %\n"
+                + "4. 105 %\n"
+                + "5. 100 % ( Valor por defecto )\n"
+                + "6.  95 %\n"
+                + "7.  90 %\n"
+                + "8.  85 %\n"
+                + "9.  80 %\n"
+                + "10. 75 %";
+    }
+
+    @Override
+    public String getRequerimientos() {
+        return "";
+    }
+
+    @Override
+    public CampoFiscal[] getCamposSalida() {
+        return new CampoFiscal[]{};
+    }
+
+    @Override
+    public CampoFiscal[] getCamposEntrada() {
+        return new CampoFiscal[]{new CampoFiscal(1, "Valor de densidad de impresión", TipoDato.N_E, 2, false)};
+    }
+
+}

@@ -1,0 +1,73 @@
+package com.gt.ifepson.comandos.configuracion;
+
+import com.gt.ifepson.comandos.CampoFiscal;
+import com.gt.ifepson.comandos.TipoComando;
+import com.gt.ifepson.comandos.ClasificacionComando;
+import com.gt.ifepson.comandos.Extension;
+import com.gt.ifepson.comandos.TipoDato;
+
+public class EstablecerLosValoresDeLaConexionARed extends TipoComando {
+
+    public EstablecerLosValoresDeLaConexionARed() {
+    }
+
+    @Override
+    public String[] getNames() {
+        return new String[]{"EstablecerLosValoresDeLaConexionARed", "SetNetwork"};
+    }
+
+    @Override
+    public String getDescripcion() {
+        return "Establecer los Valores de la Conexión a Red";
+    }
+
+    @Override
+    public int getCodigo() {
+        return 0x05C1;
+    }
+
+    @Override
+    public ClasificacionComando getClasificacionComando() {
+        return ClasificacionComando.CONFIGURACION;
+    }
+
+    @Override
+    public int[] getComando() {
+        int[] ret = new int[2];
+        ret[0] = 0x05;
+        ret[1] = 0xC1;
+        return ret;
+    }
+
+    @Override
+    public Extension[] getExtensiones() {
+        return new Extension[]{
+            new Extension(0b0000000000000001, "USO_DHCP",
+            "SIN_DHCP", 0b0000000000000000,
+            "CON_DHCP", 0b0000000000000001)
+        };
+    }
+
+    @Override
+    public String getNotas() {
+        return "En el caso de no utilizar DHCP (bit 0 de la extensión) los campos de entrada del 1 al 3 serán obligatorios.";
+    }
+
+    @Override
+    public String getRequerimientos() {
+        return "";
+    }
+
+    @Override
+    public CampoFiscal[] getCamposSalida() {
+        return new CampoFiscal[]{};
+    }
+
+    @Override
+    public CampoFiscal[] getCamposEntrada() {
+        return new CampoFiscal[]{new CampoFiscal(1, "Direccion IP", TipoDato.P, 19, true),
+            new CampoFiscal(2, "Mascara de red", TipoDato.P, 19, true),
+            new CampoFiscal(1, "Puerta de enlace", TipoDato.P, 19, true)};
+    }
+
+}

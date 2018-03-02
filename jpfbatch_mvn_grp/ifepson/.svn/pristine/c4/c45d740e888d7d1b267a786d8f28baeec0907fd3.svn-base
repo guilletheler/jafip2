@@ -1,0 +1,86 @@
+package com.gt.ifepson.comandos.configuracion;
+
+import com.gt.ifepson.comandos.CampoFiscal;
+import com.gt.ifepson.comandos.TipoComando;
+import com.gt.ifepson.comandos.ClasificacionComando;
+import com.gt.ifepson.comandos.Extension;
+import com.gt.ifepson.comandos.TipoDato;
+
+public class ObtenerDatosDeFiscalizacion extends TipoComando {
+
+    public ObtenerDatosDeFiscalizacion() {
+    }
+
+    @Override
+    public String[] getNames() {
+        return new String[]{"ObtenerDatosDeFiscalizacion", "getDatosDeFiscalizacion", "getFiscalData"};
+    }
+
+    @Override
+    public String getDescripcion() {
+        return "Obtener datos de Fiscalización";
+    }
+
+    @Override
+    public int getCodigo() {
+        return 0x0507;
+    }
+
+    @Override
+    public ClasificacionComando getClasificacionComando() {
+        return ClasificacionComando.CONFIGURACION;
+    }
+
+    @Override
+    public int[] getComando() {
+        int[] ret = new int[2];
+        ret[0] = 0x05;
+        ret[1] = 0x07;
+        return ret;
+    }
+
+    @Override
+    public Extension[] getExtensiones() {
+        return new Extension[]{
+            new Extension(0b0000000000000001, "IMPRIMIR",
+            "NO_IMPRIME_REPORTE", 0b0000000000000000,
+            "IMPRIME_REPORTE", 0b0000000000000001)
+        };
+    }
+
+    @Override
+    public String getNotas() {
+        return " Obtiene los datos de fiscalización que se encuentran configurados en el equipo. Es posible obtener una salida impresa.\n"
+                + "En caso que la impresora no posea ningún dato de fiscalización, la fecha se retorna como campo vacío y los datos del usuario no configurados con valores por defecto.\n"
+                + " El reporte de datos de fiscalización solamente puede ser impreso en caso que no exista ningún otro documento en progreso.\n"
+                + " Los valores posibles para el campo de entrada “Tipo de Tique-Factura A” son:\n"
+                + "- ‘0’ - Normal.\n"
+                + "- ‘1’ - Comprobantes A con leyenda.\n"
+                + "- ‘2’ - Comprobantes M.\n"
+                + "- Vacío si la responsabilidad ante el IVA es distinta a “I”.";
+    }
+
+    @Override
+    public String getRequerimientos() {
+        return "Mecanismo impresor en linea y con papel (en caso de impresión del documento).";
+    }
+
+    @Override
+    public CampoFiscal[] getCamposSalida() {
+        return new CampoFiscal[]{
+            new CampoFiscal(1, "Razón Saocial", TipoDato.P, 30, false),
+            new CampoFiscal(2, "Número de CUIT", TipoDato.N_E, 11, false),
+            new CampoFiscal(3, "Númerod de caja", TipoDato.N_E, 5, false),
+            new CampoFiscal(4, "Responsabilidad ante el IVA", TipoDato.L, 1, false),
+            new CampoFiscal(5, "Tipo de Tique-Factura A", TipoDato.N_E, 1, false),
+            new CampoFiscal(6, "Tasa de IVA estándar", TipoDato.N_2_2, 4, false),
+            new CampoFiscal(7, "Fecha de fiscalización", TipoDato.D, 6, false)
+        };
+    }
+
+    @Override
+    public CampoFiscal[] getCamposEntrada() {
+        return new CampoFiscal[]{};
+    }
+
+}

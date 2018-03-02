@@ -1,0 +1,156 @@
+package com.gt.ifepson.comandos.jornadaFiscal;
+
+import com.gt.ifepson.comandos.CampoFiscal;
+import com.gt.ifepson.comandos.TipoComando;
+import com.gt.ifepson.comandos.ClasificacionComando;
+import com.gt.ifepson.comandos.Extension;
+import com.gt.ifepson.comandos.TipoDato;
+
+public class JornadaFiscalInformacionElectronicaDeImpuestosDeLaJornadaFiscalEnCurso extends TipoComando {
+
+    public JornadaFiscalInformacionElectronicaDeImpuestosDeLaJornadaFiscalEnCurso() {
+    }
+
+    @Override
+    public String[] getNames() {
+        return new String[]{"JornadaFiscalInformacionElectronicaDeImpuestosDeLaJornadaFiscalEnCurso"};
+    }
+
+    @Override
+    public String getDescripcion() {
+        return "Obtiene información electrónica de impuestos de la jornada fiscal en curso.";
+    }
+
+    @Override
+    public int getCodigo() {
+        return 0x080B;
+    }
+
+    @Override
+    public ClasificacionComando getClasificacionComando() {
+        return ClasificacionComando.JORNADA_FISCAL;
+    }
+
+    @Override
+    public int[] getComando() {
+        int[] ret = new int[2];
+        ret[0] = 0x08;
+        ret[1] = 0x0B;
+        return ret;
+    }
+
+    @Override
+    public String getNotas() {
+        return " La impresora fiscal devolverá 5 campos por cada tasa que haya sido utilizada durante la jornada\n"
+                + "fiscal en el orden indicado del campo 2 al 6.\n"
+                + " La codificación númerica del campo de entrada Tipo de Documento, es la siguiente:\n"
+                + "83	Tique\n"
+                + "81	Tique Factura A\n"
+                + "82	Tique Factura B\n"
+                + "91	DNFH Remito ‘R’\n"
+                + "110	Tique Nota de Crédito\n"
+                + "111	Tique Factura C\n"
+                + "112	Tique Nota de Crédito A\n"
+                + "113	Tique Nota de Crédito B\n"
+                + "114	Tique Nota de Crédito C\n"
+                + "115	Tique Nota de Débito A\n"
+                + "116	Tique Nota de Débito B\n"
+                + "117	Tique Nota de Débito C\n"
+                + "118	Tique Factura M\n"
+                + "119	Tique Nota de Crédito M\n"
+                + "120	Tique Nota de Débito M\n"
+                + "901	DNFH Remito ‘X’\n"
+                + "902	DNFH Recibo ‘X’\n"
+                + "903	DNFH Presupuesto ‘X’\n"
+                + "907	DNFH Comprobante Donación\n"
+                + "910	DNFH Documento Genérico\n"
+                + "923	Documento de Cambio de Línea de Establecimiento,\n"
+                + "	Documento de Diagnóstico del Módulo Impresor,\n"
+                + "	Reporte de Información del Equipo,\n"
+                + "	Documento Mensaje del Sistema\n"
+                + "936	Salida de Cajero\n"
+                + "941	Total de Ventas\n"
+                + "950	DNFH Documento de Uso Interno\n"
+                + "951	DNFH Cambio de Fecha y Hora\n"
+                + "952	DNFH Cambio de Categorización Ante el IVA\n"
+                + "953	DNFH Cambio de Inscripción en Ingresos Brutos\n"
+                + "Solamente retornarán información los siguientes tipo de documentos:\n"
+                + "81	Tique Factura A\n"
+                + "82	Tique Factura B\n"
+                + "110	Tique Nota de Crédito\n"
+                + "111	Tique Factura C\n"
+                + "112	Tique Nota de Crédito A\n"
+                + "113	Tique Nota de Crédito B\n"
+                + "114	Tique Nota de Crédito C\n"
+                + "115	Tique Nota de Débito A\n"
+                + "116	Tique Nota de Débito B\n"
+                + "117	Tique Nota de Débito C\n"
+                + "110	Tique Nota de Crédito\n"
+                + "118	Tique Factura M\n"
+                + "119	Tique Nota de Crédito M\n"
+                + "120	Tique Nota de Débito M";
+    }
+
+    @Override
+    public String getRequerimientos() {
+        return "Jornada fiscal abierta.";
+    }
+
+    @Override
+    public Extension[] getExtensiones() {
+        return new Extension[]{
+            new Extension(0b0000000100000000, "DATOS_DESDE",
+            "DATOS_DESDE_EL_ULTIMO_CIERRE_DE_CAJERO_O_INICIO_DE_JORNADA", 0b0000000000000000,
+            "DATOS_DESDE_EL_INICIO_DE_JORNADA_FISCAL", 0b0000000100000000),};
+    }
+
+    @Override
+    public CampoFiscal[] getCamposEntrada() {
+        return new CampoFiscal[]{
+          new CampoFiscal(1, "Tipo de Documento", TipoDato.N_E, 3, false),
+        };
+    }
+
+    @Override
+    public CampoFiscal[] getCamposSalida() {
+        return new CampoFiscal[]{
+          new CampoFiscal(1, "Total de impuestos", TipoDato.N_10_2, 12, false),
+          new CampoFiscal(2, "Tasa de IVA #1", TipoDato.N_0_4, 4, false),
+          new CampoFiscal(3, "Monto de IVA x tasa #1", TipoDato.N_10_2, 12, false),
+          new CampoFiscal(4, "Monto vendido x tasa #1", TipoDato.N_10_2, 12, false),
+          new CampoFiscal(5, "Monto de impuestos internos fijos x tasa #1", TipoDato.N_10_2, 12, false),
+          new CampoFiscal(6, "Monto de impuestos internos porcentuales x tasa #1", TipoDato.N_10_2, 12, false),
+          new CampoFiscal(7, "Tasa de IVA #2", TipoDato.N_0_4, 4, false),
+          new CampoFiscal(8, "Monto de IVA x tasa #2", TipoDato.N_10_2, 12, false),
+          new CampoFiscal(9, "Monto vendido x tasa #2", TipoDato.N_10_2, 12, false),
+          new CampoFiscal(10, "Monto de impuestos internos fijos x tasa #2", TipoDato.N_10_2, 12, false),
+          new CampoFiscal(11, "Monto de impuestos internos porcentuales x tasa #2", TipoDato.N_10_2, 12, false),
+          new CampoFiscal(12, "Tasa de IVA #3", TipoDato.N_0_4, 4, false),
+          new CampoFiscal(13, "Monto de IVA x tasa #3", TipoDato.N_10_2, 12, false),
+          new CampoFiscal(14, "Monto vendido x tasa #3", TipoDato.N_10_2, 12, false),
+          new CampoFiscal(15, "Monto de impuestos internos fijos x tasa #3", TipoDato.N_10_2, 12, false),
+          new CampoFiscal(16, "Monto de impuestos internos porcentuales x tasa #3", TipoDato.N_10_2, 12, false),
+          new CampoFiscal(17, "Tasa de IVA #4", TipoDato.N_0_4, 4, false),
+          new CampoFiscal(18, "Monto de IVA x tasa #4", TipoDato.N_10_2, 12, false),
+          new CampoFiscal(19, "Monto vendido x tasa #4", TipoDato.N_10_2, 12, false),
+          new CampoFiscal(20, "Monto de impuestos internos fijos x tasa #4", TipoDato.N_10_2, 12, false),
+          new CampoFiscal(21, "Monto de impuestos internos porcentuales x tasa #4", TipoDato.N_10_2, 12, false),
+          new CampoFiscal(22, "Tasa de IVA #5", TipoDato.N_0_4, 4, false),
+          new CampoFiscal(23, "Monto de IVA x tasa #5", TipoDato.N_10_2, 12, false),
+          new CampoFiscal(24, "Monto vendido x tasa #5", TipoDato.N_10_2, 12, false),
+          new CampoFiscal(24, "Monto de impuestos internos fijos x tasa #5", TipoDato.N_10_2, 12, false),
+          new CampoFiscal(25, "Monto de impuestos internos porcentuales x tasa #5", TipoDato.N_10_2, 12, false),
+          new CampoFiscal(27, "Tasa de IVA #6", TipoDato.N_0_4, 4, false),
+          new CampoFiscal(28, "Monto de IVA x tasa #6", TipoDato.N_10_2, 12, false),
+          new CampoFiscal(29, "Monto vendido x tasa #6", TipoDato.N_10_2, 12, false),
+          new CampoFiscal(30, "Monto de impuestos internos fijos x tasa #6", TipoDato.N_10_2, 12, false),
+          new CampoFiscal(31, "Monto de impuestos internos porcentuales x tasa #6", TipoDato.N_10_2, 12, false),
+          new CampoFiscal(32, "Tasa de IVA #7", TipoDato.N_0_4, 4, false),
+          new CampoFiscal(33, "Monto de IVA x tasa #7", TipoDato.N_10_2, 12, false),
+          new CampoFiscal(34, "Monto vendido x tasa #7", TipoDato.N_10_2, 12, false),
+          new CampoFiscal(35, "Monto de impuestos internos fijos x tasa #7", TipoDato.N_10_2, 12, false),
+          new CampoFiscal(36, "Monto de impuestos internos porcentuales x tasa #7", TipoDato.N_10_2, 12, false),
+        };
+    }
+
+}

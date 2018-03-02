@@ -1,0 +1,68 @@
+package com.gt.ifepson.comandos.configuracion;
+
+import com.gt.ifepson.comandos.CampoFiscal;
+import com.gt.ifepson.comandos.TipoComando;
+import com.gt.ifepson.comandos.ClasificacionComando;
+import com.gt.ifepson.comandos.Extension;
+
+public class ObtenerErrorDeProcesoInterno extends TipoComando {
+
+    public ObtenerErrorDeProcesoInterno() {
+    }
+
+    @Override
+    public String[] getNames() {
+        return new String[]{"ObtenerErrorDeProcesoInterno", "ConsultarErrorDeProcesoInterno"};
+    }
+
+    @Override
+    public String getDescripcion() {
+        return "Obtener Error de Proceso Interno";
+    }
+
+    @Override
+    public String getNotas() {
+        return "Este comando permite conocer la causa precisa del error si se produjo un fallo en una operación interna"
+                + "y la impresora fiscal detecta que quedan operaciones pendientes. Al intentar ejecutar un comando la"
+                + "respuesta indica que se produjo un error en procesos internos. Por ejemplo ante un determinado"
+                + "comando que requiera impresión pero al momento de realizarla el mecanismo impresor falla.";
+    }
+
+    @Override
+    public String getRequerimientos() {
+        return "";
+    }
+
+    @Override
+    public CampoFiscal[] getCamposEntrada() {
+        return new CampoFiscal[]{};
+    }
+
+    @Override
+    public CampoFiscal[] getCamposSalida() {
+        return new CampoFiscal[]{};
+    }
+
+    @Override
+    public int getCodigo() {
+        return 0x0004;
+    }
+
+    @Override
+    public ClasificacionComando getClasificacionComando() {
+        return ClasificacionComando.SISTEMA;
+    }
+
+    @Override
+    public int[] getComando() {
+        int[] ret = new int[2];
+        ret[0] = 0x00;
+        ret[1] = 0x04;
+        return ret;
+    }
+
+    @Override
+    public Extension[] getExtensiones() {
+        return new Extension[]{};
+    }
+}

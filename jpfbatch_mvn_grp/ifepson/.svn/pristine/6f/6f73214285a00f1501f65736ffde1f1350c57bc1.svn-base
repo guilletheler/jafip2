@@ -1,0 +1,85 @@
+package com.gt.ifepson.comandos.descargaReportes;
+
+import com.gt.ifepson.comandos.CampoFiscal;
+import com.gt.ifepson.comandos.TipoComando;
+import com.gt.ifepson.comandos.ClasificacionComando;
+import com.gt.ifepson.comandos.Extension;
+import com.gt.ifepson.comandos.TipoDato;
+
+public class InformacionDeMemoriaDeTransacciones extends TipoComando {
+
+    public InformacionDeMemoriaDeTransacciones() {
+    }
+
+    @Override
+    public String[] getNames() {
+        return new String[]{"InformacionDeMemoriaDeTransacciones"};
+    }
+
+    @Override
+    public String getDescripcion() {
+        return "Información de Memoria de Transacciones";
+    }
+
+    @Override
+    public int getCodigo() {
+        return 0x0915;
+    }
+
+    @Override
+    public ClasificacionComando getClasificacionComando() {
+        return ClasificacionComando.MEMORIA_TRANSACCIONES;
+    }
+
+    @Override
+    public int[] getComando() {
+        int[] ret = new int[2];
+        ret[0] = 0x09;
+        ret[1] = 0x15;
+        return ret;
+    }
+
+    @Override
+    public Extension[] getExtensiones() {
+        return new Extension[]{};
+    }
+
+    @Override
+    public String getNotas() {
+        return "De encontrarse el valor cero (0) en los campos de salida 1 al 6, haciendo referencia a jornada\n"
+                + "disponible desde cero y hasta cero, para cada de tipo de descarga (cinta testigo digital, duplicados\n"
+                + "A o resumen de totales), se entenderá que no hay jornada alguna para descargar correspondiente\n"
+                + "a ese tipo de descarga.\n"
+                + "(32) “Disponibles para descargar”: se refiere a que aún no se ha descargado el Reporte correspondiente para su presentación a la AFIP. “Descargadas completamente”: se refiere a que ya se han descargado todos los reportes para dichas jornadas.\n"
+                + "(34) “Jornadas borradas”: se refiere a jornadas que han sido borradas por el usuario. Una vez que el usuario las ha borrado, las jornadas\n"
+                + "permanecerán disponibles hasta que el controlador fiscal las elimine completamente, para lo cual se deberán haber presentado los\n"
+                + "reportes obligatorios para las jornadas correspondientes. También se eliminarán las jornadas ante una baja fiscal, siempre que se hayan\n"
+                + "descargado todas las jornadas previamente para la presentación de todos los reportes obligatorios.";
+    }
+
+    @Override
+    public String getRequerimientos() {
+        return "";
+    }
+
+    @Override
+    public CampoFiscal[] getCamposSalida() {
+        return new CampoFiscal[]{
+            new CampoFiscal(1, "Jornadas disponibles para descargar(32) cinta testigo digital (desde)", TipoDato.N_E, 4, false),
+            new CampoFiscal(2, "Jornadas disponibles para descargar cinta testigo digital (hasta)", TipoDato.A, 4, false),
+            new CampoFiscal(3, "\"Jornadas disponibles para descargar duplicados tipo “A” (desde)", TipoDato.N_E, 4, false),
+            new CampoFiscal(4, "Jornadas disponibles para descargar duplicados tipo “A” (hasta)", TipoDato.N_E, 4, false),
+            new CampoFiscal(5, "Jornadas disponibles para descargar resumen de totales (desde)", TipoDato.N_E, 4, false),
+            new CampoFiscal(6, "Jornadas disponibles para descargar resumen de totales (hasta)", TipoDato.N_E, 4, false),
+            new CampoFiscal(7, "Jornadas descargadas completamente33 (desde)", TipoDato.N_E, 4, false),
+            new CampoFiscal(8, "Jornadas descargadas completamente (hasta)", TipoDato.N_E, 4, false),
+            new CampoFiscal(9, "Jornadas borradas(34) (desde)", TipoDato.N_E, 4, false),
+            new CampoFiscal(10, "Jornadas borradas (hasta)", TipoDato.N_E, 4, false)};
+    }
+
+    @Override
+    public CampoFiscal[] getCamposEntrada() {
+        return new CampoFiscal[]{};
+    }
+
+}

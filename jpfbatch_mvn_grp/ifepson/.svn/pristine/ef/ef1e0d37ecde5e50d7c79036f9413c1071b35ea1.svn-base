@@ -1,0 +1,66 @@
+package com.gt.ifepson.comandos.inicializacion;
+
+import com.gt.ifepson.comandos.CampoFiscal;
+import com.gt.ifepson.comandos.TipoComando;
+import com.gt.ifepson.comandos.ClasificacionComando;
+import com.gt.ifepson.comandos.Extension;
+
+public class InicializacionCancelarDescargaDeSolicitudDeBajaFiscal_SBF extends TipoComando {
+
+    public InicializacionCancelarDescargaDeSolicitudDeBajaFiscal_SBF() {
+    }
+
+    @Override
+    public String[] getNames() {
+        return new String[]{"InicializacionCancelarDescargaDeSolicitudDeBajaFiscal_SBF"};
+    }
+
+    @Override
+    public String getDescripcion() {
+        return "Cancela la descarga del archivo de SBF.";
+    }
+
+    @Override
+    public int getCodigo() {
+        return 0x0413;
+    }
+
+    @Override
+    public ClasificacionComando getClasificacionComando() {
+        return ClasificacionComando.INICIALIZACION;
+    }
+
+    @Override
+    public int[] getComando() {
+        int[] ret = new int[2];
+        ret[0] = 0x04;
+        ret[1] = 0x13;
+        return ret;
+    }
+
+    @Override
+    public String getNotas() {
+        return "No se produce ningún cambio en el equipo, incluso habiendo descargado la SBF completamente.";
+    }
+
+    @Override
+    public String getRequerimientos() {
+        return "Haber iniciado la descarga SBF";
+    }
+
+    @Override
+    public Extension[] getExtensiones() {
+        return new Extension[]{};
+    }
+
+    @Override
+    public CampoFiscal[] getCamposEntrada() {
+        return new CampoFiscal[]{};
+    }
+
+    @Override
+    public CampoFiscal[] getCamposSalida() {
+        return new CampoFiscal[]{};
+    }
+
+}

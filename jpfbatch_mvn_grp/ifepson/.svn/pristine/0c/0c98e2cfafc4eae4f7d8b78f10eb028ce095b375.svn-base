@@ -1,0 +1,74 @@
+package com.gt.ifepson.comandos.dnfhGenerico;
+
+import com.gt.ifepson.comandos.CampoFiscal;
+import com.gt.ifepson.comandos.TipoComando;
+import com.gt.ifepson.comandos.ClasificacionComando;
+import com.gt.ifepson.comandos.Extension;
+import com.gt.ifepson.comandos.TipoDato;
+
+
+public class MensajeDelSistemaDNFHGenerico extends TipoComando {
+
+	public MensajeDelSistemaDNFHGenerico() {
+	}
+
+	@Override
+	public String[] getNames() {
+		return new String[] {"MensajeDelSistemaDNFHGenerico"};
+	}
+
+	@Override
+	public String getDescripcion() {
+		return "Imprime mensaje del sistema con hasta 5 lineas de texto libre.";
+	}
+
+	@Override
+	public int getCodigo() {
+		return 0x0E50;
+	}
+
+	@Override
+	public ClasificacionComando getClasificacionComando() {
+		return ClasificacionComando.DNFH_GENERICO;
+	}
+
+	@Override
+	public int[] getComando() {
+		int[] ret = new int[2];
+		ret[0] = 0x0E;
+		ret[1] = 0x50;
+		return ret;
+	}
+
+    @Override
+    public String getNotas() {
+        return "Se incrementa en uno el contador de mensajes.";
+    }
+
+    @Override
+    public String getRequerimientos() {
+        return "Mecanismo impresor en línea y con papel ó poco papel disponible.";
+    }
+
+    @Override
+    public Extension[] getExtensiones() {
+        return new Extension[]{};
+    }
+
+    @Override
+    public CampoFiscal[] getCamposEntrada() {
+        return new CampoFiscal[]{
+            new CampoFiscal(1, "Linea de texto #1", TipoDato.RT, -1, false),
+            new CampoFiscal(2, "Linea de texto #2", TipoDato.RT, -1, true),
+            new CampoFiscal(3, "Linea de texto #3", TipoDato.RT, -1, true),
+            new CampoFiscal(4, "Linea de texto #4", TipoDato.RT, -1, true),
+            new CampoFiscal(5, "Linea de texto #5", TipoDato.RT, -1, true),
+        };
+    }
+
+    @Override
+    public CampoFiscal[] getCamposSalida() {
+        return new CampoFiscal[]{};
+    }
+
+}

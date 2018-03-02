@@ -1,0 +1,70 @@
+package com.gt.ifepson.comandos.notaCreditoAbcm;
+
+import com.gt.ifepson.comandos.CampoFiscal;
+import com.gt.ifepson.comandos.TipoComando;
+import com.gt.ifepson.comandos.ClasificacionComando;
+import com.gt.ifepson.comandos.Extension;
+import com.gt.ifepson.comandos.TipoDato;
+
+public class CancelarNotaCreditoABCM extends TipoComando {
+
+    public CancelarNotaCreditoABCM() {
+    }
+
+    @Override
+    public String[] getNames() {
+        return new String[]{"CancelarNotaCreditoABCM"};
+    }
+
+    @Override
+    public String getDescripcion() {
+        return "Cancelar";
+    }
+
+    @Override
+    public int getCodigo() {
+        return 0x0D07;
+    }
+
+    @Override
+    public ClasificacionComando getClasificacionComando() {
+        return ClasificacionComando.TNC;
+    }
+
+    @Override
+    public int[] getComando() {
+        int[] ret = new int[2];
+        ret[0] = 0x0D;
+        ret[1] = 0x07;
+        return ret;
+    }
+
+    @Override
+    public String getNotas() {
+        return "Se incrementa en uno el contador de documentos cancelados correspondiente.";
+    }
+
+    @Override
+    public String getRequerimientos() {
+        return "Mecanismo impresor en línea y con papel ó poco papel disponible.";
+    }
+
+    @Override
+    public Extension[] getExtensiones() {
+        return new Extension[]{};
+    }
+
+    @Override
+    public CampoFiscal[] getCamposEntrada() {
+        return new CampoFiscal[] {};
+    }
+
+    @Override
+    public CampoFiscal[] getCamposSalida() {
+        return new CampoFiscal[] {
+            new CampoFiscal(1, "Número del tique-nota de crédito", TipoDato.N_E, 8, false),
+            new CampoFiscal(2, "Tipo de tique-nota de crédito (A, B, C ,M)", TipoDato.L, 1, false)
+        };
+    }
+
+}

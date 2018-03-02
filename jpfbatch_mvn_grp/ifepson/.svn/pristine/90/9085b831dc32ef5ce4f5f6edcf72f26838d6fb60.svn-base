@@ -1,0 +1,40 @@
+package com.gt.ifepson.comandos.tiqueNc;
+
+import com.gt.ifepson.comandos.TipoComando;
+import com.gt.ifepson.comandos.ClasificacionComando;
+
+
+public class ComandosDeTiqueTiqueNotaDeCreditoInformacion extends TipoComando {
+
+	public ComandosDeTiqueTiqueNotaDeCreditoInformacion() {
+	}
+
+	@Override
+	public String[] getNames() {
+		return new String[] {"ComandosDeTiqueTiqueNotaDeCreditoInformacion"};
+	}
+
+	@Override
+	public String getDescripcion() {
+		return "Información";
+	}
+
+	@Override
+	public int getCodigo() {
+		return 0x0A0A;
+	}
+
+	@Override
+	public ClasificacionComando getClasificacionComando() {
+		return ClasificacionComando.TIQUE;
+	}
+
+	@Override
+	public int[] getComando() {
+		int[] ret = new int[2];
+		ret[0] = 0x0A;
+		ret[1] = 0x0A;
+		return ret;
+	}
+
+}

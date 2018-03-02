@@ -1,0 +1,77 @@
+package com.gt.ifepson.comandos.descargaReportes;
+
+import com.gt.ifepson.comandos.CampoFiscal;
+import com.gt.ifepson.comandos.TipoComando;
+import com.gt.ifepson.comandos.ClasificacionComando;
+import com.gt.ifepson.comandos.Extension;
+import com.gt.ifepson.comandos.TipoDato;
+
+public class IniciarDescargaDeReportePorRangoDeFechas extends TipoComando {
+
+    public IniciarDescargaDeReportePorRangoDeFechas() {
+    }
+
+    @Override
+    public String[] getNames() {
+        return new String[]{"IniciarDescargaDeReportePorRangoDeFechas"};
+    }
+
+    @Override
+    public String getDescripcion() {
+        return "Iniciar Descarga de Reporte por Rango de Fechas";
+    }
+
+    @Override
+    public int getCodigo() {
+        return 0x0951;
+    }
+
+    @Override
+    public ClasificacionComando getClasificacionComando() {
+        return ClasificacionComando.MEMORIA_TRANSACCIONES;
+    }
+
+    @Override
+    public int[] getComando() {
+        int[] ret = new int[2];
+        ret[0] = 0x09;
+        ret[1] = 0x51;
+        return ret;
+    }
+
+    @Override
+    public Extension[] getExtensiones() {
+        return new Extension[]{
+            new Extension(0b0000000000000111, "TIPO_REPORTE",
+            "DESCARGA_CINTA_TESTIGO_DIGITAL_CTD", 0b0000000000000000,
+            "DESCARGA_DUPLICADOS_DOCUMENTOS_TIPO_A", 0b0000000000000010,
+            "DESCARGA_RESUMEN_DE_TOTALES", 0b0000000000000100)
+        };
+    }
+
+    @Override
+    public String getNotas() {
+        return " Al no enviar el valor del campo “Fecha final” el mismo tomará el valor actual del equipo.\n"
+                + " Existe la posibilidad de volver a realizar nuevamente una descarga previamente emitida y\n"
+                + "registrada por el controlador fiscal.";
+    }
+
+    @Override
+    public String getRequerimientos() {
+        return "";
+    }
+
+    @Override
+    public CampoFiscal[] getCamposSalida() {
+        return new CampoFiscal[]{new CampoFiscal(1, "Nombre de archivo", TipoDato.A, -1, false)};
+    }
+
+    @Override
+    public CampoFiscal[] getCamposEntrada() {
+        return new CampoFiscal[]{
+            new CampoFiscal(1, "Fecha inicial", TipoDato.D, 6, false),
+            new CampoFiscal(2, "Fecha final", TipoDato.D, 6, true)
+        };
+    }
+
+}

@@ -1,0 +1,170 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package com.gt.ifepson.comandos;
+
+import java.util.HashMap;
+
+/**
+ *
+ * @author guillermot
+ */
+public class MapaComandos extends HashMap<Integer, TipoComando> {
+
+    public MapaComandos() {
+
+//        this.put(0x0001, new TipoComando(0x0001, TipoComando.SISTEMA, "Obtener Estado"));
+//        this.put(0x0003, new TipoComando(0x0003, TipoComando.SISTEMA, "Obtener Error de Inicio"));
+//        this.put(0x0004, new TipoComando(0x0004, TipoComando.SISTEMA, "Obtener Error de Proceso Interno"));
+//        this.put(0x0005, new TipoComando(0x0005, TipoComando.SISTEMA, "Obtener ID"));
+//        this.put(0x000A, new TipoComando(0x000A, TipoComando.SISTEMA, "Configurar Velocidad de Comunicación (host port)"));
+//        this.put(0x0201, new TipoComando(0x0201, TipoComando.DIAGNOSTICO, "Reporte de Diagnóstico e Información del Equipo"));
+//        this.put(0x0204, new TipoComando(0x0204, TipoComando.DIAGNOSTICO, "Ripple Test"));
+//        this.put(0x020A, new TipoComando(0x020A, TipoComando.DIAGNOSTICO, "Obtener Información del Equipo"));
+//        this.put(0x020B, new TipoComando(0x020B, TipoComando.DIAGNOSTICO, "Obtener Información Histórica de Memoria Fiscal"));
+//        this.put(0x0240, new TipoComando(0x0240, TipoComando.DIAGNOSTICO, "Obtener Información de Certificados"));
+//        this.put(0x0402, new TipoComando(0x0402, TipoComando.INICIALIZACION, "Obtener Datos de Serialización"));
+//        this.put(0x0410, new TipoComando(0x0410, TipoComando.INICIALIZACION, "Iniciar Descarga de Solicitud de Baja Fiscal (SBF)"));
+//        this.put(0x0411, new TipoComando(0x0411, TipoComando.INICIALIZACION, "Continuar Descarga de Solicitud de Baja Fiscal (SBF)"));
+//        this.put(0x0412, new TipoComando(0x0412, TipoComando.INICIALIZACION, "Finalizar Descarga de Solicitud de Baja Fiscal (SBF)"));
+//        this.put(0x0413, new TipoComando(0x0413, TipoComando.INICIALIZACION, "Cancelar Descarga de Solicitud de Baja Fiscal (SBF)"));
+//        this.put(0x0440, new TipoComando(0x0440, TipoComando.INICIALIZACION, "Comenzar Descarga de Solicitud de Alta Fiscal (SAF)"));
+//        this.put(0x0441, new TipoComando(0x0441, TipoComando.INICIALIZACION, "Continuar Descarga de Solicitud de Alta Fiscal (SAF)"));
+//        this.put(0x0442, new TipoComando(0x0442, TipoComando.INICIALIZACION, "Finalizar Descarga de Solicitud de Alta Fiscal (SAF)"));
+//        this.put(0x0443, new TipoComando(0x0443, TipoComando.INICIALIZACION, "Cancelar Descarga de Solicitud de Alta Fiscal (SAF)"));
+//        this.put(0x0450, new TipoComando(0x0450, TipoComando.INICIALIZACION, "Iniciar Carga de Confirmación de Alta Fiscal (CAF)"));
+//        this.put(0x0451, new TipoComando(0x0451, TipoComando.INICIALIZACION, "Continuar Carga de Confirmación de Alta Fiscal (CAF)"));
+//        this.put(0x0452, new TipoComando(0x0452, TipoComando.INICIALIZACION, "Finalizar Carga de Confirmación de Alta Fiscal (CAF)"));
+//        this.put(0x0453, new TipoComando(0x0453, TipoComando.INICIALIZACION, "Cancelar Carga de Confirmación de Alta Fiscal (CAF)"));
+//        this.put(0x0501, new TipoComando(0x0501, TipoComando.CONFIGURACION, "Configurar Fecha y Hora"));
+//        this.put(0x0502, new TipoComando(0x0502, TipoComando.CONFIGURACION, "Obtener Configuración de Fecha y Hora"));
+//        this.put(0x0504, new TipoComando(0x0504, TipoComando.CONFIGURACION, "Configurar Responsabilidad Frente al IVA"));
+//        this.put(0x0505, new TipoComando(0x0505, TipoComando.CONFIGURACION, "Configurar Tasa de IVA Estándar"));
+//        this.put(0x0507, new TipoComando(0x0507, TipoComando.CONFIGURACION, "Obtener datos de Fiscalización"));
+//        this.put(0x0508, new TipoComando(0x0508, TipoComando.CONFIGURACION, "Configurar Líneas de Encabezado"));
+//        this.put(0x0509, new TipoComando(0x0509, TipoComando.CONFIGURACION, "Obtener Configuración de Líneas de Encabezado"));
+//        this.put(0x050A, new TipoComando(0x050A, TipoComando.CONFIGURACION, "Configurar Líneas de Cola"));
+//        this.put(0x050B, new TipoComando(0x050B, TipoComando.CONFIGURACION, "Obtener Configuración de Líneas de Cola"));
+//        this.put(0x050E, new TipoComando(0x050E, TipoComando.CONFIGURACION, "Configurar Líneas de Información del Establecimiento"));
+//        this.put(0x050F, new TipoComando(0x050F, TipoComando.CONFIGURACION, "Obtener Líneas de Información del Establecimiento"));
+//        this.put(0x0522, new TipoComando(0x0522, TipoComando.CONFIGURACION, "Obtener configuración de Claves de Firma Digital"));
+//        this.put(0x0530, new TipoComando(0x0530, TipoComando.CONFIGURACION, "Iniciar Carga de Logos del Usuario"));
+//        this.put(0x0531, new TipoComando(0x0531, TipoComando.CONFIGURACION, "Enviar Datos de Logo del Usuario"));
+//        this.put(0x0532, new TipoComando(0x0532, TipoComando.CONFIGURACION, "Terminar Carga de Logo del Usuario"));
+//        this.put(0x0533, new TipoComando(0x0533, TipoComando.CONFIGURACION, "Cancelar Carga de Logo del Usuario"));
+//        this.put(0x0534, new TipoComando(0x0534, TipoComando.CONFIGURACION, "Eliminar Logo del Usuario"));
+//        this.put(0x0552, new TipoComando(0x0552, TipoComando.CONFIGURACION, "Impresión de Arqueo de Pagos"));
+//        this.put(0x0553, new TipoComando(0x0553, TipoComando.CONFIGURACION, "Obtener Estado de Impresión de Arqueo de Pagos"));
+//        this.put(0x0564, new TipoComando(0x0564, TipoComando.CONFIGURACION, "Reiniciar a los Valores de Configuración de Fábrica"));
+//        this.put(0x05C1, new TipoComando(0x05C1, TipoComando.CONFIGURACION, "Establecer los Valores de la Conexión a Red"));
+//        this.put(0x05C2, new TipoComando(0x05C2, TipoComando.CONFIGURACION, "Obtener los Valores de la Conexión a Red"));
+//        this.put(0x0701, new TipoComando(0x0701, TipoComando.CONTROL_IMPRESORA, "Avanzar Papel"));
+//        this.put(0x0702, new TipoComando(0x0702, TipoComando.CONTROL_IMPRESORA, "Cortar Papel"));
+//        this.put(0x0707, new TipoComando(0x0707, TipoComando.CONTROL_IMPRESORA, "Abrir Cajón de Dinero"));
+//        this.put(0x0760, new TipoComando(0x0760, TipoComando.CONTROL_IMPRESORA, "Configurar Corte Inteligente"));
+//        this.put(0x0761, new TipoComando(0x0761, TipoComando.CONTROL_IMPRESORA, "Obtener Configuración de Corte Inteligente"));
+//        this.put(0x0770, new TipoComando(0x0770, TipoComando.CONTROL_IMPRESORA, "Configurar Fuente Selección de Fuente: Comando no soportado en TM-U220AFII Versión 22.01 Demeter"));
+//        this.put(0x0771, new TipoComando(0x0771, TipoComando.CONTROL_IMPRESORA, "Obtener Fuente"));
+//        this.put(0x0777, new TipoComando(0x0777, TipoComando.CONTROL_IMPRESORA, "Configurar Densidad de Impresión"));
+//        this.put(0x0778, new TipoComando(0x0778, TipoComando.CONTROL_IMPRESORA, "Obtener Densidad de Impresión"));
+//        this.put(0x0801, new TipoComando(0x0801, TipoComando.JORNADA_FISCAL, "Informe Diario de Cierre (Cierre ‘Z’)"));
+//        this.put(0x0802, new TipoComando(0x0802, TipoComando.JORNADA_FISCAL, "Informe Salida de Cajero (Cierre de Cajero)"));
+//        this.put(0x0803, new TipoComando(0x0803, TipoComando.JORNADA_FISCAL, "Informe Total de Ventas"));
+//        this.put(0x080A, new TipoComando(0x080A, TipoComando.JORNADA_FISCAL, "Información Electrónica General de la Jornada Fiscal en Curso"));
+//        this.put(0x080B, new TipoComando(0x080B, TipoComando.JORNADA_FISCAL, "Información Electrónica de Impuestos de la Jornada Fiscal en Curso"));
+//        this.put(0x080C, new TipoComando(0x080C, TipoComando.JORNADA_FISCAL, "Información Electrónica de Otros Tributos de la Jornada Fiscal en Curso"));
+//        this.put(0x0812, new TipoComando(0x0812, TipoComando.JORNADA_FISCAL, "Auditoría Resumida /Comenzar Auditoría Detallada de Jornadas Fiscales por Rango de Fechas"));
+//        this.put(0x0813, new TipoComando(0x0813, TipoComando.JORNADA_FISCAL, "Auditoría Resumida /Comenzar Auditoría Detallada de Jornadas Fiscales por Rango de Cierres Z"));
+//        this.put(0x0814, new TipoComando(0x0814, TipoComando.JORNADA_FISCAL, "Continuar Auditoría Detallada de Jornadas Fiscales"));
+//        this.put(0x0815, new TipoComando(0x0815, TipoComando.JORNADA_FISCAL, "Finalizar Auditoría Detallada de Jornadas Fiscales"));
+//        this.put(0x0816, new TipoComando(0x0816, TipoComando.JORNADA_FISCAL, "Cancelar Auditoría Detallada de Jornadas Fiscales"));
+//        this.put(0x0830, new TipoComando(0x0830, TipoComando.JORNADA_FISCAL, "Información de Contadores (se refiere a los acumuladores internos de la Impresora Fiscal)"));
+//        this.put(0x08F0, new TipoComando(0x08F0, TipoComando.JORNADA_FISCAL, "Iniciar Duplicado de Documentos"));
+//        this.put(0x08F4, new TipoComando(0x08F4, TipoComando.JORNADA_FISCAL, "Continuar Duplicado de Documentos"));
+//        this.put(0x08F5, new TipoComando(0x08F5, TipoComando.JORNADA_FISCAL, "Finalizar Duplicado de Documentos"));
+//        this.put(0x08F6, new TipoComando(0x08F6, TipoComando.JORNADA_FISCAL, "Cancelar Duplicado de Documentos"));
+//        this.put(0x0951, new TipoComando(0x0951, TipoComando.MEMORIA_TRANSACCIONES, "Iniciar Descarga de Reporte por Rango de Fechas"));
+//        this.put(0x0952, new TipoComando(0x0952, TipoComando.MEMORIA_TRANSACCIONES, "Iniciar Descarga de Reporte por Rango de Z "));
+//        this.put(0x0970, new TipoComando(0x0970, TipoComando.MEMORIA_TRANSACCIONES, "Continuar Descarga de Reporte desde Memoria de Transacciones"));
+//        this.put(0x0971, new TipoComando(0x0971, TipoComando.MEMORIA_TRANSACCIONES, "Finalizar Descarga de Reporte desde Memoria de Transacciones"));
+//        this.put(0x0972, new TipoComando(0x0972, TipoComando.MEMORIA_TRANSACCIONES, "Cancelar Descarga de Reporte desde Memoria de Transacciones"));
+//        this.put(0x0910, new TipoComando(0x0910, TipoComando.MEMORIA_TRANSACCIONES, "Borrado de Jornadas de Memoria de Transacciones"));
+//        this.put(0x0915, new TipoComando(0x0915, TipoComando.MEMORIA_TRANSACCIONES, "Información de Memoria de Transacciones"));
+//        this.put(0x0A01, new TipoComando(0x0A01, TipoComando.TIQUE, "Abrir"));
+//        this.put(0x0A02, new TipoComando(0x0A02, TipoComando.TIQUE, "Item"));
+//        this.put(0x0A03, new TipoComando(0x0A03, TipoComando.TIQUE, "Subtotal"));
+//        this.put(0x0A04, new TipoComando(0x0A04, TipoComando.TIQUE, "Descuentos / Ajustes Globales"));
+//        this.put(0x0A05, new TipoComando(0x0A05, TipoComando.TIQUE, "Pagos"));
+//        this.put(0x0A06, new TipoComando(0x0A06, TipoComando.TIQUE, "Cerrar"));
+//        this.put(0x0A07, new TipoComando(0x0A07, TipoComando.TIQUE, "Cancelar"));
+//        this.put(0x0A08, new TipoComando(0x0A08, TipoComando.TIQUE, "Configurar Preferencias"));
+//        this.put(0x0A09, new TipoComando(0x0A09, TipoComando.TIQUE, "Obtener Configuración de Preferencias"));
+//        this.put(0x0A0A, new TipoComando(0x0A0A, TipoComando.TIQUE, "Información"));
+//        this.put(0x0A0B, new TipoComando(0x0A0B, TipoComando.TIQUE, "Información de IVA"));
+//        this.put(0x0A0C, new TipoComando(0x0A0C, TipoComando.TIQUE, "Información de Pagos"));
+//        this.put(0x0A0D, new TipoComando(0x0A0D, TipoComando.TIQUE, "Información de Ventas"));
+//        this.put(0x0A0E, new TipoComando(0x0A0E, TipoComando.TIQUE, "Información de Impuestos Internos"));
+//        this.put(0x0A0F, new TipoComando(0x0A0F, TipoComando.TIQUE, "Información de Otros Tributos"));
+//        this.put(0x0A10, new TipoComando(0x0A10, TipoComando.TIQUE, "Información de Ultima Respuesta"));
+//        this.put(0x0A20, new TipoComando(0x0A20, TipoComando.TIQUE, "Otros Tributos"));
+//        this.put(0x0A30, new TipoComando(0x0A30, TipoComando.TIQUE, "Tique Unitario / Tique Nota de Crédito Unitario"));
+//        this.put(0x0B01, new TipoComando(0x0B01, TipoComando.TFND, "Abrir"));
+//        this.put(0x0B02, new TipoComando(0x0B02, TipoComando.TFND, "Item"));
+//        this.put(0x0B03, new TipoComando(0x0B03, TipoComando.TFND, "Subtotal"));
+//        this.put(0x0B04, new TipoComando(0x0B04, TipoComando.TFND, "Descuentos / Ajustes Globales"));
+//        this.put(0x0B05, new TipoComando(0x0B05, TipoComando.TFND, "Pagos"));
+//        this.put(0x0B06, new TipoComando(0x0B06, TipoComando.TFND, "Cerrar"));
+//        this.put(0x0B07, new TipoComando(0x0B07, TipoComando.TFND, "Cancelar"));
+//        this.put(0x0B08, new TipoComando(0x0B08, TipoComando.TFND, "Configurar Preferencias"));
+//        this.put(0x0B09, new TipoComando(0x0B09, TipoComando.TFND, "Obtener Configuración de Preferencias"));
+//        this.put(0x0B0A, new TipoComando(0x0B0A, TipoComando.TFND, "Información"));
+//        this.put(0x0B0B, new TipoComando(0x0B0B, TipoComando.TFND, "Información de IVA"));
+//        this.put(0x0B0C, new TipoComando(0x0B0C, TipoComando.TFND, "Información de Pagos"));
+//        this.put(0x0B0D, new TipoComando(0x0B0D, TipoComando.TFND, "Información de Ventas"));
+//        this.put(0x0B0E, new TipoComando(0x0B0E, TipoComando.TFND, "Información de Impuestos Internos"));
+//        this.put(0x0B0F, new TipoComando(0x0B0F, TipoComando.TFND, "Información de Otros Tributos"));
+//        this.put(0x0B10, new TipoComando(0x0B10, TipoComando.TFND, "Información de Ultima Respuesta"));
+//        this.put(0x0B20, new TipoComando(0x0B20, TipoComando.TFND, "Otros Tributos"));
+//        this.put(0x0D01, new TipoComando(0x0D01, TipoComando.TNC, "Abrir"));
+//        this.put(0x0D02, new TipoComando(0x0D02, TipoComando.TNC, "Item"));
+//        this.put(0x0D03, new TipoComando(0x0D03, TipoComando.TNC, "Subtotal"));
+//        this.put(0x0D04, new TipoComando(0x0D04, TipoComando.TNC, "Descuentos / Ajustes Globales"));
+//        this.put(0x0D05, new TipoComando(0x0D05, TipoComando.TNC, "Pagos"));
+//        this.put(0x0D06, new TipoComando(0x0D06, TipoComando.TNC, "Cerrar"));
+//        this.put(0x0D07, new TipoComando(0x0D07, TipoComando.TNC, "Cancelar"));
+//        this.put(0x0D08, new TipoComando(0x0D08, TipoComando.TNC, "Configurar Preferencias"));
+//        this.put(0x0D09, new TipoComando(0x0D09, TipoComando.TNC, "Obtener Configuración de Preferencias"));
+//        this.put(0x0D0A, new TipoComando(0x0D0A, TipoComando.TNC, "Información"));
+//        this.put(0x0D0B, new TipoComando(0x0D0B, TipoComando.TNC, "Información de IVA"));
+//        this.put(0x0D0C, new TipoComando(0x0D0C, TipoComando.TNC, "Información de Pagos"));
+//        this.put(0x0D0D, new TipoComando(0x0D0D, TipoComando.TNC, "Información de Ventas"));
+//        this.put(0x0D0E, new TipoComando(0x0D0E, TipoComando.TNC, "Información de Impuestos Internos"));
+//        this.put(0x0D0F, new TipoComando(0x0D0F, TipoComando.TNC, "Información de Otros Tributos"));
+//        this.put(0x0D10, new TipoComando(0x0D10, TipoComando.TNC, "Información de Ultima Respuesta"));
+//        this.put(0x0D20, new TipoComando(0x0D20, TipoComando.TNC, "Otros Tributos"));
+//        this.put(0x0E01, new TipoComando(0x0E01, TipoComando.DNFH_GENERICO, "Abrir"));
+//        this.put(0x0E02, new TipoComando(0x0E02, TipoComando.DNFH_GENERICO, "Imprimir Texto"));
+//        this.put(0x0E03, new TipoComando(0x0E03, TipoComando.DNFH_GENERICO, "Imprimir Múltiples Líneas de Texto"));
+//        this.put(0x0E06, new TipoComando(0x0E06, TipoComando.DNFH_GENERICO, "Cerrar"));
+//        this.put(0x0E08, new TipoComando(0x0E08, TipoComando.DNFH_GENERICO, "Configurar Preferencias"));
+//        this.put(0x0E09, new TipoComando(0x0E09, TipoComando.DNFH_GENERICO, "Obtener Configuración de Preferencias"));
+//        this.put(0x0E0A, new TipoComando(0x0E0A, TipoComando.DNFH_GENERICO, "Información"));
+//        this.put(0x0E30, new TipoComando(0x0E30, TipoComando.DNFH_GENERICO, "DNFH Genérico/Uso Interno Unitario"));
+//        this.put(0x0E50, new TipoComando(0x0E50, TipoComando.DNFH_GENERICO, "Mensaje del Sistema"));
+//        this.put(0x1001, new TipoComando(0x1001, TipoComando.DNFH, "Abrir"));
+//        this.put(0x1002, new TipoComando(0x1002, TipoComando.DNFH, "Item"));
+//        this.put(0x1003, new TipoComando(0x1003, TipoComando.DNFH, "Subtotal"));
+//        this.put(0x1004, new TipoComando(0x1004, TipoComando.DNFH, "Descuentos / Ajustes Globales"));
+//        this.put(0x1005, new TipoComando(0x1005, TipoComando.DNFH, "Pagos"));
+//        this.put(0x1006, new TipoComando(0x1006, TipoComando.DNFH, "Cerrar"));
+//        this.put(0x1007, new TipoComando(0x1007, TipoComando.DNFH, "Cancelar"));
+//        this.put(0x1008, new TipoComando(0x1008, TipoComando.DNFH, "Configurar Preferencias"));
+//        this.put(0x1009, new TipoComando(0x1009, TipoComando.DNFH, "Obtener Configuración de Preferencias"));
+//        this.put(0x100F, new TipoComando(0x100F, TipoComando.DNFH, "Información de Otros Tributos"));
+//        this.put(0x1020, new TipoComando(0x1020, TipoComando.DNFH, "Otros Tributos"));
+
+    }
+
+}

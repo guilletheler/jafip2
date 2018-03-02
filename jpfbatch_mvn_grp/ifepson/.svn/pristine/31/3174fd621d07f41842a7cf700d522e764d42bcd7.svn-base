@@ -1,0 +1,87 @@
+package com.gt.ifepson.comandos.tiqueNc;
+
+import com.gt.ifepson.comandos.CampoFiscal;
+import com.gt.ifepson.comandos.TipoComando;
+import com.gt.ifepson.comandos.ClasificacionComando;
+import com.gt.ifepson.comandos.Extension;
+import com.gt.ifepson.comandos.TipoDato;
+
+public class InformacionTiqueNC extends TipoComando {
+
+    public InformacionTiqueNC() {
+    }
+
+    @Override
+    public String[] getNames() {
+        return new String[]{"InformacionTiqueNC"};
+    }
+
+    @Override
+    public String getDescripcion() {
+        return "Obtiene información del tique o tique-nota de crédito en proceso de emisión.";
+    }
+
+    @Override
+    public int getCodigo() {
+        return 0x0A0A;
+    }
+
+    @Override
+    public ClasificacionComando getClasificacionComando() {
+        return ClasificacionComando.TIQUE;
+    }
+
+    @Override
+    public int[] getComando() {
+        int[] ret = new int[2];
+        ret[0] = 0x0A;
+        ret[1] = 0x0A;
+        return ret;
+    }
+
+    @Override
+    public String getNotas() {
+        return "La fase en la que se encuentra el tique fiscal puede tener los siguientes valores:\n"
+                + "‘0’ – Fase inicial. Tique abierto sin ítems facturados.\n"
+                + "‘1’ – Fase de venta.\n"
+                + "‘2’ – Fase de descuentos/ajustes.\n"
+                + "‘3’ – Fase de pagos.";
+    }
+
+    @Override
+    public String getRequerimientos() {
+        return "Documento Tique, tique-nota de crédito abierto.";
+    }
+
+    @Override
+    public Extension[] getExtensiones() {
+        return new Extension[]{};
+    }
+
+    @Override
+    public CampoFiscal[] getCamposEntrada() {
+        return new CampoFiscal[]{};
+    }
+
+    @Override
+    public CampoFiscal[] getCamposSalida() {
+        return new CampoFiscal[]{
+            new CampoFiscal(1, "Número de tique fiscal", TipoDato.N_E, 8, false),
+            new CampoFiscal(2, "Total bruto", TipoDato.N_10_2, 12, false),
+            new CampoFiscal(3, "Total pagado", TipoDato.N_10_2, 12, false),
+            new CampoFiscal(4, "Total IVA", TipoDato.N_10_2, 12, false),
+            new CampoFiscal(5, "Total impuestos internos", TipoDato.N_10_2, 12, false),
+            new CampoFiscal(6, "Cantidad de ítems vendidos", TipoDato.N_E, 4, false),
+            new CampoFiscal(7, "Cantidad máxima de ítems posibles de venta", TipoDato.N_E, 4, false),
+            new CampoFiscal(8, "Cantidad de descuentos/ajustes realizados", TipoDato.N_E, 2, false),
+            new CampoFiscal(9, "Cantidad máxima de descuentos/ajustes a realizar", TipoDato.N_E, 2, false),
+            new CampoFiscal(10, "Cantidad de tasas de impuesto utilizadas", TipoDato.N_E, 2, false),
+            new CampoFiscal(11, "Cantidad máxima de nuevas tasas de impuesto disponibles en la jornada fiscal en curso", TipoDato.N_E, 2, false),
+            new CampoFiscal(12, "Cantidad de pagos efectuados", TipoDato.N_E, 2, false),
+            new CampoFiscal(13, "Cantidad máxima de pagos a realizar", TipoDato.N_E, 2, false),
+            new CampoFiscal(14, "Fase actual del tique", TipoDato.N_E, 2, false)
+            
+        };
+    }
+
+}

@@ -1,0 +1,75 @@
+package com.gt.ifepson.comandos.tiqueNc;
+
+import com.gt.ifepson.comandos.CampoFiscal;
+import com.gt.ifepson.comandos.TipoComando;
+import com.gt.ifepson.comandos.ClasificacionComando;
+import com.gt.ifepson.comandos.Extension;
+import com.gt.ifepson.comandos.TipoDato;
+
+public class SubtotalTiqueNC extends TipoComando {
+
+    public SubtotalTiqueNC() {
+    }
+
+    @Override
+    public String[] getNames() {
+        return new String[]{"SubtotalTiqueNC"};
+    }
+
+    @Override
+    public String getDescripcion() {
+        return "Retorna el subtotal facturado dentro del tique o tique-nota de crédito.";
+    }
+
+    @Override
+    public String getNotas() {
+        return "";
+    }
+
+    @Override
+    public String getRequerimientos() {
+        return "Debe haberse emitido un ítem\n"
+                + "La impresión del subtotal se realiza solamente si no se han efectuado descuentos, ajustes o pagos dentro del tique.\n"
+                + "Mecanismo impresor en línea y con papel ó poco papel disponible.";
+    }
+
+    @Override
+    public int getCodigo() {
+        return 0x0A03;
+    }
+
+    @Override
+    public ClasificacionComando getClasificacionComando() {
+        return ClasificacionComando.TIQUE;
+    }
+
+    @Override
+    public int[] getComando() {
+        int[] ret = new int[2];
+        ret[0] = 0x0A;
+        ret[1] = 0x03;
+        return ret;
+    }
+
+    @Override
+    public Extension[] getExtensiones() {
+        return new Extension[]{
+            new Extension(0b0000000000000001, "Imprime",
+            "IMPRIMIR_SUBTOTAL", 0b0000000000000000,
+            "NO_IMPRIMIR_SUBTOTAL", 0b0000000000000001)
+        };
+    }
+
+    @Override
+    public CampoFiscal[] getCamposEntrada() {
+        return new CampoFiscal[]{};
+    }
+
+    @Override
+    public CampoFiscal[] getCamposSalida() {
+        return new CampoFiscal[]{
+            new CampoFiscal(1, "Subtotal parcial del tique (bruto)", TipoDato.N_10_2, 12, false)
+        };
+    }
+
+}

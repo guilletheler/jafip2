@@ -1,0 +1,73 @@
+package com.gt.ifepson.comandos.configuracion;
+
+import com.gt.ifepson.comandos.CampoFiscal;
+import com.gt.ifepson.comandos.TipoComando;
+import com.gt.ifepson.comandos.ClasificacionComando;
+import com.gt.ifepson.comandos.Extension;
+import com.gt.ifepson.comandos.TipoDato;
+
+public class ObtenerLosValoresDeLaConexionARed extends TipoComando {
+
+    public ObtenerLosValoresDeLaConexionARed() {
+    }
+
+    @Override
+    public String[] getNames() {
+        return new String[]{"ObtenerLosValoresDeLaConexionARed"};
+    }
+
+    @Override
+    public String getDescripcion() {
+        return "Obtener los Valores de la Conexión a Red";
+    }
+
+    @Override
+    public int getCodigo() {
+        return 0x05C2;
+    }
+
+    @Override
+    public ClasificacionComando getClasificacionComando() {
+        return ClasificacionComando.CONFIGURACION;
+    }
+
+    @Override
+    public int[] getComando() {
+        int[] ret = new int[2];
+        ret[0] = 0x05;
+        ret[1] = 0xC2;
+        return ret;
+    }
+
+    @Override
+    public Extension[] getExtensiones() {
+        return new Extension[]{};
+    }
+
+    @Override
+    public String getNotas() {
+        return "";
+    }
+
+    @Override
+    public String getRequerimientos() {
+        return "Debe estar fisicamente establecidad la conexión a la red.";
+    }
+
+    @Override
+    public CampoFiscal[] getCamposSalida() {
+        return new CampoFiscal[]{
+            new CampoFiscal(1, "Uso de DHCP", TipoDato.Y, 1, false),
+            new CampoFiscal(2, "Dirección IP", TipoDato.P, 19, false),
+            new CampoFiscal(3, "Máscara de red", TipoDato.P, 19, false),
+            new CampoFiscal(4, "Puerta de enlace (gateway)", TipoDato.P, 19, false),
+            new CampoFiscal(5, "Dirección MAC", TipoDato.P, 19, false)
+        };
+    }
+
+    @Override
+    public CampoFiscal[] getCamposEntrada() {
+        return new CampoFiscal[]{};
+    }
+
+}

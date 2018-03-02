@@ -1,0 +1,73 @@
+package com.gt.ifepson.comandos.configuracion;
+
+import com.gt.ifepson.comandos.CampoFiscal;
+import com.gt.ifepson.comandos.TipoComando;
+import com.gt.ifepson.comandos.ClasificacionComando;
+import com.gt.ifepson.comandos.Extension;
+
+public class ConfigurarVelocidadDeComunicacion extends TipoComando {
+
+    public ConfigurarVelocidadDeComunicacion() {
+    }
+
+    @Override
+    public String[] getNames() {
+        return new String[]{"ConfigurarVelocidadDeComunicacion", "SetVelocidad", "SetBaudios"};
+    }
+
+    @Override
+    public Extension[] getExtensiones() {
+        return new Extension[]{
+            new Extension(0b0000000000000111, "VELOCIDAD_BAUDIOS",
+            "34800", 0b0000000000000000,
+            "19200", 0b0000000000000001,
+            "9600", 0b0000000000000010,
+            "57600", 0b0000000000000011,
+            "115200", 0b0000000000000100)
+        };
+    }
+
+    @Override
+    public String getDescripcion() {
+        return "Configurar Velocidad de Comunicación (host port)";
+    }
+
+    @Override
+    public String getNotas() {
+        return "";
+    }
+
+    @Override
+    public String getRequerimientos() {
+        return "";
+    }
+
+    @Override
+    public CampoFiscal[] getCamposEntrada() {
+        return new CampoFiscal[]{};
+    }
+
+    @Override
+    public CampoFiscal[] getCamposSalida() {
+        return new CampoFiscal[]{};
+    }
+
+    @Override
+    public int getCodigo() {
+        return 0x000A;
+    }
+
+    @Override
+    public ClasificacionComando getClasificacionComando() {
+        return ClasificacionComando.SISTEMA;
+    }
+
+    @Override
+    public int[] getComando() {
+        int[] ret = new int[2];
+        ret[0] = 0x00;
+        ret[1] = 0x0A;
+        return ret;
+    }
+
+}

@@ -1,0 +1,67 @@
+package com.gt.ifepson.comandos.controlImpresor;
+
+import com.gt.ifepson.comandos.CampoFiscal;
+import com.gt.ifepson.comandos.TipoComando;
+import com.gt.ifepson.comandos.ClasificacionComando;
+import com.gt.ifepson.comandos.Extension;
+import com.gt.ifepson.comandos.TipoDato;
+
+public class ObtenerConfiguracionDeCorteInteligente extends TipoComando {
+
+    public ObtenerConfiguracionDeCorteInteligente() {
+    }
+
+    @Override
+    public String[] getNames() {
+        return new String[]{"ObtenerConfiguracionDeCorteInteligente"};
+    }
+
+    @Override
+    public String getDescripcion() {
+        return "Obtener Configuración de Corte Inteligente";
+    }
+
+    @Override
+    public int getCodigo() {
+        return 0x0761;
+    }
+
+    @Override
+    public ClasificacionComando getClasificacionComando() {
+        return ClasificacionComando.CONTROL_IMPRESORA;
+    }
+
+    @Override
+    public int[] getComando() {
+        int[] ret = new int[2];
+        ret[0] = 0x07;
+        ret[1] = 0x61;
+        return ret;
+    }
+
+    @Override
+    public Extension[] getExtensiones() {
+        return new Extension[]{};
+    }
+    
+    @Override
+    public String getNotas() {
+        return "";
+    }
+
+    @Override
+    public String getRequerimientos() {
+        return "";
+    }
+
+    @Override
+    public CampoFiscal[] getCamposSalida() {
+        return new CampoFiscal[]{new CampoFiscal(1, "Corte inteligente activo", TipoDato.Y, 1, false)};
+    }
+
+    @Override
+    public CampoFiscal[] getCamposEntrada() {
+        return new CampoFiscal[]{};
+    }
+
+}

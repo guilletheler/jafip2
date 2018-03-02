@@ -1,0 +1,69 @@
+package com.gt.ifepson.comandos.dnfh;
+
+import com.gt.ifepson.comandos.CampoFiscal;
+import com.gt.ifepson.comandos.TipoComando;
+import com.gt.ifepson.comandos.ClasificacionComando;
+import com.gt.ifepson.comandos.Extension;
+import com.gt.ifepson.comandos.TipoDato;
+
+public class CancelarDNFH extends TipoComando {
+
+    public CancelarDNFH() {
+    }
+
+    @Override
+    public String[] getNames() {
+        return new String[]{"CancelarDNFH"};
+    }
+
+    @Override
+    public String getDescripcion() {
+        return "Realiza la cancelación del tique o tique-nota de crédito.";
+    }
+
+    @Override
+    public int getCodigo() {
+        return 0x1007;
+    }
+
+    @Override
+    public ClasificacionComando getClasificacionComando() {
+        return ClasificacionComando.DNFH;
+    }
+
+    @Override
+    public int[] getComando() {
+        int[] ret = new int[2];
+        ret[0] = 0x10;
+        ret[1] = 0x07;
+        return ret;
+    }
+
+    @Override
+    public String getNotas() {
+        return "Se incrementa en uno el contador de documento cancelado correspondiente.";
+    }
+
+    @Override
+    public String getRequerimientos() {
+        return "Mecanismo impresor en línea y con papel ó poco papel disponible";
+    }
+
+    @Override
+    public CampoFiscal[] getCamposEntrada() {
+        return new CampoFiscal[]{};
+    }
+
+    @Override
+    public CampoFiscal[] getCamposSalida() {
+        return new CampoFiscal[]{
+            new CampoFiscal(1, "Número del tique fiscal", TipoDato.N_E, 8, false)
+        };
+    }
+
+    @Override
+    public Extension[] getExtensiones() {
+        return new Extension[] {};
+    }
+
+}

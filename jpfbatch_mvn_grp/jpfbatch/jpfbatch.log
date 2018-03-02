@@ -1,0 +1,329 @@
+2018-21-26 14:21:09.808 [Thread-3] ERROR com.gt.jpfbatch.net.server.TCPServer - Error ejecutando 
+java.lang.RuntimeException: No se puede abrir el puerto del controlador fiscal
+	at com.gt.jpfbatch.net.server.TCPServer.ejecutar(TCPServer.java:105) [classes/:?]
+	at com.gt.jpfbatch.net.server.TCPServer$2.onEjecutar(TCPServer.java:277) [classes/:?]
+	at com.gt.jpfbatch.net.server.ClientThread.onEvent(ClientThread.java:50) [classes/:?]
+	at com.gt.jpfbatch.net.server.ClientThread.run(ClientThread.java:74) [classes/:?]
+2018-22-26 14:22:47.407 [Thread-3] ERROR com.gt.jpfbatch.net.server.TCPServer - Error ejecutando 
+java.lang.RuntimeException: No se puede abrir el puerto del controlador fiscal
+	at com.gt.jpfbatch.net.server.TCPServer.ejecutar(TCPServer.java:105) [classes/:?]
+	at com.gt.jpfbatch.net.server.TCPServer$2.onEjecutar(TCPServer.java:277) [classes/:?]
+	at com.gt.jpfbatch.net.server.ClientThread.onEvent(ClientThread.java:50) [classes/:?]
+	at com.gt.jpfbatch.net.server.ClientThread.run(ClientThread.java:74) [classes/:?]
+2018-25-26 14:25:28.633 [Thread-3] ERROR com.gt.ifepson.IFEpsonHelper - OpenPort: 2
+java.lang.Exception: Error abriendo puerto
+	at com.gt.ifepson.IFEpsonHelper.openPort(IFEpsonHelper.java:133) [classes/:?]
+	at com.gt.jpfbatch.net.server.TCPServer.ejecutar(TCPServer.java:102) [classes/:?]
+	at com.gt.jpfbatch.net.server.TCPServer$2.onEjecutar(TCPServer.java:277) [classes/:?]
+	at com.gt.jpfbatch.net.server.ClientThread.onEvent(ClientThread.java:50) [classes/:?]
+	at com.gt.jpfbatch.net.server.ClientThread.run(ClientThread.java:74) [classes/:?]
+2018-25-26 14:25:28.636 [Thread-3] ERROR com.gt.jpfbatch.net.server.TCPServer - Error ejecutando 
+java.lang.RuntimeException: No se puede abrir el puerto del controlador fiscal
+	at com.gt.jpfbatch.net.server.TCPServer.ejecutar(TCPServer.java:105) [classes/:?]
+	at com.gt.jpfbatch.net.server.TCPServer$2.onEjecutar(TCPServer.java:277) [classes/:?]
+	at com.gt.jpfbatch.net.server.ClientThread.onEvent(ClientThread.java:50) [classes/:?]
+	at com.gt.jpfbatch.net.server.ClientThread.run(ClientThread.java:74) [classes/:?]
+2018-31-26 14:31:09.648 [Thread-3] ERROR com.gt.ifepson.IFEpsonHelper - OpenPort: 2
+java.lang.Exception: Error abriendo puerto
+	at com.gt.ifepson.IFEpsonHelper.openPort(IFEpsonHelper.java:133) [classes/:?]
+	at com.gt.jpfbatch.net.server.TCPServer.ejecutar(TCPServer.java:102) [classes/:?]
+	at com.gt.jpfbatch.net.server.TCPServer$2.onEjecutar(TCPServer.java:277) [classes/:?]
+	at com.gt.jpfbatch.net.server.ClientThread.onEvent(ClientThread.java:50) [classes/:?]
+	at com.gt.jpfbatch.net.server.ClientThread.run(ClientThread.java:74) [classes/:?]
+2018-31-26 14:31:09.650 [Thread-3] ERROR com.gt.jpfbatch.net.server.TCPServer - Error ejecutando 
+java.lang.RuntimeException: No se puede abrir el puerto del controlador fiscal
+	at com.gt.jpfbatch.net.server.TCPServer.ejecutar(TCPServer.java:105) [classes/:?]
+	at com.gt.jpfbatch.net.server.TCPServer$2.onEjecutar(TCPServer.java:277) [classes/:?]
+	at com.gt.jpfbatch.net.server.ClientThread.onEvent(ClientThread.java:50) [classes/:?]
+	at com.gt.jpfbatch.net.server.ClientThread.run(ClientThread.java:74) [classes/:?]
+2018-34-26 14:34:38.321 [Thread-3] ERROR com.gt.ifepson.IFEpsonHelper - OpenPort: 2
+java.lang.Exception: Error abriendo puerto
+	at com.gt.ifepson.IFEpsonHelper.openPort(IFEpsonHelper.java:133) [classes/:?]
+	at com.gt.jpfbatch.net.server.TCPServer.ejecutar(TCPServer.java:101) [classes/:?]
+	at com.gt.jpfbatch.net.server.TCPServer$2.onEjecutar(TCPServer.java:276) [classes/:?]
+	at com.gt.jpfbatch.net.server.ClientThread.onEvent(ClientThread.java:50) [classes/:?]
+	at com.gt.jpfbatch.net.server.ClientThread.run(ClientThread.java:74) [classes/:?]
+2018-34-26 14:34:38.323 [Thread-3] ERROR com.gt.jpfbatch.net.server.TCPServer - Error ejecutando 
+java.lang.RuntimeException: No se puede abrir el puerto del controlador fiscal
+	at com.gt.jpfbatch.net.server.TCPServer.ejecutar(TCPServer.java:104) [classes/:?]
+	at com.gt.jpfbatch.net.server.TCPServer$2.onEjecutar(TCPServer.java:276) [classes/:?]
+	at com.gt.jpfbatch.net.server.ClientThread.onEvent(ClientThread.java:50) [classes/:?]
+	at com.gt.jpfbatch.net.server.ClientThread.run(ClientThread.java:74) [classes/:?]
+2018-43-26 14:43:17.277 [Thread-3] ERROR com.gt.ifepson.IFEpsonHelper - OpenPort: 0
+java.lang.Exception: Error abriendo puerto
+	at com.gt.ifepson.IFEpsonHelper.openPort(IFEpsonHelper.java:133) [classes/:?]
+	at com.gt.jpfbatch.net.server.TCPServer.ejecutar(TCPServer.java:101) [classes/:?]
+	at com.gt.jpfbatch.net.server.TCPServer$2.onEjecutar(TCPServer.java:276) [classes/:?]
+	at com.gt.jpfbatch.net.server.ClientThread.onEvent(ClientThread.java:50) [classes/:?]
+	at com.gt.jpfbatch.net.server.ClientThread.run(ClientThread.java:74) [classes/:?]
+2018-43-26 14:43:17.279 [Thread-3] ERROR com.gt.jpfbatch.net.server.TCPServer - Error ejecutando 
+java.lang.RuntimeException: No se puede abrir el puerto del controlador fiscal
+	at com.gt.jpfbatch.net.server.TCPServer.ejecutar(TCPServer.java:104) [classes/:?]
+	at com.gt.jpfbatch.net.server.TCPServer$2.onEjecutar(TCPServer.java:276) [classes/:?]
+	at com.gt.jpfbatch.net.server.ClientThread.onEvent(ClientThread.java:50) [classes/:?]
+	at com.gt.jpfbatch.net.server.ClientThread.run(ClientThread.java:74) [classes/:?]
+2018-43-26 14:43:44.670 [Thread-3] ERROR com.gt.ifepson.IFEpsonHelper - OpenPort: 2
+java.lang.Exception: Error abriendo puerto
+	at com.gt.ifepson.IFEpsonHelper.openPort(IFEpsonHelper.java:133) [classes/:?]
+	at com.gt.jpfbatch.net.server.TCPServer.ejecutar(TCPServer.java:101) [classes/:?]
+	at com.gt.jpfbatch.net.server.TCPServer$2.onEjecutar(TCPServer.java:276) [classes/:?]
+	at com.gt.jpfbatch.net.server.ClientThread.onEvent(ClientThread.java:50) [classes/:?]
+	at com.gt.jpfbatch.net.server.ClientThread.run(ClientThread.java:74) [classes/:?]
+2018-43-26 14:43:44.673 [Thread-3] ERROR com.gt.jpfbatch.net.server.TCPServer - Error ejecutando 
+java.lang.RuntimeException: No se puede abrir el puerto del controlador fiscal
+	at com.gt.jpfbatch.net.server.TCPServer.ejecutar(TCPServer.java:104) [classes/:?]
+	at com.gt.jpfbatch.net.server.TCPServer$2.onEjecutar(TCPServer.java:276) [classes/:?]
+	at com.gt.jpfbatch.net.server.ClientThread.onEvent(ClientThread.java:50) [classes/:?]
+	at com.gt.jpfbatch.net.server.ClientThread.run(ClientThread.java:74) [classes/:?]
+2018-43-26 14:43:52.113 [Thread-3] ERROR com.gt.ifepson.IFEpsonHelper - OpenPort: 1
+java.lang.Exception: Error abriendo puerto
+	at com.gt.ifepson.IFEpsonHelper.openPort(IFEpsonHelper.java:133) [classes/:?]
+	at com.gt.jpfbatch.net.server.TCPServer.ejecutar(TCPServer.java:101) [classes/:?]
+	at com.gt.jpfbatch.net.server.TCPServer$2.onEjecutar(TCPServer.java:276) [classes/:?]
+	at com.gt.jpfbatch.net.server.ClientThread.onEvent(ClientThread.java:50) [classes/:?]
+	at com.gt.jpfbatch.net.server.ClientThread.run(ClientThread.java:74) [classes/:?]
+2018-43-26 14:43:52.120 [Thread-3] ERROR com.gt.jpfbatch.net.server.TCPServer - Error ejecutando 
+java.lang.RuntimeException: No se puede abrir el puerto del controlador fiscal
+	at com.gt.jpfbatch.net.server.TCPServer.ejecutar(TCPServer.java:104) [classes/:?]
+	at com.gt.jpfbatch.net.server.TCPServer$2.onEjecutar(TCPServer.java:276) [classes/:?]
+	at com.gt.jpfbatch.net.server.ClientThread.onEvent(ClientThread.java:50) [classes/:?]
+	at com.gt.jpfbatch.net.server.ClientThread.run(ClientThread.java:74) [classes/:?]
+2018-44-26 14:44:07.501 [Thread-3] ERROR com.gt.ifepson.IFEpsonHelper - OpenPort: 3
+java.lang.Exception: Error abriendo puerto
+	at com.gt.ifepson.IFEpsonHelper.openPort(IFEpsonHelper.java:133) [classes/:?]
+	at com.gt.jpfbatch.net.server.TCPServer.ejecutar(TCPServer.java:101) [classes/:?]
+	at com.gt.jpfbatch.net.server.TCPServer$2.onEjecutar(TCPServer.java:276) [classes/:?]
+	at com.gt.jpfbatch.net.server.ClientThread.onEvent(ClientThread.java:50) [classes/:?]
+	at com.gt.jpfbatch.net.server.ClientThread.run(ClientThread.java:74) [classes/:?]
+2018-44-26 14:44:07.504 [Thread-3] ERROR com.gt.jpfbatch.net.server.TCPServer - Error ejecutando 
+java.lang.RuntimeException: No se puede abrir el puerto del controlador fiscal
+	at com.gt.jpfbatch.net.server.TCPServer.ejecutar(TCPServer.java:104) [classes/:?]
+	at com.gt.jpfbatch.net.server.TCPServer$2.onEjecutar(TCPServer.java:276) [classes/:?]
+	at com.gt.jpfbatch.net.server.ClientThread.onEvent(ClientThread.java:50) [classes/:?]
+	at com.gt.jpfbatch.net.server.ClientThread.run(ClientThread.java:74) [classes/:?]
+2018-47-26 14:47:05.380 [Thread-3] ERROR com.gt.ifepson.IFEpsonHelper - OpenPort: 0
+java.lang.Exception: Error abriendo puerto
+	at com.gt.ifepson.IFEpsonHelper.openPort(IFEpsonHelper.java:133) [classes/:?]
+	at com.gt.jpfbatch.net.server.TCPServer.ejecutar(TCPServer.java:101) [classes/:?]
+	at com.gt.jpfbatch.net.server.TCPServer$2.onEjecutar(TCPServer.java:276) [classes/:?]
+	at com.gt.jpfbatch.net.server.ClientThread.onEvent(ClientThread.java:50) [classes/:?]
+	at com.gt.jpfbatch.net.server.ClientThread.run(ClientThread.java:74) [classes/:?]
+2018-47-26 14:47:05.383 [Thread-3] ERROR com.gt.jpfbatch.net.server.TCPServer - Error ejecutando 
+java.lang.RuntimeException: No se puede abrir el puerto del controlador fiscal
+	at com.gt.jpfbatch.net.server.TCPServer.ejecutar(TCPServer.java:104) [classes/:?]
+	at com.gt.jpfbatch.net.server.TCPServer$2.onEjecutar(TCPServer.java:276) [classes/:?]
+	at com.gt.jpfbatch.net.server.ClientThread.onEvent(ClientThread.java:50) [classes/:?]
+	at com.gt.jpfbatch.net.server.ClientThread.run(ClientThread.java:74) [classes/:?]
+2018-48-26 14:48:05.149 [Thread-3] ERROR com.gt.ifepson.IFEpsonHelper - OpenPort: 0
+java.lang.Exception: Error abriendo puerto
+	at com.gt.ifepson.IFEpsonHelper.openPort(IFEpsonHelper.java:133) [classes/:?]
+	at com.gt.jpfbatch.net.server.TCPServer.ejecutar(TCPServer.java:101) [classes/:?]
+	at com.gt.jpfbatch.net.server.TCPServer$2.onEjecutar(TCPServer.java:276) [classes/:?]
+	at com.gt.jpfbatch.net.server.ClientThread.onEvent(ClientThread.java:50) [classes/:?]
+	at com.gt.jpfbatch.net.server.ClientThread.run(ClientThread.java:74) [classes/:?]
+2018-48-26 14:48:05.152 [Thread-3] ERROR com.gt.jpfbatch.net.server.TCPServer - Error ejecutando 
+java.lang.RuntimeException: No se puede abrir el puerto del controlador fiscal
+	at com.gt.jpfbatch.net.server.TCPServer.ejecutar(TCPServer.java:104) [classes/:?]
+	at com.gt.jpfbatch.net.server.TCPServer$2.onEjecutar(TCPServer.java:276) [classes/:?]
+	at com.gt.jpfbatch.net.server.ClientThread.onEvent(ClientThread.java:50) [classes/:?]
+	at com.gt.jpfbatch.net.server.ClientThread.run(ClientThread.java:74) [classes/:?]
+2018-48-26 14:48:55.005 [Thread-3] ERROR com.gt.ifepson.IFEpsonHelper - OpenPort: 1
+java.lang.Exception: Error abriendo puerto
+	at com.gt.ifepson.IFEpsonHelper.openPort(IFEpsonHelper.java:133) [classes/:?]
+	at com.gt.jpfbatch.net.server.TCPServer.ejecutar(TCPServer.java:101) [classes/:?]
+	at com.gt.jpfbatch.net.server.TCPServer$2.onEjecutar(TCPServer.java:276) [classes/:?]
+	at com.gt.jpfbatch.net.server.ClientThread.onEvent(ClientThread.java:50) [classes/:?]
+	at com.gt.jpfbatch.net.server.ClientThread.run(ClientThread.java:74) [classes/:?]
+2018-48-26 14:48:55.013 [Thread-3] ERROR com.gt.jpfbatch.net.server.TCPServer - Error ejecutando 
+java.lang.RuntimeException: No se puede abrir el puerto del controlador fiscal
+	at com.gt.jpfbatch.net.server.TCPServer.ejecutar(TCPServer.java:104) [classes/:?]
+	at com.gt.jpfbatch.net.server.TCPServer$2.onEjecutar(TCPServer.java:276) [classes/:?]
+	at com.gt.jpfbatch.net.server.ClientThread.onEvent(ClientThread.java:50) [classes/:?]
+	at com.gt.jpfbatch.net.server.ClientThread.run(ClientThread.java:74) [classes/:?]
+2018-05-26 15:05:26.823 [Thread-3] ERROR com.gt.ifepson.IFEpsonHelper - OpenPort: 2
+java.lang.Exception: Error abriendo puerto
+	at com.gt.ifepson.IFEpsonHelper.openPort(IFEpsonHelper.java:133) [classes/:?]
+	at com.gt.jpfbatch.net.server.TCPServer.ejecutar(TCPServer.java:101) [classes/:?]
+	at com.gt.jpfbatch.net.server.TCPServer$2.onEjecutar(TCPServer.java:276) [classes/:?]
+	at com.gt.jpfbatch.net.server.ClientThread.onEvent(ClientThread.java:50) [classes/:?]
+	at com.gt.jpfbatch.net.server.ClientThread.run(ClientThread.java:74) [classes/:?]
+2018-05-26 15:05:26.826 [Thread-3] ERROR com.gt.jpfbatch.net.server.TCPServer - Error ejecutando 
+java.lang.RuntimeException: No se puede abrir el puerto del controlador fiscal
+	at com.gt.jpfbatch.net.server.TCPServer.ejecutar(TCPServer.java:104) [classes/:?]
+	at com.gt.jpfbatch.net.server.TCPServer$2.onEjecutar(TCPServer.java:276) [classes/:?]
+	at com.gt.jpfbatch.net.server.ClientThread.onEvent(ClientThread.java:50) [classes/:?]
+	at com.gt.jpfbatch.net.server.ClientThread.run(ClientThread.java:74) [classes/:?]
+2018-05-26 15:05:43.872 [Thread-3] ERROR com.gt.ifepson.IFEpsonHelper - OpenPort: 3
+java.lang.Exception: Error abriendo puerto
+	at com.gt.ifepson.IFEpsonHelper.openPort(IFEpsonHelper.java:133) [classes/:?]
+	at com.gt.jpfbatch.net.server.TCPServer.ejecutar(TCPServer.java:101) [classes/:?]
+	at com.gt.jpfbatch.net.server.TCPServer$2.onEjecutar(TCPServer.java:276) [classes/:?]
+	at com.gt.jpfbatch.net.server.ClientThread.onEvent(ClientThread.java:50) [classes/:?]
+	at com.gt.jpfbatch.net.server.ClientThread.run(ClientThread.java:74) [classes/:?]
+2018-05-26 15:05:43.876 [Thread-3] ERROR com.gt.jpfbatch.net.server.TCPServer - Error ejecutando 
+java.lang.RuntimeException: No se puede abrir el puerto del controlador fiscal
+	at com.gt.jpfbatch.net.server.TCPServer.ejecutar(TCPServer.java:104) [classes/:?]
+	at com.gt.jpfbatch.net.server.TCPServer$2.onEjecutar(TCPServer.java:276) [classes/:?]
+	at com.gt.jpfbatch.net.server.ClientThread.onEvent(ClientThread.java:50) [classes/:?]
+	at com.gt.jpfbatch.net.server.ClientThread.run(ClientThread.java:74) [classes/:?]
+2018-05-26 15:05:51.676 [Thread-3] ERROR com.gt.ifepson.IFEpsonHelper - OpenPort: 4
+java.lang.Exception: Error abriendo puerto
+	at com.gt.ifepson.IFEpsonHelper.openPort(IFEpsonHelper.java:133) [classes/:?]
+	at com.gt.jpfbatch.net.server.TCPServer.ejecutar(TCPServer.java:101) [classes/:?]
+	at com.gt.jpfbatch.net.server.TCPServer$2.onEjecutar(TCPServer.java:276) [classes/:?]
+	at com.gt.jpfbatch.net.server.ClientThread.onEvent(ClientThread.java:50) [classes/:?]
+	at com.gt.jpfbatch.net.server.ClientThread.run(ClientThread.java:74) [classes/:?]
+2018-05-26 15:05:51.679 [Thread-3] ERROR com.gt.jpfbatch.net.server.TCPServer - Error ejecutando 
+java.lang.RuntimeException: No se puede abrir el puerto del controlador fiscal
+	at com.gt.jpfbatch.net.server.TCPServer.ejecutar(TCPServer.java:104) [classes/:?]
+	at com.gt.jpfbatch.net.server.TCPServer$2.onEjecutar(TCPServer.java:276) [classes/:?]
+	at com.gt.jpfbatch.net.server.ClientThread.onEvent(ClientThread.java:50) [classes/:?]
+	at com.gt.jpfbatch.net.server.ClientThread.run(ClientThread.java:74) [classes/:?]
+2018-05-26 15:05:55.385 [Thread-3] ERROR com.gt.ifepson.IFEpsonHelper - OpenPort: 4
+java.lang.Exception: Error abriendo puerto
+	at com.gt.ifepson.IFEpsonHelper.openPort(IFEpsonHelper.java:133) [classes/:?]
+	at com.gt.jpfbatch.net.server.TCPServer.ejecutar(TCPServer.java:101) [classes/:?]
+	at com.gt.jpfbatch.net.server.TCPServer$2.onEjecutar(TCPServer.java:276) [classes/:?]
+	at com.gt.jpfbatch.net.server.ClientThread.onEvent(ClientThread.java:50) [classes/:?]
+	at com.gt.jpfbatch.net.server.ClientThread.run(ClientThread.java:74) [classes/:?]
+2018-05-26 15:05:55.391 [Thread-3] ERROR com.gt.jpfbatch.net.server.TCPServer - Error ejecutando 
+java.lang.RuntimeException: No se puede abrir el puerto del controlador fiscal
+	at com.gt.jpfbatch.net.server.TCPServer.ejecutar(TCPServer.java:104) [classes/:?]
+	at com.gt.jpfbatch.net.server.TCPServer$2.onEjecutar(TCPServer.java:276) [classes/:?]
+	at com.gt.jpfbatch.net.server.ClientThread.onEvent(ClientThread.java:50) [classes/:?]
+	at com.gt.jpfbatch.net.server.ClientThread.run(ClientThread.java:74) [classes/:?]
+2018-05-26 15:05:59.040 [Thread-3] ERROR com.gt.ifepson.IFEpsonHelper - OpenPort: 0
+java.lang.Exception: Error abriendo puerto
+	at com.gt.ifepson.IFEpsonHelper.openPort(IFEpsonHelper.java:133) [classes/:?]
+	at com.gt.jpfbatch.net.server.TCPServer.ejecutar(TCPServer.java:101) [classes/:?]
+	at com.gt.jpfbatch.net.server.TCPServer$2.onEjecutar(TCPServer.java:276) [classes/:?]
+	at com.gt.jpfbatch.net.server.ClientThread.onEvent(ClientThread.java:50) [classes/:?]
+	at com.gt.jpfbatch.net.server.ClientThread.run(ClientThread.java:74) [classes/:?]
+2018-05-26 15:05:59.043 [Thread-3] ERROR com.gt.jpfbatch.net.server.TCPServer - Error ejecutando 
+java.lang.RuntimeException: No se puede abrir el puerto del controlador fiscal
+	at com.gt.jpfbatch.net.server.TCPServer.ejecutar(TCPServer.java:104) [classes/:?]
+	at com.gt.jpfbatch.net.server.TCPServer$2.onEjecutar(TCPServer.java:276) [classes/:?]
+	at com.gt.jpfbatch.net.server.ClientThread.onEvent(ClientThread.java:50) [classes/:?]
+	at com.gt.jpfbatch.net.server.ClientThread.run(ClientThread.java:74) [classes/:?]
+2018-06-26 15:06:09.019 [Thread-3] ERROR com.gt.ifepson.IFEpsonHelper - OpenPort: 5
+java.lang.Exception: Error abriendo puerto
+	at com.gt.ifepson.IFEpsonHelper.openPort(IFEpsonHelper.java:133) [classes/:?]
+	at com.gt.jpfbatch.net.server.TCPServer.ejecutar(TCPServer.java:101) [classes/:?]
+	at com.gt.jpfbatch.net.server.TCPServer$2.onEjecutar(TCPServer.java:276) [classes/:?]
+	at com.gt.jpfbatch.net.server.ClientThread.onEvent(ClientThread.java:50) [classes/:?]
+	at com.gt.jpfbatch.net.server.ClientThread.run(ClientThread.java:74) [classes/:?]
+2018-06-26 15:06:09.022 [Thread-3] ERROR com.gt.jpfbatch.net.server.TCPServer - Error ejecutando 
+java.lang.RuntimeException: No se puede abrir el puerto del controlador fiscal
+	at com.gt.jpfbatch.net.server.TCPServer.ejecutar(TCPServer.java:104) [classes/:?]
+	at com.gt.jpfbatch.net.server.TCPServer$2.onEjecutar(TCPServer.java:276) [classes/:?]
+	at com.gt.jpfbatch.net.server.ClientThread.onEvent(ClientThread.java:50) [classes/:?]
+	at com.gt.jpfbatch.net.server.ClientThread.run(ClientThread.java:74) [classes/:?]
+2018-06-26 15:06:17.825 [Thread-3] ERROR com.gt.ifepson.IFEpsonHelper - OpenPort: 6
+java.lang.Exception: Error abriendo puerto
+	at com.gt.ifepson.IFEpsonHelper.openPort(IFEpsonHelper.java:133) [classes/:?]
+	at com.gt.jpfbatch.net.server.TCPServer.ejecutar(TCPServer.java:101) [classes/:?]
+	at com.gt.jpfbatch.net.server.TCPServer$2.onEjecutar(TCPServer.java:276) [classes/:?]
+	at com.gt.jpfbatch.net.server.ClientThread.onEvent(ClientThread.java:50) [classes/:?]
+	at com.gt.jpfbatch.net.server.ClientThread.run(ClientThread.java:74) [classes/:?]
+2018-06-26 15:06:17.828 [Thread-3] ERROR com.gt.jpfbatch.net.server.TCPServer - Error ejecutando 
+java.lang.RuntimeException: No se puede abrir el puerto del controlador fiscal
+	at com.gt.jpfbatch.net.server.TCPServer.ejecutar(TCPServer.java:104) [classes/:?]
+	at com.gt.jpfbatch.net.server.TCPServer$2.onEjecutar(TCPServer.java:276) [classes/:?]
+	at com.gt.jpfbatch.net.server.ClientThread.onEvent(ClientThread.java:50) [classes/:?]
+	at com.gt.jpfbatch.net.server.ClientThread.run(ClientThread.java:74) [classes/:?]
+2018-39-26 15:39:35.322 [Thread-15] ERROR com.gt.jpfbatch.net.server.TCPServer - Error ejecutando 
+com.gt.jpfbatch.fiscalSpool.ComandoFiscalParseException: No se reconoce el comando temTiqueNC como valido
+	at com.gt.jpfbatch.fiscalSpool.BatchExecutor.compilarLinea(BatchExecutor.java:129) ~[classes/:?]
+	at com.gt.jpfbatch.fiscalSpool.BatchExecutor.compilar(BatchExecutor.java:51) ~[classes/:?]
+	at com.gt.jpfbatch.fiscalSpool.BatchExecutor.ejecutar(BatchExecutor.java:159) ~[classes/:?]
+	at com.gt.jpfbatch.net.server.TCPServer.ejecutar(TCPServer.java:116) [classes/:?]
+	at com.gt.jpfbatch.net.server.TCPServer$2.onEjecutar(TCPServer.java:276) [classes/:?]
+	at com.gt.jpfbatch.net.server.ClientThread.onEvent(ClientThread.java:50) [classes/:?]
+	at com.gt.jpfbatch.net.server.ClientThread.run(ClientThread.java:74) [classes/:?]
+2018-39-26 15:39:53.163 [Thread-16] ERROR com.gt.ifepson.IFEpsonHelper - OpenPort: 10
+java.lang.Exception: Error abriendo puerto
+	at com.gt.ifepson.IFEpsonHelper.openPort(IFEpsonHelper.java:133) [classes/:?]
+	at com.gt.jpfbatch.net.server.TCPServer.ejecutar(TCPServer.java:101) [classes/:?]
+	at com.gt.jpfbatch.net.server.TCPServer$2.onEjecutar(TCPServer.java:276) [classes/:?]
+	at com.gt.jpfbatch.net.server.ClientThread.onEvent(ClientThread.java:50) [classes/:?]
+	at com.gt.jpfbatch.net.server.ClientThread.run(ClientThread.java:74) [classes/:?]
+2018-39-26 15:39:53.164 [Thread-16] ERROR com.gt.jpfbatch.net.server.TCPServer - Error ejecutando 
+java.lang.RuntimeException: No se puede abrir el puerto del controlador fiscal
+	at com.gt.jpfbatch.net.server.TCPServer.ejecutar(TCPServer.java:104) [classes/:?]
+	at com.gt.jpfbatch.net.server.TCPServer$2.onEjecutar(TCPServer.java:276) [classes/:?]
+	at com.gt.jpfbatch.net.server.ClientThread.onEvent(ClientThread.java:50) [classes/:?]
+	at com.gt.jpfbatch.net.server.ClientThread.run(ClientThread.java:74) [classes/:?]
+2018-40-26 15:40:22.682 [Thread-17] ERROR com.gt.ifepson.IFEpsonHelper - OpenPort: 10
+java.lang.Exception: Error abriendo puerto
+	at com.gt.ifepson.IFEpsonHelper.openPort(IFEpsonHelper.java:133) [classes/:?]
+	at com.gt.jpfbatch.net.server.TCPServer.ejecutar(TCPServer.java:101) [classes/:?]
+	at com.gt.jpfbatch.net.server.TCPServer$2.onEjecutar(TCPServer.java:276) [classes/:?]
+	at com.gt.jpfbatch.net.server.ClientThread.onEvent(ClientThread.java:50) [classes/:?]
+	at com.gt.jpfbatch.net.server.ClientThread.run(ClientThread.java:74) [classes/:?]
+2018-40-26 15:40:22.684 [Thread-17] ERROR com.gt.jpfbatch.net.server.TCPServer - Error ejecutando 
+java.lang.RuntimeException: No se puede abrir el puerto del controlador fiscal
+	at com.gt.jpfbatch.net.server.TCPServer.ejecutar(TCPServer.java:104) [classes/:?]
+	at com.gt.jpfbatch.net.server.TCPServer$2.onEjecutar(TCPServer.java:276) [classes/:?]
+	at com.gt.jpfbatch.net.server.ClientThread.onEvent(ClientThread.java:50) [classes/:?]
+	at com.gt.jpfbatch.net.server.ClientThread.run(ClientThread.java:74) [classes/:?]
+2018-40-26 15:40:29.110 [Thread-18] ERROR com.gt.ifepson.IFEpsonHelper - OpenPort: 10
+java.lang.Exception: Error abriendo puerto
+	at com.gt.ifepson.IFEpsonHelper.openPort(IFEpsonHelper.java:133) [classes/:?]
+	at com.gt.jpfbatch.net.server.TCPServer.ejecutar(TCPServer.java:101) [classes/:?]
+	at com.gt.jpfbatch.net.server.TCPServer$2.onEjecutar(TCPServer.java:276) [classes/:?]
+	at com.gt.jpfbatch.net.server.ClientThread.onEvent(ClientThread.java:50) [classes/:?]
+	at com.gt.jpfbatch.net.server.ClientThread.run(ClientThread.java:74) [classes/:?]
+2018-40-26 15:40:29.112 [Thread-18] ERROR com.gt.jpfbatch.net.server.TCPServer - Error ejecutando 
+java.lang.RuntimeException: No se puede abrir el puerto del controlador fiscal
+	at com.gt.jpfbatch.net.server.TCPServer.ejecutar(TCPServer.java:104) [classes/:?]
+	at com.gt.jpfbatch.net.server.TCPServer$2.onEjecutar(TCPServer.java:276) [classes/:?]
+	at com.gt.jpfbatch.net.server.ClientThread.onEvent(ClientThread.java:50) [classes/:?]
+	at com.gt.jpfbatch.net.server.ClientThread.run(ClientThread.java:74) [classes/:?]
+2018-43-26 15:43:43.235 [Thread-11] ERROR com.gt.jpfbatch.net.server.TCPServer - Error ejecutando 
+com.gt.jpfbatch.fiscalSpool.ComandoFiscalParseException: No se reconoce el comando temTiqueNC como valido
+	at com.gt.jpfbatch.fiscalSpool.BatchExecutor.compilarLinea(BatchExecutor.java:129) ~[classes/:?]
+	at com.gt.jpfbatch.fiscalSpool.BatchExecutor.compilar(BatchExecutor.java:51) ~[classes/:?]
+	at com.gt.jpfbatch.fiscalSpool.BatchExecutor.ejecutar(BatchExecutor.java:159) ~[classes/:?]
+	at com.gt.jpfbatch.net.server.TCPServer.ejecutar(TCPServer.java:116) [classes/:?]
+	at com.gt.jpfbatch.net.server.TCPServer$2.onEjecutar(TCPServer.java:276) [classes/:?]
+	at com.gt.jpfbatch.net.server.ClientThread.onEvent(ClientThread.java:50) [classes/:?]
+	at com.gt.jpfbatch.net.server.ClientThread.run(ClientThread.java:74) [classes/:?]
+2018-53-26 15:53:13.864 [Thread-3] ERROR com.gt.ifepson.IFEpsonHelper - OpenPort: 10
+java.lang.Exception: Error abriendo puerto
+	at com.gt.ifepson.IFEpsonHelper.openPort(IFEpsonHelper.java:133) [classes/:?]
+	at com.gt.jpfbatch.net.server.TCPServer.ejecutar(TCPServer.java:101) [classes/:?]
+	at com.gt.jpfbatch.net.server.TCPServer$2.onEjecutar(TCPServer.java:276) [classes/:?]
+	at com.gt.jpfbatch.net.server.ClientThread.onEvent(ClientThread.java:50) [classes/:?]
+	at com.gt.jpfbatch.net.server.ClientThread.run(ClientThread.java:74) [classes/:?]
+2018-53-26 15:53:13.873 [Thread-3] ERROR com.gt.jpfbatch.net.server.TCPServer - Error ejecutando 
+java.lang.RuntimeException: No se puede abrir el puerto del controlador fiscal
+	at com.gt.jpfbatch.net.server.TCPServer.ejecutar(TCPServer.java:104) [classes/:?]
+	at com.gt.jpfbatch.net.server.TCPServer$2.onEjecutar(TCPServer.java:276) [classes/:?]
+	at com.gt.jpfbatch.net.server.ClientThread.onEvent(ClientThread.java:50) [classes/:?]
+	at com.gt.jpfbatch.net.server.ClientThread.run(ClientThread.java:74) [classes/:?]
+2018-53-26 15:53:28.428 [Thread-4] ERROR com.gt.ifepson.IFEpsonHelper - OpenPort: 10
+java.lang.Exception: Error abriendo puerto
+	at com.gt.ifepson.IFEpsonHelper.openPort(IFEpsonHelper.java:133) [classes/:?]
+	at com.gt.jpfbatch.net.server.TCPServer.ejecutar(TCPServer.java:101) [classes/:?]
+	at com.gt.jpfbatch.net.server.TCPServer$2.onEjecutar(TCPServer.java:276) [classes/:?]
+	at com.gt.jpfbatch.net.server.ClientThread.onEvent(ClientThread.java:50) [classes/:?]
+	at com.gt.jpfbatch.net.server.ClientThread.run(ClientThread.java:74) [classes/:?]
+2018-53-26 15:53:28.429 [Thread-4] ERROR com.gt.jpfbatch.net.server.TCPServer - Error ejecutando 
+java.lang.RuntimeException: No se puede abrir el puerto del controlador fiscal
+	at com.gt.jpfbatch.net.server.TCPServer.ejecutar(TCPServer.java:104) [classes/:?]
+	at com.gt.jpfbatch.net.server.TCPServer$2.onEjecutar(TCPServer.java:276) [classes/:?]
+	at com.gt.jpfbatch.net.server.ClientThread.onEvent(ClientThread.java:50) [classes/:?]
+	at com.gt.jpfbatch.net.server.ClientThread.run(ClientThread.java:74) [classes/:?]
+2018-53-26 15:53:32.479 [Thread-5] ERROR com.gt.ifepson.IFEpsonHelper - OpenPort: 10
+java.lang.Exception: Error abriendo puerto
+	at com.gt.ifepson.IFEpsonHelper.openPort(IFEpsonHelper.java:133) [classes/:?]
+	at com.gt.jpfbatch.net.server.TCPServer.ejecutar(TCPServer.java:101) [classes/:?]
+	at com.gt.jpfbatch.net.server.TCPServer$2.onEjecutar(TCPServer.java:276) [classes/:?]
+	at com.gt.jpfbatch.net.server.ClientThread.onEvent(ClientThread.java:50) [classes/:?]
+	at com.gt.jpfbatch.net.server.ClientThread.run(ClientThread.java:74) [classes/:?]
+2018-53-26 15:53:32.480 [Thread-5] ERROR com.gt.jpfbatch.net.server.TCPServer - Error ejecutando 
+java.lang.RuntimeException: No se puede abrir el puerto del controlador fiscal
+	at com.gt.jpfbatch.net.server.TCPServer.ejecutar(TCPServer.java:104) [classes/:?]
+	at com.gt.jpfbatch.net.server.TCPServer$2.onEjecutar(TCPServer.java:276) [classes/:?]
+	at com.gt.jpfbatch.net.server.ClientThread.onEvent(ClientThread.java:50) [classes/:?]
+	at com.gt.jpfbatch.net.server.ClientThread.run(ClientThread.java:74) [classes/:?]

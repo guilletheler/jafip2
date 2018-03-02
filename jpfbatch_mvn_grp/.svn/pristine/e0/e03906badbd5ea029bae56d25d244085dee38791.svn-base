@@ -1,0 +1,29 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package com.gt.jpfbatch.net.server;
+
+import java.util.concurrent.ConcurrentLinkedDeque;
+
+/**
+ *
+ * @author guillermot
+ */
+public class ConcurrentStack {
+
+    ConcurrentLinkedDeque<String> internalDeque = new ConcurrentLinkedDeque<String>();
+    
+    public String peek() {
+        return internalDeque.peekFirst();
+    }
+    
+    public void add(String val) {
+        this.internalDeque.addFirst(val);
+    }
+    
+    public String poll() {
+        return this.internalDeque.pollFirst();
+    }
+}

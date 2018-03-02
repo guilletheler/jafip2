@@ -1,0 +1,71 @@
+package com.gt.ifepson.comandos.configuracion;
+
+import com.gt.ifepson.comandos.CampoFiscal;
+import com.gt.ifepson.comandos.TipoComando;
+import com.gt.ifepson.comandos.ClasificacionComando;
+import com.gt.ifepson.comandos.Extension;
+import com.gt.ifepson.comandos.TipoDato;
+
+public class IniciarCargaDeLogosDelUsuario extends TipoComando {
+
+    public IniciarCargaDeLogosDelUsuario() {
+    }
+
+    @Override
+    public String[] getNames() {
+        return new String[]{"IniciarCargaDeLogosDelUsuario"};
+    }
+
+    @Override
+    public String getDescripcion() {
+        return "Iniciar Carga de Logos del Usuario";
+    }
+
+    @Override
+    public int getCodigo() {
+        return 0x0530;
+    }
+
+    @Override
+    public ClasificacionComando getClasificacionComando() {
+        return ClasificacionComando.CONFIGURACION;
+    }
+
+    @Override
+    public int[] getComando() {
+        int[] ret = new int[2];
+        ret[0] = 0x05;
+        ret[1] = 0x30;
+        return ret;
+    }
+
+    @Override
+    public Extension[] getExtensiones() {
+        return new Extension[]{};
+    }
+
+    @Override
+    public String getNotas() {
+        return "Prepara la impresora para la carga de logo de usuario.";
+    }
+
+    @Override
+    public String getRequerimientos() {
+        return "Jornada fiscal cerrada.\n"
+                + "No encontrarse iniciada previamente una carga de logo de usuario.";
+    }
+
+    @Override
+    public CampoFiscal[] getCamposSalida() {
+        return new CampoFiscal[]{};
+    }
+
+    @Override
+    public CampoFiscal[] getCamposEntrada() {
+        return new CampoFiscal[]{
+            new CampoFiscal(1, "Ancho del logo", TipoDato.B, 2, false),
+            new CampoFiscal(2, "Alto del logo", TipoDato.B, 2, false),
+            new CampoFiscal(3, "Calidad del logo", TipoDato.N_E, 1, false)};
+    }
+
+}

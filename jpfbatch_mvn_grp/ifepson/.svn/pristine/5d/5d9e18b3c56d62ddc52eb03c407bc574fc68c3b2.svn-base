@@ -1,0 +1,88 @@
+package com.gt.ifepson.comandos.tiqueNc;
+
+import com.gt.ifepson.comandos.CampoFiscal;
+import com.gt.ifepson.comandos.TipoComando;
+import com.gt.ifepson.comandos.ClasificacionComando;
+import com.gt.ifepson.comandos.Extension;
+import com.gt.ifepson.comandos.TipoDato;
+
+public class InformacionDeVentasTiqueNC extends TipoComando {
+
+    public InformacionDeVentasTiqueNC() {
+    }
+
+    @Override
+    public String[] getNames() {
+        return new String[]{"InformacionDeVentasTiqueNC", "InformacionVentasTiqueNC", "InvoVentasTiqueNC"};
+    }
+
+    @Override
+    public String getDescripcion() {
+        return "Información de Ventas";
+    }
+
+    @Override
+    public String getNotas() {
+        return " La impresora fiscal devolverá 2 campos por cada tasa que haya sido utilizada durante el tique fiscal en el orden indicado por campos 2 al 3.\n"
+                + "Si se solicitara sin información discriminada, los campos 2 al 11 se retornarán vacíos.";
+    }
+
+    @Override
+    public String getRequerimientos() {
+        return "Documento Tique, tique-nota de crédito abierto.";
+    }
+
+    @Override
+    public int getCodigo() {
+        return 0x0A0D;
+    }
+
+    @Override
+    public ClasificacionComando getClasificacionComando() {
+        return ClasificacionComando.TIQUE;
+    }
+
+    @Override
+    public int[] getComando() {
+        int[] ret = new int[2];
+        ret[0] = 0x0A;
+        ret[1] = 0x0D;
+        return ret;
+    }
+
+    @Override
+    public Extension[] getExtensiones() {
+        return new Extension[]{
+            new Extension(0b0000000000000001, "Discriminar tasas",
+            "SIN_INFORMACION_DISCRIMINADA_POR_TASA_DE_IMPUESTO", 0b0000000000000000,
+            "CON_INFORMACION_DISCRIMINADA_POR_TASA_DE_IMPUESTO", 0b0000000000000001)
+        };
+    }
+
+    @Override
+    public CampoFiscal[] getCamposEntrada() {
+        return new CampoFiscal[]{};
+    }
+
+    @Override
+    public CampoFiscal[] getCamposSalida() {
+        return new CampoFiscal[]{
+            new CampoFiscal(1, "Total bruto", TipoDato.N_10_2, 12, false),
+            new CampoFiscal(2, "Tasa de IVA #1", TipoDato.N_0_4, 4, true),
+            new CampoFiscal(3, "Total vendido x tasa #1", TipoDato.N_10_2, 12, true),
+            new CampoFiscal(4, "Tasa de IVA #2", TipoDato.N_0_4, 4, true),
+            new CampoFiscal(5, "Total vendido x tasa #2", TipoDato.N_10_2, 12, true),
+            new CampoFiscal(6, "Tasa de IVA #3", TipoDato.N_0_4, 4, true),
+            new CampoFiscal(7, "Total vendido x tasa #3", TipoDato.N_10_2, 12, true),
+            new CampoFiscal(8, "Tasa de IVA #4", TipoDato.N_0_4, 4, true),
+            new CampoFiscal(9, "Total vendido x tasa #4", TipoDato.N_10_2, 12, true),
+            new CampoFiscal(10, "Tasa de IVA #5", TipoDato.N_0_4, 4, true),
+            new CampoFiscal(11, "Total vendido x tasa #5", TipoDato.N_10_2, 12, true),
+            new CampoFiscal(12, "Tasa de IVA #6", TipoDato.N_0_4, 4, true),
+            new CampoFiscal(13, "Total vendido x tasa #6", TipoDato.N_10_2, 12, true),
+            new CampoFiscal(14, "Tasa de IVA #7", TipoDato.N_0_4, 4, true),
+            new CampoFiscal(15, "Total vendido x tasa #7", TipoDato.N_10_2, 12, true)
+        };
+    }
+
+}

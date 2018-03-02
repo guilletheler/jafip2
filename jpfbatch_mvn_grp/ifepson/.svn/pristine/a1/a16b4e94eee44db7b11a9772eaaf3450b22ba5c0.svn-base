@@ -1,0 +1,49 @@
+package com.gt.ifepson.comandos.notaCreditoAbcm;
+
+import com.gt.ifepson.comandos.TipoComando;
+import com.gt.ifepson.comandos.ClasificacionComando;
+
+public class InformacionTiqueNCABCM extends TipoComando {
+
+    public InformacionTiqueNCABCM() {
+    }
+
+    @Override
+    public String[] getNames() {
+        return new String[]{"InformacionTiqueNCABCM"};
+    }
+
+    @Override
+    public String getDescripcion() {
+        return "Obtiene información de IVA del tique-nota de crédito A/B/C/M en curso.";
+    }
+    
+    @Override
+    public String getNotas() {
+        return "La fase en la que se encuentra el tique fiscal puede tener los siguientes valores:\n"
+                + "‘0’ – Fase inicial. Tique abierto sin ítems facturados.\n"
+                + "‘1’ – Fase de venta.\n"
+                + "‘2’ – Fase de descuentos/ajustes.\n"
+                + "‘3’ – Fase de pagos.";
+    }
+
+    @Override
+    public int getCodigo() {
+        return 0x0D0A;
+    }
+
+    @Override
+    public ClasificacionComando getClasificacionComando() {
+        return ClasificacionComando.TNC;
+    }
+
+    @Override
+    public int[] getComando() {
+        int[] ret = new int[2];
+        ret[0] = 0x0D;
+        ret[1] = 0x0A;
+        return ret;
+    }
+
+    
+}

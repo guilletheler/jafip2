@@ -1,0 +1,84 @@
+package com.gt.ifepson.comandos.tiqueNc;
+
+import com.gt.ifepson.comandos.CampoFiscal;
+import com.gt.ifepson.comandos.TipoComando;
+import com.gt.ifepson.comandos.ClasificacionComando;
+import com.gt.ifepson.comandos.Extension;
+
+public class DescuentosAjustesGlobalesTiqueNC extends TipoComando {
+
+    public DescuentosAjustesGlobalesTiqueNC() {
+    }
+
+    @Override
+    public String[] getNames() {
+        return new String[]{"DescuentosAjustesGlobalesTiqueNC"};
+    }
+
+    @Override
+    public String getDescripcion() {
+        return "Aplica un descuento o ajuste global/particular a los montos facturados en el tique o tique-nota de crédito.";
+    }
+
+    @Override
+    public int getCodigo() {
+        return 0x0A04;
+    }
+
+    @Override
+    public ClasificacionComando getClasificacionComando() {
+        return ClasificacionComando.TIQUE;
+    }
+
+    @Override
+    public int[] getComando() {
+        int[] ret = new int[2];
+        ret[0] = 0x0A;
+        ret[1] = 0x04;
+        return ret;
+    }
+
+    @Override
+    public String getNotas() {
+        return " La impresión de las líneas de descuentos y ajustes globales se efectúa en el momento del cierre del\n"
+                + "tique fiscal.\n"
+                + " Los valores aceptados en el campo “Código condición frente al IVA” son:\n"
+                + "0 – No corresponde.\n"
+                + "1 – No gravado.\n"
+                + "2 – Exento.\n"
+                + "7 – Gravado.\n"
+                + "En caso de enviar un valor distinto de cero en el campo “Tasa de IVA”, sólo se acepta el valor 7 (gravado)";
+    }
+
+    @Override
+    public String getRequerimientos() {
+        return "No superar los máximos permitidos para las operaciones matemáticas.\n"
+                + "El total del tique debe ser superior a cero.\n"
+                + "No haber efectuado pagos dentro del tique fiscal.\n"
+                + "No haber superado la máxima cantidad de descuentos o ajustes globales dentro del tique.\n"
+                + "A fin de emitir descuentos globales se debe enviar vacío el campo número tres (3) Tasa de IVA. De\n"
+                + "lo contrario se emitirá un descuento o ajuste particular.";
+    }
+
+    @Override
+    public Extension[] getExtensiones() {
+        return new Extension[]{
+            new Extension(0b0000000000000011, "TipoAjuste",
+            "Descuento", 0b0000000000000000,
+            "Ajuste", 0b0000000000000001,
+            "Ajuste negativo", 0b0000000000000010)
+        };
+
+    }
+
+    @Override
+    public CampoFiscal[] getCamposEntrada() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public CampoFiscal[] getCamposSalida() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+}

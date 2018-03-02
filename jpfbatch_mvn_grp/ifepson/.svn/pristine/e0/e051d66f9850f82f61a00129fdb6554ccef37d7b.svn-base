@@ -1,0 +1,68 @@
+package com.gt.ifepson.comandos.descargaReportes;
+
+import com.gt.ifepson.comandos.CampoFiscal;
+import com.gt.ifepson.comandos.TipoComando;
+import com.gt.ifepson.comandos.ClasificacionComando;
+import com.gt.ifepson.comandos.Extension;
+import com.gt.ifepson.comandos.TipoDato;
+
+public class BorradoDeJornadasDeMemoriaDeTransacciones extends TipoComando {
+
+    public BorradoDeJornadasDeMemoriaDeTransacciones() {
+    }
+
+    @Override
+    public String[] getNames() {
+        return new String[]{"BorradoDeJornadasDeMemoriaDeTransacciones"};
+    }
+
+    @Override
+    public String getDescripcion() {
+        return "Borrado de Jornadas de Memoria de Transacciones: \n"
+                + "Habilita al controlador fiscal a eliminar definitivamente las jornadas fiscales almacenadas en la Memoria de Transacciones indicada.";
+    }
+
+    @Override
+    public int getCodigo() {
+        return 0x0910;
+    }
+
+    @Override
+    public ClasificacionComando getClasificacionComando() {
+        return ClasificacionComando.MEMORIA_TRANSACCIONES;
+    }
+
+    @Override
+    public int[] getComando() {
+        int[] ret = new int[2];
+        ret[0] = 0x09;
+        ret[1] = 0x10;
+        return ret;
+    }
+    
+    @Override
+    public Extension[] getExtensiones() {
+        return new Extension[]{};
+    }
+
+    @Override
+    public String getNotas() {
+        return "";
+    }
+
+    @Override
+    public String getRequerimientos() {
+        return "Haber descargado los reportes obligatorios de las jornadas a borrar.";
+    }
+
+    @Override
+    public CampoFiscal[] getCamposSalida() {
+        return new CampoFiscal[]{};
+    }
+
+    @Override
+    public CampoFiscal[] getCamposEntrada() {
+        return new CampoFiscal[]{new CampoFiscal(1, "Borra hasta la jornada fiscal número", TipoDato.N, 4, false)};
+    }
+
+}

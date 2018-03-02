@@ -1,0 +1,132 @@
+package com.gt.ifepson.comandos.tiqueNc;
+
+import com.gt.ifepson.comandos.CampoFiscal;
+import com.gt.ifepson.comandos.TipoComando;
+import com.gt.ifepson.comandos.ClasificacionComando;
+import com.gt.ifepson.comandos.Extension;
+import com.gt.ifepson.comandos.TipoDato;
+
+public class ConfigurarPreferenciasTiqueNC extends TipoComando {
+
+    public ConfigurarPreferenciasTiqueNC() {
+    }
+
+    @Override
+    public String[] getNames() {
+        return new String[]{"ConfigurarPreferenciasTiqueNC"};
+    }
+
+    @Override
+    public String getDescripcion() {
+        return "Configura las diferentes opciones para la emisión de tique o tique-nota de crédito.";
+    }
+
+    @Override
+    public int getCodigo() {
+        return 0x0A08;
+    }
+
+    @Override
+    public ClasificacionComando getClasificacionComando() {
+        return ClasificacionComando.TIQUE;
+    }
+
+    @Override
+    public int[] getComando() {
+        int[] ret = new int[2];
+        ret[0] = 0x0A;
+        ret[1] = 0x08;
+        return ret;
+    }
+
+    @Override
+    public String getNotas() {
+        return " La línea de vuelto será impresa sólo si la cantidad pagada es superior o igual al monto del tique.\n"
+                + " La línea de cantidad x precio será impresa sólo si la cantidad es diferente de la unidad.\n"
+                + " Los valores válidos para el campo “código de pago automático” son los presentes en la tabla de pagos.\n"
+                + "1 - Carta de credito documentario\n"
+                + "2 - Cartas de credito simple\n"
+                + "3 - Cheque\n"
+                + "4 - Cheques cancelatorios\n"
+                + "5 - Credito documentario\n"
+                + "6 - Cuenta corriente\n"
+                + "7 - Deposito\n"
+                + "8 - Efectivo\n"
+                + "9 - Endoso de cheque\n"
+                + "10 - Factura de credito\n"
+                + "11 - Garantias bancarias\n"
+                + "12 - Giros\n"
+                + "13 - Letras de cambio\n"
+                + "14 - Medios de pago de comercio exterior\n"
+                + "15 - Orden de pago documentaria\n"
+                + "16 - Orden de pago simple\n"
+                + "17 - Pago contra reembolso\n"
+                + "18 - Remesa documentaria\n"
+                + "19 - Remesa simple\n"
+                + "20 - Tarjeta de credito\n"
+                + "21 - Tarjeta de debito\n"
+                + "22 - Ticket\n"
+                + "23 - Transferencia bancaria\n"
+                + "24 - Transferencia no bancaria\n"
+                + "99 - Otros medios de pago";
+    }
+
+    @Override
+    public String getRequerimientos() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public Extension[] getExtensiones() {
+        return new Extension[]{
+            new Extension(0b0000000000000001, "Total Pagado",
+            "No imprime información sobre el total pagado y el vuelto.", 0b0000000000000000,
+            "Imprime información sobre el total pagado y el vuelto. (default)", 0b0000000000000001),
+            new Extension(0b0000000000000100, "line feeds",
+            "No imprime line feeds separando encabezado y cola.", 0b0000000000000000,
+            "Imprime line feeds separando encabezado y cola (default).", 0b0000000000000100),
+            new Extension(0b0000000000010000, "linea consumidor final",
+            "No imprime línea “A CONSUMIDOR FINAL”.", 0b0000000000000000,
+            "Imprime línea “A CONSUMIDOR FINAL”. (default)", 0b0000000000010000),
+            new Extension(0b0000000001000000, "linea domicilio fiscal",
+            "No Imprime líneas de domicilio comercial.", 0b0000000000000000,
+            "Imprime líneas de domicilio comercial. (default)", 0b0000000001000000),
+            new Extension(0b0000000010000000, "linea nombre fantasia",
+            "No Imprime líneas de nombre de fantasía. (default)", 0b0000000000000000,
+            "Imprime líneas de nombre de fantasía.", 0b0000000010000000),
+            new Extension(0b0000000100000000, "linea IIBB",
+            "No Imprime líneas de IIBB. (default)", 0b0000000000000000,
+            "Imprime líneas de IIBB.", 0b0000000100000000),
+            new Extension(0b0000010000000000, "linea logo",
+            "No Imprime líneas de logo.", 0b0000000000000000,
+            "Imprime líneas de logo (default).", 0b0000010000000000),
+            new Extension(0b0000100000000000, "linea logo",
+            "No realiza pago automático en tique.", 0b0000000000000000,
+            "Realiza pago automático en tique. (default)", 0b0000100000000000),
+            new Extension(0b0001000000000000, "separa palabra TOTAl",
+            "No separa la palabra ‘TOTAL’ con líneas en blanco (default).", 0b0000000000000000,
+            "Separa la palabra ‘TOTAL’ con líneas en blanco.", 0b0001000000000000),
+            new Extension(0b0010000000000000, "Cantidades unitarias",
+            "No imprime cantidades unitarias.", 0b0000000000000000,
+            "Imprime cantidades unitarias.", 0b0010000000000000),
+            new Extension(0b0100000000000000, "Código QR",
+            "No imprime código QR.", 0b0000000000000000,
+            "Imprime código QR.", 0b0100000000000000)
+
+        };
+    }
+
+    @Override
+    public CampoFiscal[] getCamposEntrada() {
+        return new CampoFiscal[]{
+            new CampoFiscal(1, "Descripción del pago automático", TipoDato.RT, -1, true),
+            new CampoFiscal(2, "Código del pago automático", TipoDato.N_E, 2, false)
+        };
+    }
+
+    @Override
+    public CampoFiscal[] getCamposSalida() {
+        return new CampoFiscal[]{};
+    }
+
+}

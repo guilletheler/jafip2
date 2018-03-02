@@ -1,0 +1,95 @@
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package com.gt.jpfbatch.net.server;
+
+import com.gt.jpfbatch.JpfbatchConfigs;
+import com.gt.jpfbatch.fiscalSpool.BatchPojo;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.net.Socket;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.event.EventListenerList;
+
+/**
+ *
+ * @author guillermot
+ */
+public class ClientThread extends Thread {
+
+    ObjectInputStream is = null;
+    ObjectOutputStream os = null;
+    Socket clientSocket = null;
+    String name = "noname";
+    JpfbatchConfigs jpfbatchConfigs;
+    protected EventListenerList listenerList = new EventListenerList();
+    protected boolean testMode = false;
+
+    public boolean isTestMode() {
+        return testMode;
+    }
+
+    public void setTestMode(boolean testMode) {
+        this.testMode = testMode;
+    }
+
+    public void addEventListener(JPFBNetEventListener listener) {
+        listenerList.add(JPFBNetEventListener.class, listener);
+    }
+
+    public void removeEventListener(JPFBNetEventListener listener) {
+        listenerList.remove(JPFBNetEventListener.class, listener);
+    }
+
+    BatchPojo onEvent(BatchPojo batchPojo) {
+        Object[] listeners = listenerList.getListenerList();
+
+        return ((JPFBNetEventListener) listeners[1]).onEjecutar(batchPojo);
+
+    }
+
+    public ClientThread(Socket clientSocket, String name, JpfbatchConfigs jpfbatchConfigs) {
+        this.clientSocket = clientSocket;
+        this.name = name;
+        this.jpfbatchConfigs = jpfbatchConfigs;
+    }
+
+    @Override
+    public void run() {
+
+        Logger.getLogger(ClientThread.class.getName()).log(Level.FINE, "Iniciando hilo de ejecucion {0} en el servidor ", this.name);
+
+        try {
+            is = new ObjectInputStream(clientSocket.getInputStream());
+            os = new ObjectOutputStream(clientSocket.getOutputStream());
+
+            BatchPojo batchPojo = (BatchPojo) is.readObject();
+
+            Logger.getLogger(ClientThread.class.getName()).log(Level.FINE, "termino de recibir, ahora ejecuto");
+
+            // termino de recibir, ahora ejecuto
+            BatchPojo retBatchPojo = onEvent(batchPojo);
+
+            Logger.getLogger(ClientThread.class.getName()).log(Level.FINE, "termino de ejecutar, devuelvo respuesta");
+
+            os.writeObject(retBatchPojo);
+
+            // close the output stream
+            // close the input stream
+            // close the socket
+            is.close();
+            os.close();
+            clientSocket.close();
+
+            Logger.getLogger(ClientThread.class.getName()).log(Level.FINE, "Finalizando hilo de ejecucion {0} en el servidor ", this.name);
+
+        } catch (IOException ex) {
+            Logger.getLogger(ClientThread.class.getName()).log(Level.SEVERE, "Error en thread clientThread " + ex.getMessage(), ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(ClientThread.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+}

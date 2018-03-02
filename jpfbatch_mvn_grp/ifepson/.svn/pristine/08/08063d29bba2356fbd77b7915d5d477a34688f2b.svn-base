@@ -1,0 +1,81 @@
+package com.gt.ifepson.comandos.dnfhGenerico;
+
+import com.gt.ifepson.comandos.CampoFiscal;
+import com.gt.ifepson.comandos.TipoComando;
+import com.gt.ifepson.comandos.ClasificacionComando;
+import com.gt.ifepson.comandos.Extension;
+import com.gt.ifepson.comandos.TipoDato;
+
+public class CerrarDNFHGenerico extends TipoComando {
+
+    public CerrarDNFHGenerico() {
+    }
+
+    @Override
+    public String[] getNames() {
+        return new String[]{"CerrarDNFHGenerico"};
+    }
+
+    @Override
+    public String getDescripcion() {
+        return "Realiza el cierre del documento no fiscal homologado genérico o de uso interno en proceso de emisión.";
+    }
+
+    @Override
+    public int getCodigo() {
+        return 0x0E06;
+    }
+
+    @Override
+    public ClasificacionComando getClasificacionComando() {
+        return ClasificacionComando.DNFH_GENERICO;
+    }
+
+    @Override
+    public int[] getComando() {
+        int[] ret = new int[2];
+        ret[0] = 0x0E;
+        ret[1] = 0x06;
+        return ret;
+    }
+
+    @Override
+    public String getNotas() {
+        return "No posee notas";
+    }
+
+    @Override
+    public String getRequerimientos() {
+        return "Mecanismo impresor en línea y con papel ó poco papel disponible.";
+    }
+
+    @Override
+    public Extension[] getExtensiones() {
+        return new Extension[]{
+            new Extension(0b0000000000000001, "CORTA_PAPEL",
+            "NO_CORTA_PAPEL", 0b0000000000000000,
+            "CORTA_PAPEL", 0b0000000000000001),
+            new Extension(0b0000010000000000, "IMPRIME_COLAS",
+            "IMPRIME_COLAS", 0b0000000000000000,
+            "NO_IMPRIME_COLAS", 0b0000010000000000),};
+    }
+
+    @Override
+    public CampoFiscal[] getCamposEntrada() {
+        return new CampoFiscal[]{
+            new CampoFiscal(1, "Número de líneas de cola de reemplazo #1", TipoDato.N_E, 3, true),
+            new CampoFiscal(2, "Descripción de reemplazo #1", TipoDato.RT, -1, true),
+            new CampoFiscal(3, "Número de líneas de cola de reemplazo #2", TipoDato.N_E, 3, true),
+            new CampoFiscal(4, "Descripción de reemplazo #2", TipoDato.RT, -1, true),
+            new CampoFiscal(5, "Número de líneas de cola de reemplazo #3", TipoDato.N_E, 3, true),
+            new CampoFiscal(6, "Descripción de reemplazo #3", TipoDato.RT, -1, true),};
+    }
+
+    @Override
+    public CampoFiscal[] getCamposSalida() {
+        return new CampoFiscal[]{
+            new CampoFiscal(1, "Número de documento no fiscal homologado genérico",TipoDato.N_E,5,false),
+        };
+    }
+
+}

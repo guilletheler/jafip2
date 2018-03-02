@@ -1,0 +1,40 @@
+package com.gt.ifepson.comandos.dnfh;
+
+import com.gt.ifepson.comandos.TipoComando;
+import com.gt.ifepson.comandos.ClasificacionComando;
+
+
+public class ComandosDeDocumentosNoFiscalesHomologadosSubtotal extends TipoComando {
+
+	public ComandosDeDocumentosNoFiscalesHomologadosSubtotal() {
+	}
+
+	@Override
+	public String[] getNames() {
+		return new String[] {"ComandosDeDocumentosNoFiscalesHomologadosSubtotal"};
+	}
+
+	@Override
+	public String getDescripcion() {
+		return "Subtotal";
+	}
+
+	@Override
+	public int getCodigo() {
+		return 0x1003;
+	}
+
+	@Override
+	public ClasificacionComando getClasificacionComando() {
+		return ClasificacionComando.DNFH;
+	}
+
+	@Override
+	public int[] getComando() {
+		int[] ret = new int[2];
+		ret[0] = 0x10;
+		ret[1] = 0x03;
+		return ret;
+	}
+
+}

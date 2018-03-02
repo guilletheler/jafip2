@@ -1,0 +1,70 @@
+package com.gt.ifepson.comandos.jornadaFiscal;
+
+import com.gt.ifepson.comandos.CampoFiscal;
+import com.gt.ifepson.comandos.TipoComando;
+import com.gt.ifepson.comandos.ClasificacionComando;
+import com.gt.ifepson.comandos.Extension;
+import com.gt.ifepson.comandos.TipoDato;
+
+public class JornadaFiscalInformeDiarioDeCierre_CierreZ extends TipoComando {
+
+    public JornadaFiscalInformeDiarioDeCierre_CierreZ() {
+    }
+
+    @Override
+    public String[] getNames() {
+        return new String[]{"JornadaFiscalInformeDiarioDeCierre_CierreZ"};
+    }
+
+    @Override
+    public String getDescripcion() {
+        return "Realiza el cierre de la jornada fiscal almacenando los importes facturados en memoria fiscal.";
+    }
+
+    @Override
+    public int getCodigo() {
+        return 0x0801;
+    }
+
+    @Override
+    public ClasificacionComando getClasificacionComando() {
+        return ClasificacionComando.JORNADA_FISCAL;
+    }
+
+    @Override
+    public int[] getComando() {
+        int[] ret = new int[2];
+        ret[0] = 0x08;
+        ret[1] = 0x01;
+        return ret;
+    }
+
+    @Override
+    public String getNotas() {
+        return "No posee notas";
+    }
+
+    @Override
+    public String getRequerimientos() {
+        return " Período de actividades iniciado.\n"
+                + " Mecanismo impresor en línea y con papel.";
+    }
+
+    @Override
+    public Extension[] getExtensiones() {
+        return new Extension[]{};
+    }
+
+    @Override
+    public CampoFiscal[] getCamposEntrada() {
+        return new CampoFiscal[]{};
+    }
+
+    @Override
+    public CampoFiscal[] getCamposSalida() {
+        return new CampoFiscal[]{
+            new CampoFiscal(1, "Número de Informe Diario de Cierre", TipoDato.N_E, 5, false)
+        };
+    }
+
+}

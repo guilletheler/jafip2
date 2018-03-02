@@ -1,0 +1,73 @@
+package com.gt.ifepson.comandos.tiqueFact;
+
+import com.gt.ifepson.comandos.CampoFiscal;
+import com.gt.ifepson.comandos.TipoComando;
+import com.gt.ifepson.comandos.ClasificacionComando;
+import com.gt.ifepson.comandos.Extension;
+import com.gt.ifepson.comandos.TipoDato;
+
+public class InformacionDePagosTiqueFactNDABCM extends TipoComando {
+
+    public InformacionDePagosTiqueFactNDABCM() {
+    }
+
+    @Override
+    public String[] getNames() {
+        return new String[]{"InformacionDePagosTiqueFactNDABCM"};
+    }
+
+    @Override
+    public String getDescripcion() {
+        return "Obtiene información de pagos del tique-factura o nota de débito A/B/C/M en curso.";
+    }
+
+    @Override
+    public int getCodigo() {
+        return 0x0B0C;
+    }
+
+    @Override
+    public ClasificacionComando getClasificacionComando() {
+        return ClasificacionComando.TFND;
+    }
+
+    @Override
+    public int[] getComando() {
+        int[] ret = new int[2];
+        ret[0] = 0x0B;
+        ret[1] = 0x0C;
+        return ret;
+    }
+
+    @Override
+    public String getNotas() {
+        return "No posee notas";
+    }
+
+    @Override
+    public String getRequerimientos() {
+        return "No posee requerimientos";
+    }
+
+    @Override
+    public Extension[] getExtensiones() {
+        return new Extension[]{};
+    }
+
+    @Override
+    public CampoFiscal[] getCamposEntrada() {
+        return new CampoFiscal[]{};
+    }
+
+    @Override
+    public CampoFiscal[] getCamposSalida() {
+        return new CampoFiscal[]{
+            new CampoFiscal(1, "Monto total pagado", TipoDato.N_10_2, 12, false),
+            new CampoFiscal(2, "Monto total a pagar", TipoDato.N_10_2, 12, false),
+            new CampoFiscal(3, "Vuelto", TipoDato.N_10_2, 12, false),
+            new CampoFiscal(4, "Cantidad de pagos realizados", TipoDato.N_E, 1, false),
+            new CampoFiscal(5, "Cantidad de pagos disponibles", TipoDato.N_E, 1, false)
+        };
+    }
+
+}

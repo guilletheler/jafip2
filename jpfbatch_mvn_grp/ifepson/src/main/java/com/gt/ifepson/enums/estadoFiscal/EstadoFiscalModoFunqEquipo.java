@@ -1,0 +1,44 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package com.gt.ifepson.enums.estadoFiscal;
+
+/**
+ * Estado fiscal del funcionamiento del equipo
+ * @author guillermot
+ */
+public enum EstadoFiscalModoFunqEquipo {
+    BLOQUEADO,
+    MANUFACTURA,
+    ENTRENAMIENTO,
+    FISCAL;
+    
+    public static EstadoFiscalModoFunqEquipo parseEstado(int estadoFiscal) {
+        
+        String bitString = Integer.toBinaryString(estadoFiscal);
+        
+        bitString = org.apache.commons.lang3.StringUtils.rightPad(bitString, 16, '0');
+        
+        String estadoFiscalFuncEquipo = bitString.substring(0, 2);
+        
+        if(estadoFiscalFuncEquipo.equals("00")) {
+            return BLOQUEADO;
+        }
+        
+        if(estadoFiscalFuncEquipo.equals("01")) {
+            return MANUFACTURA;
+        }
+        
+        if(estadoFiscalFuncEquipo.equals("10")) {
+            return ENTRENAMIENTO;
+        }
+        
+        if(estadoFiscalFuncEquipo.equals("11")) {
+            return FISCAL;
+        }
+        
+        throw new RuntimeException("No se puede reconocer el estado EstadoFiscalFunqEquipo fiscal de " + estadoFiscal + ":" + bitString);
+    }
+}

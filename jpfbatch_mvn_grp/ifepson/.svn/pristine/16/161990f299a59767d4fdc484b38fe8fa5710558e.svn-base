@@ -1,0 +1,69 @@
+package com.gt.ifepson.comandos.controlImpresor;
+
+import com.gt.ifepson.comandos.CampoFiscal;
+import com.gt.ifepson.comandos.TipoComando;
+import com.gt.ifepson.comandos.ClasificacionComando;
+import com.gt.ifepson.comandos.Extension;
+import com.gt.ifepson.comandos.TipoDato;
+
+public class ObtenerFuente extends TipoComando {
+
+    public ObtenerFuente() {
+    }
+
+    @Override
+    public String[] getNames() {
+        return new String[]{"ObtenerFuente", "getFuente"};
+    }
+
+    @Override
+    public String getDescripcion() {
+        return "Obtener Fuente (Comando no soportado en TM-U220AFII Versión 22.01 Demeter)";
+    }
+
+    @Override
+    public int getCodigo() {
+        return 0x0771;
+    }
+
+    @Override
+    public ClasificacionComando getClasificacionComando() {
+        return ClasificacionComando.CONTROL_IMPRESORA;
+    }
+
+    @Override
+    public int[] getComando() {
+        int[] ret = new int[2];
+        ret[0] = 0x07;
+        ret[1] = 0x71;
+        return ret;
+    }
+    
+    @Override
+    public Extension[] getExtensiones() {
+        return new Extension[]{};
+    }
+
+    @Override
+    public String getNotas() {
+        return " Los valores posibles del campo de salida son:\n"
+                + "0 – Fuente tipo ’A’\n"
+                + "1 – Fuente tipo ’B’";
+    }
+
+    @Override
+    public String getRequerimientos() {
+        return "";
+    }
+
+    @Override
+    public CampoFiscal[] getCamposSalida() {
+        return new CampoFiscal[]{new CampoFiscal(1, "Fuente del sistema", TipoDato.N_E, 1, false)};
+    }
+
+    @Override
+    public CampoFiscal[] getCamposEntrada() {
+        return new CampoFiscal[]{};
+    }
+
+}

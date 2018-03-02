@@ -1,0 +1,83 @@
+package com.gt.ifepson.comandos.configuracion;
+
+import com.gt.ifepson.comandos.CampoFiscal;
+import com.gt.ifepson.comandos.TipoComando;
+import com.gt.ifepson.comandos.ClasificacionComando;
+import com.gt.ifepson.comandos.Extension;
+import com.gt.ifepson.comandos.TipoDato;
+
+public class ObtenerLineasDeInformacionDelEstablecimiento extends TipoComando {
+    
+    public ObtenerLineasDeInformacionDelEstablecimiento() {
+    }
+
+    @Override
+    public String[] getNames() {
+        return new String[]{"ObtenerLineasDeInformacionDelEstablecimiento"};
+    }
+
+    @Override
+    public String getDescripcion() {
+        return "Obtener Líneas de Información del Establecimiento";
+    }
+
+    @Override
+    public int getCodigo() {
+        return 0x050F;
+    }
+
+    @Override
+    public ClasificacionComando getClasificacionComando() {
+        return ClasificacionComando.CONFIGURACION;
+    }
+
+    @Override
+    public int[] getComando() {
+        int[] ret = new int[2];
+        ret[0] = 0x05;
+        ret[1] = 0x0F;
+        return ret;
+    }
+    
+    @Override
+    public Extension[] getExtensiones() {
+        return new Extension[]{
+            new Extension(0b0000000000000111, "SELECCION_LINEA",
+            "DOMICILIO_COMERCIAL_1", 0b0000000000000000,
+            "DOMICILIO_COMERCIAL_2", 0b0000000000000001,
+            "DOMICILIO_COMERCIAL_3", 0b0000000000000010,
+            "NOMBRE_FANTASIA_1", 0b0000000000000011,
+            "NOMBRE_FANTASIA_2", 0b0000000000000100,
+            "NOMBRE_FANTASIA_3", 0b0000000000000101,
+            "LINEA_INGRESOS_BRUTOS", 0b0000000000000110,
+            "LINEA_INICIO_ACTIVIDADES", 0b0000000000001001),
+            new Extension(0b0000100000000000, "IMPRIMIR",
+            "IMPRIMIR_REPORTE", 0b0000000000000000,
+            "NO_IMPRIME_REPORTE", 0b0000100000000000)
+        };
+    }
+
+    @Override
+    public String getNotas() {
+        return " Si se recibe el campo texto vacío implica que la línea no será impresa.\n"
+                + " Si se recibe el caracter espacio ASCII(32) implica que la línea de encabezado será impresa como una línea en blanco.";
+    }
+
+    @Override
+    public String getRequerimientos() {
+        return "";
+    }
+
+    @Override
+    public CampoFiscal[] getCamposSalida() {
+        return new CampoFiscal[]{
+            new CampoFiscal(1, "Línea de establecimiento", TipoDato.RT, 40, false)
+        };
+    }
+
+    @Override
+    public CampoFiscal[] getCamposEntrada() {
+        return new CampoFiscal[]{};
+    }
+
+}

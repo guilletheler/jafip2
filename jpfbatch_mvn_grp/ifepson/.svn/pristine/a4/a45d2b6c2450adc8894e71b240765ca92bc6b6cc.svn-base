@@ -1,0 +1,74 @@
+package com.gt.ifepson.comandos.diagnostico;
+
+import com.gt.ifepson.comandos.CampoFiscal;
+import com.gt.ifepson.comandos.TipoComando;
+import com.gt.ifepson.comandos.ClasificacionComando;
+import com.gt.ifepson.comandos.Extension;
+import com.gt.ifepson.comandos.TipoDato;
+
+public class ObtenerInformacionDeCertificados extends TipoComando {
+
+    public ObtenerInformacionDeCertificados() {
+    }
+
+    @Override
+    public String[] getNames() {
+        return new String[]{"ObtenerInformacionDeCertificados"};
+    }
+
+    @Override
+    public String getDescripcion() {
+        return "Obtener Información de Certificados";
+    }
+
+    @Override
+    public int getCodigo() {
+        return 0x0240;
+    }
+
+    @Override
+    public ClasificacionComando getClasificacionComando() {
+        return ClasificacionComando.DIAGNOSTICO;
+    }
+
+    @Override
+    public int[] getComando() {
+        int[] ret = new int[2];
+        ret[0] = 0x02;
+        ret[1] = 0x40;
+        return ret;
+    }
+
+    @Override
+    public Extension[] getExtensiones() {
+        return new Extension[]{};
+    }
+
+    @Override
+    public String getNotas() {
+        return "Obtiene información acerca los certificados instalados en el controlador fiscal.";
+    }
+
+    @Override
+    public String getRequerimientos() {
+        return "";
+    }
+
+    @Override
+    public CampoFiscal[] getCamposSalida() {
+        return new CampoFiscal[]{
+            new CampoFiscal(1, "Indica si el certificado root es válido", TipoDato.B, 1, false),
+            new CampoFiscal(2, "Fecha desde la cual está vigente el certificado root", TipoDato.D, 6, false),
+            new CampoFiscal(3, "Fecha hasta la cual está vigente el certificado root", TipoDato.D, 6, false),
+            new CampoFiscal(4, "Indica si el certificado del controlador fiscal es válido", TipoDato.B, 1, false),
+            new CampoFiscal(5, "Fecha desde la cual está vigente el certificado del controlador fiscal", TipoDato.D, 6, false),
+            new CampoFiscal(6, "Fecha hasta la cual está vigente el certificado del controlador fiscal", TipoDato.D, 6, false)
+        };
+    }
+
+    @Override
+    public CampoFiscal[] getCamposEntrada() {
+        return new CampoFiscal[]{};
+    }
+
+}

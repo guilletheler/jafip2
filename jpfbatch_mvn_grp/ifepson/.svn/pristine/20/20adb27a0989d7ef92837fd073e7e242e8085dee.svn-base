@@ -1,0 +1,39 @@
+package com.gt.ifepson.comandos.dnfh;
+
+import com.gt.ifepson.comandos.TipoComando;
+import com.gt.ifepson.comandos.ClasificacionComando;
+
+public class ConfigurarPreferenciasDNFH extends TipoComando {
+
+    public ConfigurarPreferenciasDNFH() {
+    }
+
+    @Override
+    public String[] getNames() {
+        return new String[]{"ConfigurarPreferenciasDNFH"};
+    }
+
+    @Override
+    public String getDescripcion() {
+        return "Configurar Preferencias";
+    }
+
+    @Override
+    public int getCodigo() {
+        return 0x1008;
+    }
+
+    @Override
+    public ClasificacionComando getClasificacionComando() {
+        return ClasificacionComando.DNFH;
+    }
+
+    @Override
+    public int[] getComando() {
+        int[] ret = new int[2];
+        ret[0] = 0x10;
+        ret[1] = 0x08;
+        return ret;
+    }
+
+}

@@ -1,0 +1,72 @@
+package com.gt.ifepson.comandos.dnfhGenerico;
+
+import com.gt.ifepson.comandos.CampoFiscal;
+import com.gt.ifepson.comandos.TipoComando;
+import com.gt.ifepson.comandos.ClasificacionComando;
+import com.gt.ifepson.comandos.Extension;
+import com.gt.ifepson.comandos.TipoDato;
+
+public class InformacionDNFHGenerico extends TipoComando {
+
+    public InformacionDNFHGenerico() {
+    }
+
+    @Override
+    public String[] getNames() {
+        return new String[]{"InformacionDNFHGenerico"};
+    }
+
+    @Override
+    public String getDescripcion() {
+        return "Obtiene información del documento no fiscal homologado genérico o de uso interno en proceso de emisión.";
+    }
+
+    @Override
+    public int getCodigo() {
+        return 0x0E0A;
+    }
+
+    @Override
+    public ClasificacionComando getClasificacionComando() {
+        return ClasificacionComando.DNFH_GENERICO;
+    }
+
+    @Override
+    public int[] getComando() {
+        int[] ret = new int[2];
+        ret[0] = 0x0E;
+        ret[1] = 0x0A;
+        return ret;
+    }
+
+    @Override
+    public String getNotas() {
+        return "No posee notas";
+    }
+
+    @Override
+    public String getRequerimientos() {
+        return "No posee requerimientos";
+    }
+
+    @Override
+    public Extension[] getExtensiones() {
+        return new Extension[]{};
+    }
+
+    @Override
+    public CampoFiscal[] getCamposEntrada() {
+        return new CampoFiscal[]{};
+    }
+
+    @Override
+    public CampoFiscal[] getCamposSalida() {
+        return new CampoFiscal[]{
+            new CampoFiscal(1, "Número de documento correspondiente",TipoDato.N_E,5,false),
+            new CampoFiscal(2, "Cantidad de líneas impresas",TipoDato.N_E,8,false),
+        };
+    }
+    
+    
+
+}

@@ -1,0 +1,81 @@
+package com.gt.ifepson.comandos.dnfh;
+
+import com.gt.ifepson.comandos.CampoFiscal;
+import com.gt.ifepson.comandos.TipoComando;
+import com.gt.ifepson.comandos.ClasificacionComando;
+import com.gt.ifepson.comandos.Extension;
+import com.gt.ifepson.comandos.TipoDato;
+
+public class SubtotalDNFH extends TipoComando {
+
+    public SubtotalDNFH() {
+    }
+
+    @Override
+    public String[] getNames() {
+        return new String[]{"SubtotalDNFH"};
+    }
+
+    @Override
+    public String getDescripcion() {
+        return "Retorna el Subtotal acumulado";
+    }
+
+    @Override
+    public int getCodigo() {
+        return 0x1003;
+    }
+
+    @Override
+    public ClasificacionComando getClasificacionComando() {
+        return ClasificacionComando.DNFH;
+    }
+
+    @Override
+    public int[] getComando() {
+        int[] ret = new int[2];
+        ret[0] = 0x10;
+        ret[1] = 0x03;
+        return ret;
+    }
+
+    @Override
+    public String getNotas() {
+        return "No posee Notas";
+    }
+
+    @Override
+    public String getRequerimientos() {
+        return " Debe haberse emitido un ítem\n"
+                + " La impresión del subtotal se realiza solamente si no se han efectuado descuentos, ajustes, otros\n"
+                + "tributos o pagos dentro del documento.\n"
+                + " Mecanismo impresor en línea y con papel ó poco papel disponible.";
+    }
+
+    @Override
+    public Extension[] getExtensiones() {
+        return new Extension[]{
+            new Extension(0b0000000000000001, "IMPRIME_SUBTOTAL",
+            "IMPRIME_SUBTOTAL", 0b0000000000000000,
+            "NO_IMPRIME_SUBTOTAL", 0b0000000000000001),
+            new Extension(0b0000000000001100, "DEVUELVE_CAMPO_TOTAL_BRUTO_NETO",
+            "DEVUELVE_CAMPO_TOTAL_BRUTO", 0b0000000000000000,
+            "DEVUELVE_CAMPO_TOTAL_NETO", 0b0000000000000100,
+            "DEVUELVE_AMBOS_CAMPOS_TOTALES_BRUTO_Y_NETO", 0b0000000000001000,
+            "NO_DEVUELVE_NINGUN_CAMPO", 0b0000000000001100),};
+    }
+
+    @Override
+    public CampoFiscal[] getCamposEntrada() {
+        return new CampoFiscal[]{};
+    }
+
+    @Override
+    public CampoFiscal[] getCamposSalida() {
+        return new CampoFiscal[]{
+            new CampoFiscal(1, "Subtotal parcial (BRUTO)", TipoDato.N_10_2, 12, true),
+            new CampoFiscal(2, "Subtotal parcial (NETO)", TipoDato.N_10_2, 12, true)
+        };
+    }
+
+}

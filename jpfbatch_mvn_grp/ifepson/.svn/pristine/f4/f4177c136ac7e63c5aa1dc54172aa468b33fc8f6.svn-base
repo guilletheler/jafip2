@@ -1,0 +1,70 @@
+package com.gt.ifepson.comandos.configuracion;
+
+import com.gt.ifepson.comandos.CampoFiscal;
+import com.gt.ifepson.comandos.TipoComando;
+import com.gt.ifepson.comandos.ClasificacionComando;
+import com.gt.ifepson.comandos.Extension;
+import com.gt.ifepson.comandos.TipoDato;
+
+public class ConfigurarLineasDeCola extends TipoComando {
+
+    public ConfigurarLineasDeCola() {
+    }
+
+    @Override
+    public String[] getNames() {
+        return new String[]{"ConfigurarLineasDeCola"};
+    }
+
+    @Override
+    public String getDescripcion() {
+        return "Configurar Líneas de Cola";
+    }
+
+    @Override
+    public int getCodigo() {
+        return 0x050A;
+    }
+
+    @Override
+    public ClasificacionComando getClasificacionComando() {
+        return ClasificacionComando.CONFIGURACION;
+    }
+
+    @Override
+    public int[] getComando() {
+        int[] ret = new int[2];
+        ret[0] = 0x05;
+        ret[1] = 0x0A;
+        return ret;
+    }
+    
+    @Override
+    public Extension[] getExtensiones() {
+        return new Extension[] {};
+    }
+
+    @Override
+    public String getNotas() {
+        return " Para que la línea de cola no sea impresa se debe enviar el campo texto vacío.\n"
+                + " Para que la impresión resulte en una línea en blanco se debe enviar el caracter espacio ASCII(32).";
+    }
+
+    @Override
+    public String getRequerimientos() {
+        return "El número de cola debe estar comprendido entre 1 y 10.";
+    }
+
+    @Override
+    public CampoFiscal[] getCamposSalida() {
+        return new CampoFiscal[] {};
+    }
+
+    @Override
+    public CampoFiscal[] getCamposEntrada() {
+        return new CampoFiscal[] {
+            new CampoFiscal(1, "Numero de linea de cola", TipoDato.N, 3, false), 
+            new CampoFiscal(2, "Texto", TipoDato.RT, -1, true)};
+    }
+
+}

@@ -1,0 +1,40 @@
+package com.gt.ifepson.comandos.tiqueNcAbcm;
+
+import com.gt.ifepson.comandos.TipoComando;
+import com.gt.ifepson.comandos.ClasificacionComando;
+
+
+public class ComandosDeTique_NotaDeCreditoA_B_C_MObtenerConfiguracionDePreferencias extends TipoComando {
+
+	public ComandosDeTique_NotaDeCreditoA_B_C_MObtenerConfiguracionDePreferencias() {
+	}
+
+	@Override
+	public String[] getNames() {
+		return new String[] {"ComandosDeTique_NotaDeCreditoA_B_C_MObtenerConfiguracionDePreferencias"};
+	}
+
+	@Override
+	public String getDescripcion() {
+		return "Obtener Configuración de Preferencias";
+	}
+
+	@Override
+	public int getCodigo() {
+		return 0x0D09;
+	}
+
+	@Override
+	public ClasificacionComando getClasificacionComando() {
+		return ClasificacionComando.TNC;
+	}
+
+	@Override
+	public int[] getComando() {
+		int[] ret = new int[2];
+		ret[0] = 0x0D;
+		ret[1] = 0x09;
+		return ret;
+	}
+
+}

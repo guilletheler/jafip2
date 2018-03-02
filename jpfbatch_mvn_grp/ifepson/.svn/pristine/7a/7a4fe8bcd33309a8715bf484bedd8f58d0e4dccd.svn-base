@@ -1,0 +1,86 @@
+package com.gt.ifepson.comandos.tiqueFact;
+
+import com.gt.ifepson.comandos.CampoFiscal;
+import com.gt.ifepson.comandos.TipoComando;
+import com.gt.ifepson.comandos.ClasificacionComando;
+import com.gt.ifepson.comandos.Extension;
+import com.gt.ifepson.comandos.TipoDato;
+
+public class InformacionDeOtrosTributosTiquefactNDABCM extends TipoComando {
+
+    public InformacionDeOtrosTributosTiquefactNDABCM() {
+    }
+
+    @Override
+    public String[] getNames() {
+        return new String[]{"InformacionDeOtrosTributosTiquefactNDABCM"};
+    }
+
+    @Override
+    public String getDescripcion() {
+        return "Obtiene información detallada sobre los otros tributos involucrados en el tique-factura o nota de débito\n"
+                + "A/B/C/M en curso.";
+    }
+
+    @Override
+    public int getCodigo() {
+        return 0x0B0F;
+    }
+
+    @Override
+    public ClasificacionComando getClasificacionComando() {
+        return ClasificacionComando.TFND;
+    }
+
+    @Override
+    public int[] getComando() {
+        int[] ret = new int[2];
+        ret[0] = 0x0B;
+        ret[1] = 0x0F;
+        return ret;
+    }
+
+    @Override
+    public String getNotas() {
+        return "Si se solicitara sin información discriminada, los campos 3 a 6 se retornarán vacíos.\n"
+                + "No se permite el valor cero en el campo de entrada número 1 (Número (#) de otros tributos a reportar).\n"
+                + "El valor mínimo del campo de entrada número 1 (Número (#) de otros tributos a reportar) es uno.\n"
+                + "El campo #1 es requerido si se solicita información discriminada.";
+    }
+
+    @Override
+    public String getRequerimientos() {
+        return "No posee requerimientos";
+    }
+
+    @Override
+    public Extension[] getExtensiones() {
+        return new Extension[]{
+            new Extension(0b0000000000000001, "Discriminar otros tributos",
+            "CON_INFORMACION_CON_DISCRIMINACION_POR_OTROS_TRIBUTOS", 0b0000000000000000,
+            "SIN_INFORMACION_CON_DISCRIMINACION_POR_OTROS_TRIBUTOS", 0b0000000000000001)
+        };
+    }
+
+    @Override
+    public CampoFiscal[] getCamposEntrada() {
+        return new CampoFiscal[]{
+            new CampoFiscal(1, "Número (#) de otros tributos a reportar", TipoDato.N_E, 2, true)
+        };
+    }
+
+    @Override
+    public CampoFiscal[] getCamposSalida() {
+        return new CampoFiscal[]{
+            new CampoFiscal(1, "Total de Otros Tributos", TipoDato.N_10_2, 12, false),
+            new CampoFiscal(2, "Total de Otros Tributos - Codigo 07 (Percep. Ingresos Brutos)", TipoDato.N_10_2, 12, false),
+            new CampoFiscal(3, "Total de Otros Tributos - Codigo 06 (Percep. de IVA)", TipoDato.N_10_2, 12, false),
+            new CampoFiscal(4, "Total de Otros Tributos - Codigo 09 (Otras Percepciones)", TipoDato.N_10_2, 12, false),
+            new CampoFiscal(5, "Cantidad de otros tributos encontrados", TipoDato.N_E, 2, false),
+            new CampoFiscal(6, "Descripcion de otros tributos #n", TipoDato.RT, -1, true),
+            new CampoFiscal(7, "Monto de Otros Tributos #n", TipoDato.N_10_2, 12, true),
+            new CampoFiscal(8, "Tasa asociada a Otros Tributos #n", TipoDato.N_0_4, 4, true),
+            new CampoFiscal(9, "Código asociado a Otros Tributos #n", TipoDato.N_E, 2, true),};
+    }
+
+}

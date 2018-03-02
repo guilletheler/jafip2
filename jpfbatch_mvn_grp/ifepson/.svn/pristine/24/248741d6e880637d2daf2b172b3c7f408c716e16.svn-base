@@ -1,0 +1,70 @@
+package com.gt.ifepson.comandos.inicializacion;
+
+import com.gt.ifepson.comandos.CampoFiscal;
+import com.gt.ifepson.comandos.TipoComando;
+import com.gt.ifepson.comandos.ClasificacionComando;
+import com.gt.ifepson.comandos.Extension;
+import com.gt.ifepson.comandos.TipoDato;
+
+public class InicializacionContinuarCargaDeConfirmacionDeAltaFiscal_CAF extends TipoComando {
+
+    public InicializacionContinuarCargaDeConfirmacionDeAltaFiscal_CAF() {
+    }
+
+    @Override
+    public String[] getNames() {
+        return new String[]{"InicializacionContinuarCargaDeConfirmacionDeAltaFiscal_CAF"};
+    }
+
+    @Override
+    public String getDescripcion() {
+        return "Continúa el proceso de carga de CAF.";
+    }
+
+    @Override
+    public int getCodigo() {
+        return 0x0451;
+    }
+
+    @Override
+    public ClasificacionComando getClasificacionComando() {
+        return ClasificacionComando.INICIALIZACION;
+    }
+
+    @Override
+    public int[] getComando() {
+        int[] ret = new int[2];
+        ret[0] = 0x04;
+        ret[1] = 0x51;
+        return ret;
+    }
+
+    @Override
+    public String getNotas() {
+        return " El archivo a cargar debe ser provisto por la AFIP (y firmado por la misma) en formato XML,\n"
+                + "en respuesta a una SAF (ver comando ’04 40’).";
+    }
+
+    @Override
+    public String getRequerimientos() {
+        return "Haber iniciado la carga CAF (ver comando ’04 50’).";
+    }
+
+    @Override
+    public Extension[] getExtensiones() {
+        return new Extension[]{};
+    }
+
+    @Override
+    public CampoFiscal[] getCamposEntrada() {
+        return new CampoFiscal[]{
+          new CampoFiscal(1, "Datos a cargar", TipoDato.B, -1, false),
+        };
+    }
+
+    @Override
+    public CampoFiscal[] getCamposSalida() {
+        return new CampoFiscal[]{};
+    }
+
+}

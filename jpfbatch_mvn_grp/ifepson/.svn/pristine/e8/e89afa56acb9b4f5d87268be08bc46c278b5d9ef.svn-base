@@ -1,0 +1,67 @@
+package com.gt.ifepson.comandos.inicializacion;
+
+import com.gt.ifepson.comandos.CampoFiscal;
+import com.gt.ifepson.comandos.TipoComando;
+import com.gt.ifepson.comandos.ClasificacionComando;
+import com.gt.ifepson.comandos.Extension;
+
+public class InicializacionIniciarCargaDeConfirmacionDeAltaFiscal_CAF extends TipoComando {
+
+    public InicializacionIniciarCargaDeConfirmacionDeAltaFiscal_CAF() {
+    }
+
+    @Override
+    public String[] getNames() {
+        return new String[]{"InicializacionIniciarCargaDeConfirmacionDeAltaFiscal_CAF"};
+    }
+
+    @Override
+    public String getDescripcion() {
+        return "Iniciar Carga de Confirmación de Alta Fiscal (CAF)";
+    }
+
+    @Override
+    public int getCodigo() {
+        return 0x0450;
+    }
+
+    @Override
+    public ClasificacionComando getClasificacionComando() {
+        return ClasificacionComando.INICIALIZACION;
+    }
+
+    @Override
+    public int[] getComando() {
+        int[] ret = new int[2];
+        ret[0] = 0x04;
+        ret[1] = 0x50;
+        return ret;
+    }
+
+    @Override
+    public String getNotas() {
+        return "No pose notas";
+    }
+
+    @Override
+    public String getRequerimientos() {
+        return " Certificados digitales instalados y válidos.\n"
+                + " Haber realizado previamente un Cierre Diario (Emitir un Informe Diario de Cierre).";
+    }
+
+    @Override
+    public Extension[] getExtensiones() {
+        return new Extension[]{};
+    }
+
+    @Override
+    public CampoFiscal[] getCamposEntrada() {
+        return new CampoFiscal[]{};
+    }
+
+    @Override
+    public CampoFiscal[] getCamposSalida() {
+        return new CampoFiscal[]{};
+    }
+
+}

@@ -1,0 +1,81 @@
+package com.gt.ifepson.comandos.configuracion;
+
+import com.gt.ifepson.comandos.CampoFiscal;
+import com.gt.ifepson.comandos.TipoComando;
+import com.gt.ifepson.comandos.ClasificacionComando;
+import com.gt.ifepson.comandos.Extension;
+import com.gt.ifepson.comandos.TipoDato;
+
+public class ObtenerID extends TipoComando {
+
+    public ObtenerID() {
+    }
+
+    @Override
+    public String[] getNames() {
+        return new String[]{"ObtenerID", "ConsultarID"};
+    }
+
+    @Override
+    public String getDescripcion() {
+        return "Obtener ID";
+    }
+
+    @Override
+    public String getNotas() {
+        return "";
+    }
+
+    @Override
+    public String getRequerimientos() {
+        return "";
+    }
+
+    @Override
+    public CampoFiscal[] getCamposEntrada() {
+        return new CampoFiscal[]{};
+    }
+
+    @Override
+    public CampoFiscal[] getCamposSalida() {
+        return new CampoFiscal[]{
+            new CampoFiscal(1, "Nombre del mecanismo impresor	", TipoDato.P, -1, false),
+            new CampoFiscal(2, "Número de serie", TipoDato.A, 16, false),
+            new CampoFiscal(3, "Nombre de la versión", TipoDato.L, -1, false),
+            new CampoFiscal(4, "Versión de firmware", TipoDato.P, 5, false),
+            new CampoFiscal(5, "Punto de venta", TipoDato.N_E, 5, false),
+            new CampoFiscal(6, "Ancho de la impresora en columnas a 10cpi para Factura", TipoDato.N_E, 3, false),
+            new CampoFiscal(7, "Ancho de la impresora en columnas a 12cpi para Factura", TipoDato.N_E, 3, false),
+            new CampoFiscal(8, "Ancho de la impresora en columnas a 17cpi para Factura", TipoDato.N_E, 3, false),
+            new CampoFiscal(9, "Ancho en columnas para Tique, Tique-Factura, Tique - Nota de Crédito", TipoDato.N_E, 3, false),
+            new CampoFiscal(10, "Cantidad de líneas de validación", TipoDato.N_E, 3, false),
+            new CampoFiscal(11, "Impresora fiscal soporta Tique", TipoDato.Y, 1, false),
+            new CampoFiscal(12, "Impresora fiscal soporta Tique - Factura", TipoDato.Y, 1, false),
+            new CampoFiscal(13, "Impresora fiscal soporta Factura", TipoDato.Y, 1, false),
+            new CampoFiscal(14, "Cantidad de dígitos decimales para los centavos en Reporte Z o en el subtotal", TipoDato.N_E, 1, false),
+            new CampoFiscal(15, "Estación de impresora seleccionada. 0 – Rollo, 1 – Slip, 2 – Validación", TipoDato.N_E, 1, false)};
+    }
+
+    @Override
+    public int getCodigo() {
+        return 0x0005;
+    }
+
+    @Override
+    public ClasificacionComando getClasificacionComando() {
+        return ClasificacionComando.SISTEMA;
+    }
+
+    @Override
+    public int[] getComando() {
+        int[] ret = new int[2];
+        ret[0] = 0x00;
+        ret[1] = 0x05;
+        return ret;
+    }
+
+    @Override
+    public Extension[] getExtensiones() {
+        return new Extension[]{};
+    }
+}

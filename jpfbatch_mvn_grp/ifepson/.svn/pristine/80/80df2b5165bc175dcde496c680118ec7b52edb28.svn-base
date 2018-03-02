@@ -1,0 +1,117 @@
+package com.gt.ifepson.comandos.jornadaFiscal;
+
+import com.gt.ifepson.comandos.CampoFiscal;
+import com.gt.ifepson.comandos.TipoComando;
+import com.gt.ifepson.comandos.ClasificacionComando;
+import com.gt.ifepson.comandos.Extension;
+import com.gt.ifepson.comandos.TipoDato;
+
+public class JornadaFiscalIniciarDuplicadoDeDocumentos extends TipoComando {
+
+    public JornadaFiscalIniciarDuplicadoDeDocumentos() {
+    }
+
+    @Override
+    public String[] getNames() {
+        return new String[]{"JornadaFiscalIniciarDuplicadoDeDocumentos"};
+    }
+
+    @Override
+    public String getDescripcion() {
+        return "Inicia la descarga del duplicado electrónico en formato XML de un documento ya emitido con\n"
+                + "anterioridad, y opcionalmente se puede elegir realizar la Reimpresión del documento solicitado.";
+    }
+
+    @Override
+    public int getCodigo() {
+        return 0x08F0;
+    }
+
+    @Override
+    public ClasificacionComando getClasificacionComando() {
+        return ClasificacionComando.JORNADA_FISCAL;
+    }
+
+    @Override
+    public int[] getComando() {
+        int[] ret = new int[2];
+        ret[0] = 0x08;
+        ret[1] = 0xF0;
+        return ret;
+    }
+
+    @Override
+    public String getNotas() {
+        return "Los valores posibles para el campo tipo de documentoson: \n"
+                + "080 - Cierre Z.\n"
+                + "081 - Tique Factura A.\n"
+                + "082 - Tique Factura B.\n"
+                + "083 - Tique.\n"
+                + "091 - Remito R.\n"
+                + "110 - Tique Nota de Crédito.\n"
+                + "111 - Tique Factura C.\n"
+                + "112 - Tique Nota de Crédito A.\n"
+                + "113 - Tique Nota de Crédito B.\n"
+                + "114 - Tique Nota de Crédito C.\n"
+                + "115 - Tique Nota de Débito A.\n"
+                + "116 - Tique Nota de Débito B.\n"
+                + "117 - Tique Nota de Débito C.\n"
+                + "118 - Tique Factura M. \n"
+                + "119 - Tique Nota de Crédito M.\n"
+                + "120 - Tique Nota de Débito M.\n"
+                + "901 - Remito X.\n"
+                + "902 - Recibo X.\n"
+                + "903 - Presupuesto.\n"
+                + "907 - Comprobante Donación.\n"
+                + "910 - Documento Genérico.\n"
+                + "923 - Mensaje del Controlador Fiscal o del Sistema.\n"
+                + "936 - Salida de Cajero.\n"
+                + "941 - Total de Ventas.\n"
+                + "950 - Documento de Uso Interno.\n"
+                + "951 - Cambio de Fecha y Hora.\n"
+                + "952 - Cambio de Categorización ante el IVA.\n"
+                + "953 - Cambio de Ingresos Brutos.";
+    }
+
+    @Override
+    public String getRequerimientos() {
+        return "No posee requerimientos";
+    }
+
+    @Override
+    public Extension[] getExtensiones() {
+         return new Extension[]{
+            new Extension(0b0000000000000001, "IMPRIME_DUPLICADO",
+            "NO_IMPRIME_DUPLICADO", 0b0000000000000000,
+            "IMPRIME_DUPLICADO", 0b0000000000000001),};
+    }
+
+    @Override
+    public CampoFiscal[] getCamposEntrada() {
+        return new CampoFiscal[]{
+          new CampoFiscal(1, "Tipo de Documento", TipoDato.N_E, 3, false),
+          new CampoFiscal(2, "Número de Documento", TipoDato.N_E, -1, false),
+        };
+    }
+
+    @Override
+    public CampoFiscal[] getCamposSalida() {
+        return new CampoFiscal[]{
+          new CampoFiscal(1, "Fecha de apertura de la jornada fiscal", TipoDato.D, 6, false),
+          new CampoFiscal(2, "Hora de apertura de la jornada fiscal", TipoDato.T, 6, false),
+          new CampoFiscal(3, "Número del último cierre Z", TipoDato.N_E, 5, false),
+          new CampoFiscal(4, "Se requiere un Cierre Z pues combió el día respecto de la apertura de la jornada fiscal", TipoDato.Y, 1, false),
+          new CampoFiscal(5, "Fecha de apertura del primer comprobante impreso", TipoDato.D, 6, false),
+          new CampoFiscal(6, "Hora de apertura del primer comprobante impreso", TipoDato.T, 6, false),
+          new CampoFiscal(7, "Cantidad de documentos emitidos", TipoDato.N_E, 10, false),
+          new CampoFiscal(8, "Cantidad de documentos cancelados", TipoDato.N_E, 10, false),
+          new CampoFiscal(9, "Total de ventas", TipoDato.N_10_2, 12, false),
+          new CampoFiscal(10, "Total IVA", TipoDato.N_10_2, 12, false),
+          new CampoFiscal(11, "Total de impuestos internos fijos", TipoDato.N_10_2, 12, false),
+          new CampoFiscal(12, "Total de impuestos internos porcentuales", TipoDato.N_10_2, 12, false),
+          new CampoFiscal(13, "Total de Otros Tributos", TipoDato.N_10_2, 12, false),
+          new CampoFiscal(14, "Período de actividades iniciado", TipoDato.Y, 1, false),
+        };
+    }
+
+}

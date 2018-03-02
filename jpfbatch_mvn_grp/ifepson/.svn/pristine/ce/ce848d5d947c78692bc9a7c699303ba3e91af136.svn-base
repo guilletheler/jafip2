@@ -1,0 +1,40 @@
+package com.gt.ifepson.comandos.dnfhGenerico;
+
+import com.gt.ifepson.comandos.TipoComando;
+import com.gt.ifepson.comandos.ClasificacionComando;
+
+
+public class ComandosDeDocumentoNoFiscalHomologadoGenericoUsoInternoImprimirTexto extends TipoComando {
+
+	public ComandosDeDocumentoNoFiscalHomologadoGenericoUsoInternoImprimirTexto() {
+	}
+
+	@Override
+	public String[] getNames() {
+		return new String[] {"ComandosDeDocumentoNoFiscalHomologadoGenericoUsoInternoImprimirTexto"};
+	}
+
+	@Override
+	public String getDescripcion() {
+		return "Imprimir Texto";
+	}
+
+	@Override
+	public int getCodigo() {
+		return 0x0E02;
+	}
+
+	@Override
+	public ClasificacionComando getClasificacionComando() {
+		return ClasificacionComando.DNFH_GENERICO;
+	}
+
+	@Override
+	public int[] getComando() {
+		int[] ret = new int[2];
+		ret[0] = 0x0E;
+		ret[1] = 0x02;
+		return ret;
+	}
+
+}

@@ -1,0 +1,83 @@
+package com.gt.ifepson.comandos.tiqueNc;
+
+import com.gt.ifepson.comandos.CampoFiscal;
+import com.gt.ifepson.comandos.TipoComando;
+import com.gt.ifepson.comandos.ClasificacionComando;
+import com.gt.ifepson.comandos.Extension;
+import com.gt.ifepson.comandos.TipoDato;
+
+public class InformacionDeOtrosTributosTiqueNC extends TipoComando {
+
+    public InformacionDeOtrosTributosTiqueNC() {
+    }
+
+    @Override
+    public String[] getNames() {
+        return new String[]{"InformacionDeOtrosTributosTiqueNC", "InformacionOtrosTributosTiqueNC"};
+    }
+
+    @Override
+    public String getDescripcion() {
+        return "Información de Otros Tributos";
+    }
+
+    @Override
+    public String getNotas() {
+        return "Si se solicitara sin información discriminada, los campos 3 a 6 se retornarán vacíos.\n"
+                + "No se permite el valor cero en el campo de entrada número 1 (Número (#) de otros tributos a reportar).\n"
+                + "El valor mínimo del campo de entrada número 1 (Número (#) de otros tributos a reportar) es uno.\n"
+                + "El campo #1 es requerido si se solicita información discriminada.";
+    }
+
+    @Override
+    public String getRequerimientos() {
+        return "Documento Tique, tique-nota de crédito abierto.";
+    }
+
+    @Override
+    public int getCodigo() {
+        return 0x0A0F;
+    }
+
+    @Override
+    public ClasificacionComando getClasificacionComando() {
+        return ClasificacionComando.TIQUE;
+    }
+
+    @Override
+    public int[] getComando() {
+        int[] ret = new int[2];
+        ret[0] = 0x0A;
+        ret[1] = 0x0F;
+        return ret;
+    }
+
+    @Override
+    public Extension[] getExtensiones() {
+        return new Extension[]{
+            new Extension(0b0000000000000001, "Discriminar otros tributos",
+            "SIN_INFORMACION_DISCRIMINADA_POR_OTROS_TRIBUTOS", 0b0000000000000000,
+            "CON_INFORMACION_DISCRIMINADA_POR_OTROS_TRIBUTOS", 0b0000000000000001)
+        };
+    }
+
+    @Override
+    public CampoFiscal[] getCamposEntrada() {
+        return new CampoFiscal[]{
+            new CampoFiscal(1, "Número (#) de otros tributos a reportar", TipoDato.N_E, 2, true)
+        };
+    }
+
+    @Override
+    public CampoFiscal[] getCamposSalida() {
+        return new CampoFiscal[]{
+            new CampoFiscal(1, "Total de Otros Tributos", TipoDato.N_10_2, 12, false),
+            new CampoFiscal(2, "Cantidad de otros tributos encontrados", TipoDato.N_E, 2, false),
+            new CampoFiscal(3, "Descripción de Otros Tributos #n", TipoDato.RT, -1, true),
+            new CampoFiscal(4, "Monto de Otros Tributos #n", TipoDato.N_10_2, 12, true),
+            new CampoFiscal(5, "Tasa asociada a Otros Tributos #n", TipoDato.N_E, 4, true),
+            new CampoFiscal(6, "Código asociado a Otros Tributos #n", TipoDato.N_E, 2, true)
+        };
+    }
+
+}

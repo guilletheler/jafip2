@@ -1,0 +1,65 @@
+package com.gt.ifepson.comandos.configuracion;
+
+import com.gt.ifepson.comandos.CampoFiscal;
+import com.gt.ifepson.comandos.TipoComando;
+import com.gt.ifepson.comandos.ClasificacionComando;
+import com.gt.ifepson.comandos.Extension;
+
+public class ObtenerEstado extends TipoComando {
+
+    public ObtenerEstado() {
+    }
+
+    @Override
+    public String[] getNames() {
+        return new String[]{"ObtenerEstado", "ConsultarEstado"};
+    }
+
+    @Override
+    public String getDescripcion() {
+        return "Obtener Estado";
+    }
+
+    @Override
+    public String getNotas() {
+        return "";
+    }
+
+    @Override
+    public String getRequerimientos() {
+        return "";
+    }
+
+    @Override
+    public CampoFiscal[] getCamposEntrada() {
+        return new CampoFiscal[] {};
+    }
+        
+    @Override
+    public CampoFiscal[] getCamposSalida() {
+        return new CampoFiscal[] {};
+    }
+
+    @Override
+    public int getCodigo() {
+        return 0x0001;
+    }
+
+    @Override
+    public ClasificacionComando getClasificacionComando() {
+        return ClasificacionComando.SISTEMA;
+    }
+
+    @Override
+    public int[] getComando() {
+        int[] ret = new int[2];
+        ret[0] = 0x00;
+        ret[1] = 0x01;
+        return ret;
+    }
+
+    @Override
+    public Extension[] getExtensiones() {
+        return new Extension[]{};
+    }
+}

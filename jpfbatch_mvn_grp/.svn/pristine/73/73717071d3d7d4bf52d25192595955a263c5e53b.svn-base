@@ -1,0 +1,52 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package com.gt.jpfbatch.fiscalSpool;
+
+import com.gt.jpfbatch.MainClass;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.UnsupportedEncodingException;
+import org.apache.commons.io.IOUtils;
+
+/**
+ *
+ * @author guillermot
+ */
+public class BatchLoader {
+    
+    BatchPojo batchPojo;
+
+    public BatchLoader() {
+    }
+    
+    public void loadFromFile(File file) throws FileNotFoundException, IOException {
+        FileInputStream fis = new FileInputStream(file);
+        this.loadFromStream(fis);
+    }
+    
+    public void loadFromBytea(byte[] bytea) throws UnsupportedEncodingException {
+        batchPojo = new BatchPojo();
+        batchPojo.setBatch(new String(bytea, "ISO-8859-1"));
+        batchPojo.setSeparador(MainClass.getJpfbatchConfigs().getSep());
+    }
+    
+    public void loadFromStream(InputStream inputStream) throws IOException {
+        byte[] bytea = IOUtils.toByteArray(inputStream);
+        this.loadFromBytea(bytea);
+    }
+    
+    public BatchPojo getBatchPojo() {
+        return batchPojo;
+    }
+
+    public void setBatchPojo(BatchPojo batchPojo) {
+        this.batchPojo = batchPojo;
+    }
+    
+}

@@ -1,0 +1,87 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package com.gt.ifepson.comandos;
+
+/**
+ *
+ * @author guillermot
+ */
+public class CampoFiscal {
+    int indice;
+    String Descripcion;
+    TipoDato tipoDato;
+    int largo;
+    boolean opcional;
+    String formato;
+
+    public CampoFiscal() {
+    }
+
+    /**
+     * 
+     * @param indice indice del campo, comienza en 1
+     * @param Descripcion
+     * @param tipoDatoSalida
+     * @param largo -1 significa maximo
+     */
+    public CampoFiscal(int indice, String Descripcion, TipoDato tipoDatoSalida, int largo, boolean opcional, String formato) {
+        this.indice = indice;
+        this.Descripcion = Descripcion;
+        this.tipoDato = tipoDatoSalida;
+        this.largo = largo;
+        this.opcional = opcional;
+        this.formato = formato;
+    }
+    
+    public int getIndice() {
+        return indice;
+    }
+
+    public void setIndice(int indice) {
+        this.indice = indice;
+    }
+
+    public String getDescripcion() {
+        return Descripcion;
+    }
+
+    public void setDescripcion(String Descripcion) {
+        this.Descripcion = Descripcion;
+    }
+
+    public TipoDato getTipoDato() {
+        return tipoDato;
+    }
+
+    public void setTipoDato(TipoDato tipoDato) {
+        this.tipoDato = tipoDato;
+    }
+
+    public int getLargo() {
+        return largo;
+    }
+
+    public void setLargo(int largo) {
+        this.largo = largo;
+    }
+
+    public boolean isOpcional() {
+        return opcional;
+    }
+
+    public void setOpcional(boolean opcional) {
+        this.opcional = opcional;
+    }
+
+    public String getFormato() {
+        return formato;
+    }
+
+    public void setFormato(String formato) {
+        this.formato = formato;
+    }
+    
+}

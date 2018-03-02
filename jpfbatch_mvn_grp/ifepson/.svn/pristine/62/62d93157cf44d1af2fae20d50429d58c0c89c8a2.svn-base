@@ -1,0 +1,73 @@
+package com.gt.ifepson.comandos.jornadaFiscal;
+
+import com.gt.ifepson.comandos.CampoFiscal;
+import com.gt.ifepson.comandos.TipoComando;
+import com.gt.ifepson.comandos.ClasificacionComando;
+import com.gt.ifepson.comandos.Extension;
+import com.gt.ifepson.comandos.TipoDato;
+
+
+public class JornadaFiscalContinuarDuplicadoDeDocumentos extends TipoComando {
+
+	public JornadaFiscalContinuarDuplicadoDeDocumentos() {
+	}
+
+	@Override
+	public String[] getNames() {
+		return new String[] {"JornadaFiscalContinuarDuplicadoDeDocumentos"};
+	}
+
+	@Override
+	public String getDescripcion() {
+		return "Obtiene el primero o siguiente paquete de datos a descargar.";
+	}
+
+	@Override
+	public int getCodigo() {
+		return 0x08F4;
+	}
+
+	@Override
+	public ClasificacionComando getClasificacionComando() {
+		return ClasificacionComando.JORNADA_FISCAL;
+	}
+
+	@Override
+	public int[] getComando() {
+		int[] ret = new int[2];
+		ret[0] = 0x08;
+		ret[1] = 0xF4;
+		return ret;
+	}
+
+    @Override
+    public String getNotas() {
+        return "Los datos son descargados en forma continua.";
+    }
+
+    @Override
+    public String getRequerimientos() {
+        return "Datos pendientes de descargas.";
+    }
+
+    @Override
+    public Extension[] getExtensiones() {
+        return new Extension[]{};
+    }
+
+    @Override
+    public CampoFiscal[] getCamposEntrada() {
+        return new CampoFiscal[]{};
+    }
+
+    @Override
+    public CampoFiscal[] getCamposSalida() {
+        return new CampoFiscal[]{
+            new CampoFiscal(1, "Datos a descargar", TipoDato.A, -1, false),
+            new CampoFiscal(1, "Indicador de datos por descargar", TipoDato.Y, 1, false),
+        };
+    }
+        
+        
+
+}

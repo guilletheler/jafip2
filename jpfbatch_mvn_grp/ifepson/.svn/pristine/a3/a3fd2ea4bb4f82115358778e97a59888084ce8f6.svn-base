@@ -1,0 +1,302 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package com.gt.ifepson.comandos;
+
+import com.gt.ifepson.capaFisica.EpsonFiscalDriverJNA;
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import org.apache.commons.lang3.StringUtils;
+
+/**
+ *
+ * @author guillermot
+ */
+public class ComandoFiscal implements Serializable {
+
+    final protected static char[] HEX_ARRAY = "0123456789ABCDEF".toCharArray();
+    private static final int SIZE_BUFF_IN = 8 * 1024;
+    private static final int SIZE_BUFF_OUT = 50 * 1024;
+
+    final static Map<Integer, Retorno> retornos = new MapaRetornos();
+
+    TipoComandoFiscal tipoComando;
+
+    List<ValorExtension> valoresExtensiones;
+
+    Map<TipoCampoFiscal, String> valoresCampoEntrada;
+
+    Map<TipoCampoFiscal, String> valoresCampoSalida;
+
+    public ComandoFiscal() {
+    }
+
+    public ComandoFiscal(TipoComandoFiscal tipoComando) {
+        this.tipoComando = tipoComando;
+    }
+
+    public TipoComandoFiscal getTipoComando() {
+        return tipoComando;
+    }
+
+    public void setTipoComando(TipoComandoFiscal tipoComando) {
+        this.tipoComando = tipoComando;
+    }
+
+    /**
+     * Devuelve un int[2] con los bytes de las extensiones
+     *
+     * @return
+     */
+    public int[] getExtensiones() {
+        int i = 0;
+        for (ValorExtension ve : this.getValoresExtensiones()) {
+            i = i & ~ve.getTipoExtension().getBits();
+            i = i | ve.getValor();
+        }
+
+        String cod = StringUtils.leftPad(Integer.toHexString(i).toUpperCase(), 4, "0");
+
+        int[] ret = new int[2];
+
+        ret[0] = Integer.parseInt(cod.substring(0, 2), 16);
+        ret[1] = Integer.parseInt(cod.substring(2), 16);
+
+        return ret;
+    }
+
+    /**
+     *
+     * @param pos posicion del campo en base 1
+     * @param valor
+     */
+    public void setValorCampoEntrada(int pos, String valor) {
+        this.getValoresCampoEntrada().put(this.getTipoComando().getCamposEntrada()[pos - 1], valor);
+    }
+
+    public void addExtension(String nombre) {
+        for (TipoExtension te : this.getTipoComando().getExtensiones()) {
+            for (ValorExtension ve : te.getCampos()) {
+                if (ve.getNombre().equalsIgnoreCase(nombre)) {
+                    this.getValoresExtensiones().add(ve);
+                    break;
+                }
+            }
+        }
+    }
+
+    /**
+     * Devuelve ResultadoEjecucionComandoFiscal con el resultado de la ejecución
+     *
+     * @param epsonDriver
+     * @return
+     */
+    public ResultadoEjecucionComandoFiscal ejecutar(EpsonFiscalDriverJNA epsonDriver) {
+
+        byte[] bufferIn = new byte[SIZE_BUFF_IN];
+        byte[] bufferOut = new byte[SIZE_BUFF_OUT];
+        int[] sizeBufferIn = new int[8];
+        int[] sizeBufferOut = new int[8];
+
+        byte[] szCommand = new byte[8];
+        byte[] szExtension = new byte[8];
+        int iSize = 2;
+
+        this.setValoresCampoSalida(null);
+
+        epsonDriver.Purge();
+
+        szCommand[0] = (byte) this.getTipoComando().getComando()[0];
+        szCommand[1] = (byte) this.getTipoComando().getComando()[1];
+
+        int[] ext = this.getExtensiones();
+
+        szExtension[0] = (byte) ext[0];
+        szExtension[1] = (byte) ext[1];
+
+        epsonDriver.AddDataField(szCommand, iSize);
+        epsonDriver.AddDataField(szExtension, iSize);
+
+        List<TipoCampoFiscal> campos = Arrays.asList(this.getTipoComando().getCamposEntrada());
+
+        Collections.sort(campos, new Comparator<TipoCampoFiscal>() {
+            @Override
+            public int compare(TipoCampoFiscal o1, TipoCampoFiscal o2) {
+                return ((Integer) o1.getIndice()).compareTo(((Integer) o2.getIndice()));
+            }
+        });
+
+        for (TipoCampoFiscal tc : campos) {
+            String valorCampoEntrada = this.getValoresCampoEntrada().get(tc);
+
+            Logger.getLogger(getClass().getName()).log(Level.FINE, "Seteando valor " + tc.getIndice() + ":" + tc.getDescripcion() + " = " + valorCampoEntrada);
+
+            byte[] valor;
+            if (valorCampoEntrada != null) {
+                valor = valorCampoEntrada.getBytes();
+            } else {
+                valor = new byte[]{};
+            }
+
+            epsonDriver.AddDataField(valor, valor.length);
+        }
+
+        epsonDriver.SendCommand();
+
+        try {
+            Thread.sleep(100);
+        } catch (InterruptedException ex) {
+            Logger.getLogger(ComandoFiscal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        //TODO: esperar un rato y despué zapatear
+        while (epsonDriver.getState() == 2) {
+            Logger.getLogger(ComandoFiscal.class.getName()).log(Level.FINE, "Esperando termine comando fiscal");
+            //System.out.println("Esperando termine");
+            try {
+                Thread.sleep(50);
+            } catch (InterruptedException ex) {
+                Logger.getLogger(ComandoFiscal.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+
+        //epsonDriver.SendCommandComplete("0502|0000");
+        int lastCom = epsonDriver.getLastError();
+
+        if (lastCom == 0) {
+            int counterField = epsonDriver.getExtraFieldCount();
+
+            int fiscalStatus = epsonDriver.getFiscalStatus();
+            int printerStatus = epsonDriver.getPrinterStatus();
+            int returnCode = epsonDriver.getReturnCode();
+
+            //System.out.println("El comando devolvio campos : " + counterField);
+            Logger.getLogger(getClass().getName()).log(Level.FINE, "PrinterStatus: " + printerStatus);
+            Logger.getLogger(getClass().getName()).log(Level.FINE, "FiscalStatus: " + fiscalStatus);
+            Logger.getLogger(getClass().getName()).log(Level.FINE, "ReturnCode: " + Integer.toHexString(returnCode));
+
+            if (returnCode != 0) {
+                Logger.getLogger(getClass().getName()).log(Level.FINE, retornos.get(returnCode).getCodigo() + " " + retornos.get(returnCode).getDescripcion());
+            }
+
+            campos = Arrays.asList(this.getTipoComando().getCamposSalida());
+
+            Collections.sort(campos, new Comparator<TipoCampoFiscal>() {
+                @Override
+                public int compare(TipoCampoFiscal o1, TipoCampoFiscal o2) {
+                    return ((Integer) o1.getIndice()).compareTo(((Integer) o2.getIndice()));
+                }
+            });
+
+            for (int fieldNumber = 1; fieldNumber <= counterField; fieldNumber++) {
+                bufferOut = new byte[SIZE_BUFF_OUT];
+                sizeBufferOut = new int[8];
+                int largoBuffer;
+
+                epsonDriver.GetExtraField(fieldNumber, bufferOut, SIZE_BUFF_OUT, sizeBufferOut);
+
+                largoBuffer = sizeBufferOut[0];
+                TipoCampoFiscal tipoCampo = campos.get(fieldNumber - 1);
+
+                //System.out.println("Obteniendo campo " + fieldNumber + " largo " + largoBuffer);
+                byte[] bExtraField = Arrays.copyOfRange(bufferOut, 0, largoBuffer);
+
+                if (bExtraField.length > 0) {
+                    String strExtraField = new String(bExtraField);
+                    this.getValoresCampoSalida().put(tipoCampo, strExtraField);
+
+                    //Logger.getLogger(getClass().getName()).log(Level.FINE, "GetExtraField " + fieldNumber + " : " + strExtraField);
+                    //System.out.println("GetExtraField " + fieldNumber + " : " + strExtraField);
+                } else {
+                    //System.out.println("GetExtraField " + fieldNumber + " : NULL (vacio)");
+                    this.getValoresCampoSalida().put(tipoCampo, "");
+                }
+            }
+
+            epsonDriver.GetSentFrame(bufferIn, SIZE_BUFF_IN, sizeBufferIn);
+            Logger.getLogger(getClass().getName()).log(Level.FINE, bytesToHex(bufferIn, sizeBufferIn[0]));
+            //System.out.println("SentFrame: " + bytesToHex(bufferIn, sizeBufferIn[0]));
+            epsonDriver.GetReceivedFrame(bufferOut, SIZE_BUFF_OUT, sizeBufferOut);
+            Logger.getLogger(getClass().getName()).log(Level.FINE, bytesToHex(bufferOut, sizeBufferOut[0]));
+            //System.out.println("ReceivedFrame: " + bytesToHex(bufferOut, sizeBufferOut[0]));
+
+            return new ResultadoEjecucionComandoFiscal(this, new int[]{lastCom, printerStatus, fiscalStatus, returnCode});
+        }
+
+        return new ResultadoEjecucionComandoFiscal(this, new int[]{lastCom, 0, 0, 0});
+    }
+
+    public static String bytesToHex(byte[] bytes, int Size) {
+        char[] hexChars = new char[Size * 2];
+        for (int j = 0; j < Size; j++) {
+            int v = bytes[j] & 0xFF;
+            hexChars[j * 2] = HEX_ARRAY[v >>> 4];
+            hexChars[j * 2 + 1] = HEX_ARRAY[v & 0x0F];
+        }
+        return new String(hexChars);
+    }
+
+    /*
+    public int[] getExtensionComando() {
+        String cod = StringUtils.leftPad(Integer.toHexString(getExtension()).toUpperCase(), 4, "0");
+
+        int[] ret = new int[2];
+
+        ret[0] = Integer.parseInt(cod.substring(0, 2), 16);
+        ret[1] = Integer.parseInt(cod.substring(2), 16);
+        
+        return ret;
+    }
+
+    public int getExtension() {
+        return extension;
+    }
+
+    public void setExtension(int extension) {
+        this.extension = extension;
+    }
+     */
+    public List<ValorExtension> getValoresExtensiones() {
+        if (valoresExtensiones == null) {
+            valoresExtensiones = new ArrayList<>();
+        }
+        return valoresExtensiones;
+    }
+
+    public void setValoresExtensiones(List<ValorExtension> valoresExtensiones) {
+        this.valoresExtensiones = valoresExtensiones;
+    }
+
+    public Map<TipoCampoFiscal, String> getValoresCampoEntrada() {
+        if (valoresCampoEntrada == null) {
+            valoresCampoEntrada = new HashMap<>();
+        }
+        return valoresCampoEntrada;
+    }
+
+    public void setValoresCampoEntrada(Map<TipoCampoFiscal, String> valoresCampoEntrada) {
+        this.valoresCampoEntrada = valoresCampoEntrada;
+    }
+
+    public Map<TipoCampoFiscal, String> getValoresCampoSalida() {
+        if (valoresCampoSalida == null) {
+            valoresCampoSalida = new HashMap<>();
+        }
+        return valoresCampoSalida;
+    }
+
+    public void setValoresCampoSalida(Map<TipoCampoFiscal, String> valoresCampoSalida) {
+        this.valoresCampoSalida = valoresCampoSalida;
+    }
+    
+}

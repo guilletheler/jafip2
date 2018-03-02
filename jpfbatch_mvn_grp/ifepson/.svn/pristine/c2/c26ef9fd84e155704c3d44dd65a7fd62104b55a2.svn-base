@@ -1,0 +1,40 @@
+package com.gt.ifepson.comandos.inicializacion;
+
+import com.gt.ifepson.comandos.TipoComando;
+import com.gt.ifepson.comandos.ClasificacionComando;
+
+
+public class ComandosDeInicializacionCancelarDescargaDeSolicitudDeBajaFiscal_SBF extends TipoComando {
+
+	public ComandosDeInicializacionCancelarDescargaDeSolicitudDeBajaFiscal_SBF() {
+	}
+
+	@Override
+	public String[] getNames() {
+		return new String[] {"ComandosDeInicializacionCancelarDescargaDeSolicitudDeBajaFiscal_SBF"};
+	}
+
+	@Override
+	public String getDescripcion() {
+		return "Cancelar Descarga de Solicitud de Baja Fiscal (SBF)";
+	}
+
+	@Override
+	public int getCodigo() {
+		return 0x0413;
+	}
+
+	@Override
+	public ClasificacionComando getClasificacionComando() {
+		return ClasificacionComando.INICIALIZACION;
+	}
+
+	@Override
+	public int[] getComando() {
+		int[] ret = new int[2];
+		ret[0] = 0x04;
+		ret[1] = 0x13;
+		return ret;
+	}
+
+}

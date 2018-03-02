@@ -1,0 +1,71 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package com.gt.ifepson.comandos;
+
+/**
+ *
+ * @author guillermot
+ */
+public abstract class TipoComando {
+
+    public abstract ClasificacionComando getClasificacionComando();
+    
+    public abstract String[] getNames();
+
+    public abstract String getDescripcion();
+    
+    public abstract String getNotas();
+    
+    public abstract String getRequerimientos();
+
+    public abstract int getCodigo();
+
+    public abstract int[] getComando();
+    
+    /**
+     * Posibles extensiones
+     * @return 
+     */
+    public abstract Extension[] getExtensiones();
+    
+    /**
+     * Campos de entrada
+     * @return 
+     */
+    public abstract CampoFiscal[] getCamposEntrada();
+    
+    /**
+     * Campos de salida
+     * @return 
+     */
+    public abstract CampoFiscal[] getCamposSalida();
+        
+    /*
+    
+    Esto es para ejecutar, lo veo mas adelante
+    
+    
+    
+    public int[] getExtensionComando() {
+        String cod = StringUtils.leftPad(Integer.toHexString(getExtension()).toUpperCase(), 4, "0");
+
+        int[] ret = new int[2];
+
+        ret[0] = Integer.parseInt(cod.substring(0, 2), 16);
+        ret[1] = Integer.parseInt(cod.substring(2), 16);
+        
+        return ret;
+    }
+
+    public int getExtension() {
+        return extension;
+    }
+
+    public void setExtension(int extension) {
+        this.extension = extension;
+    }
+    */
+}

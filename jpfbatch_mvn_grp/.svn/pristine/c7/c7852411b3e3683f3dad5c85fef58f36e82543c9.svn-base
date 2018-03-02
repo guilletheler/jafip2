@@ -1,0 +1,120 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package com.gt.jpfbatch.fiscalSpool;
+
+import com.gt.ifepson.capaFisica.DefinicionesGlobales;
+import com.gt.ifepson.capaFisica.EpsonFiscalInterfaceJNA;
+import com.gt.ifepson.enums.TipoComprobante;
+import com.gt.ifepson.enums.TipoDocumento;
+import com.gt.jpfbatch.MainClass;
+import com.sun.jna.Native;
+import java.io.UnsupportedEncodingException;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+/**
+ *
+ * @author guillermot
+ */
+public class BatchExecutor {
+
+    BatchPojo batchPojo;
+
+    Map<String, String> respuestaCombinada;
+    
+    EpsonFiscalInterfaceJNA epsonFiscalInterface;
+
+    public BatchExecutor(BatchPojo batchPojo) {
+        this.batchPojo = batchPojo;
+        
+        epsonFiscalInterface = (EpsonFiscalInterfaceJNA) Native.loadLibrary("EpsonFiscalInterface", EpsonFiscalInterfaceJNA.class);
+
+        epsonFiscalInterface.ConfigurarPuerto(MainClass.getJpfbatchConfigs().getSerialPort().getBytes());
+        epsonFiscalInterface.ConfigurarVelocidad(MainClass.getJpfbatchConfigs().getBaudRate());
+    }
+
+    public String getDescError(EpsonFiscalInterfaceJNA epsonFiscalInterface, int error) {
+        byte[] resp = new byte[100];;
+        epsonFiscalInterface.ConsultarDescripcionDeError(error, resp, 100);
+        try {
+            return new String(resp, "iso-8859-1");
+        } catch (UnsupportedEncodingException ex) {
+
+        }
+
+        return "";
+    }
+
+    public void ejecutar() {
+
+        this.respuestaCombinada = new HashMap<String, String>();
+
+        if (checkError(epsonFiscalInterface.Conectar())) {
+            return;
+        }
+        
+        try {
+            
+            // si acá da cualquier error igual tiene que desconectar
+            
+            
+        } catch(Exception ex) {
+            
+        }
+        
+        
+        checkError(epsonFiscalInterface.Desconectar());
+
+    }
+
+    public void execLine(String line) {
+
+        if (line == null || line.isEmpty()) {
+            return;
+        }
+
+        String[] args = line.split(batchPojo.getSeparador());
+
+        if (args[0].isEmpty()) {
+            return;
+        }
+
+        if (args[0].equalsIgnoreCase("@AbrirCajonEfectivo")) {
+            throw new UnsupportedOperationException("AbrirCajonEfectivo no está implementado");
+        }
+
+        if (args[0].equalsIgnoreCase("@AbrirDNF")) {
+            epsonFiscalInterface.AbrirComprobante(TipoComprobante.DNFH_GENERIC.getCodigo());
+        }
+
+        if (args[0].equalsIgnoreCase("@FACTABRE")) {
+            
+            
+            
+            
+            
+            if(checkError(epsonFiscalInterface.AbrirComprobante(TipoComprobante.TIQUE_FACTURA.getCodigo()))) {
+                return;
+            }
+            if(checkError(epsonFiscalInterface.CargarDatosCliente(nombre_o_razon_social1, nombre_o_razon_social2, domicilio1, domicilio2, domicilio3, 0, numero_documento, 0))) {
+                return;
+            }
+        }
+    }
+
+    boolean checkError(int error) {
+        if (error > 0) {
+            String descr = getDescError(epsonFiscalInterface, error);
+            Logger.getLogger(BatchExecutor.class.getName()).log(Level.SEVERE, "ERROR conectando al controlador fiscal nro {0} : {1}", new Object[]{error, descr});
+            this.respuestaCombinada.put("ERROR", "conectando al controlador fiscal Nro " + error + " " + descr);
+            return true;
+        }
+        return false;
+    }
+
+}

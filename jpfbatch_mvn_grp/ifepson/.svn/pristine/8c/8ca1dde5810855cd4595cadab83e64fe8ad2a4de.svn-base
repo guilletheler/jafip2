@@ -1,0 +1,40 @@
+package com.gt.ifepson.comandos.dnfhGenerico;
+
+import com.gt.ifepson.comandos.TipoComando;
+import com.gt.ifepson.comandos.ClasificacionComando;
+
+
+public class ComandosDeDocumentoNoFiscalHomologadoGenericoUsoInternoDNFHGenericoUsoInternoUnitario extends TipoComando {
+
+	public ComandosDeDocumentoNoFiscalHomologadoGenericoUsoInternoDNFHGenericoUsoInternoUnitario() {
+	}
+
+	@Override
+	public String[] getNames() {
+		return new String[] {"ComandosDeDocumentoNoFiscalHomologadoGenericoUsoInternoDNFHGenericoUsoInternoUnitario"};
+	}
+
+	@Override
+	public String getDescripcion() {
+		return "DNFH Genérico/Uso Interno Unitario";
+	}
+
+	@Override
+	public int getCodigo() {
+		return 0x0E30;
+	}
+
+	@Override
+	public ClasificacionComando getClasificacionComando() {
+		return ClasificacionComando.DNFH_GENERICO;
+	}
+
+	@Override
+	public int[] getComando() {
+		int[] ret = new int[2];
+		ret[0] = 0x0E;
+		ret[1] = 0x30;
+		return ret;
+	}
+
+}

@@ -1,0 +1,40 @@
+package com.gt.ifepson.comandos.inicializacion;
+
+import com.gt.ifepson.comandos.TipoComando;
+import com.gt.ifepson.comandos.ClasificacionComando;
+
+
+public class ComandosDeInicializacionComenzarDescargaDeSolicitudDeAltaFiscal_SAF extends TipoComando {
+
+	public ComandosDeInicializacionComenzarDescargaDeSolicitudDeAltaFiscal_SAF() {
+	}
+
+	@Override
+	public String[] getNames() {
+		return new String[] {"ComandosDeInicializacionComenzarDescargaDeSolicitudDeAltaFiscal_SAF"};
+	}
+
+	@Override
+	public String getDescripcion() {
+		return "Comenzar Descarga de Solicitud de Alta Fiscal (SAF)";
+	}
+
+	@Override
+	public int getCodigo() {
+		return 0x0440;
+	}
+
+	@Override
+	public ClasificacionComando getClasificacionComando() {
+		return ClasificacionComando.INICIALIZACION;
+	}
+
+	@Override
+	public int[] getComando() {
+		int[] ret = new int[2];
+		ret[0] = 0x04;
+		ret[1] = 0x40;
+		return ret;
+	}
+
+}

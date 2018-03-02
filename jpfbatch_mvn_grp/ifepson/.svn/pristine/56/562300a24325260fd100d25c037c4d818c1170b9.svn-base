@@ -1,0 +1,70 @@
+package com.gt.ifepson.comandos.descargaReportes;
+
+import com.gt.ifepson.comandos.CampoFiscal;
+import com.gt.ifepson.comandos.TipoComando;
+import com.gt.ifepson.comandos.ClasificacionComando;
+import com.gt.ifepson.comandos.Extension;
+import com.gt.ifepson.comandos.TipoDato;
+
+public class ContinuarDescargaDeReporteDesdeMemoriaDeTransacciones extends TipoComando {
+
+    public ContinuarDescargaDeReporteDesdeMemoriaDeTransacciones() {
+    }
+
+    @Override
+    public String[] getNames() {
+        return new String[]{"ContinuarDescargaDeReporteDesdeMemoriaDeTransacciones"};
+    }
+
+    @Override
+    public String getDescripcion() {
+        return "Continuar Descarga de Reporte desde Memoria de Transacciones";
+    }
+
+    @Override
+    public int getCodigo() {
+        return 0x0970;
+    }
+
+    @Override
+    public ClasificacionComando getClasificacionComando() {
+        return ClasificacionComando.MEMORIA_TRANSACCIONES;
+    }
+
+    @Override
+    public int[] getComando() {
+        int[] ret = new int[2];
+        ret[0] = 0x09;
+        ret[1] = 0x70;
+        return ret;
+    }
+    
+    @Override
+    public Extension[] getExtensiones() {
+        return new Extension[]{};
+    }
+
+    @Override
+    public String getNotas() {
+        return "Los datos son auditados o descargados en forma continua.";
+    }
+
+    @Override
+    public String getRequerimientos() {
+        return "Datos transaccionales pendientes de auditoría/descarga.";
+    }
+
+    @Override
+    public CampoFiscal[] getCamposSalida() {
+        return new CampoFiscal[]{
+            new CampoFiscal(1, "Datos de informe a descargar", TipoDato.B, -1, false),
+            new CampoFiscal(1, "Indicador de datos por descargar", TipoDato.Y, 1, false)
+        };
+    }
+
+    @Override
+    public CampoFiscal[] getCamposEntrada() {
+        return new CampoFiscal[]{};
+    }
+
+}

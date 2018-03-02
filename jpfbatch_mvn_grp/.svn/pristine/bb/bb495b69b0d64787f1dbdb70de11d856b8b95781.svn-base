@@ -1,0 +1,209 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package com.gt.jpfbatch;
+
+import com.beust.jcommander.Parameter;
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+
+/**
+ *
+ * @author guillermot
+ */
+public class JpfbatchConfigs implements Serializable {
+
+    @Parameter
+    private List<String> parameters = new ArrayList<String>();
+
+    @Parameter(names = {"--serialPort", "--serialPortName", "-p"}, description = "Numero del puerto serie, 0=USB, 1=COM1, 2=COM2, n=COMn")
+    private String serialPort = "1";
+
+    @Parameter(names = {"--help", "-h"}, help = true, description = "Muestra esta ayuda")
+    private boolean help;
+    
+    @Parameter(names = {"--fiscalHelp"}, help = true, description = "Muestra esta ayuda")
+    private boolean fiscalHelp;
+    
+    @Parameter(names = {"--copiaComandoEnSalida", "-k"}, description = "Copia la linea de comando antes del resultado en el archivo de salida")
+    private boolean copiaComandoEnSalida = true;
+
+    /**
+     * Serial Port Parity
+     */
+    protected Integer parity = 0;
+    
+    /**
+     * Serial Port Baudrate
+     */
+    @Parameter(names = {"--baudRate", "--baudios", "-b"}, description = "Velocidad de conexión")
+    protected Integer baudRate = 9600;
+
+    /**
+     * Puerto TCP para cliente/servidor
+     */
+    @Parameter(names = {"--tcpPort", "-t"}, description = "Puerto TCP para cliente/servidor")
+    protected Integer tcpPort = 6932;
+
+    @Parameter(names = {"--modo", "-m"}, description = "Modo de funcionamiento, 0=standalone, 1=Servidor, 2=Cliente")
+    protected Integer modo = 0;
+
+    @Parameter(names = {"--hostName", "-n"}, description = "Nombre o IP del servidor")
+    protected String hostName = "localhost";
+
+    @Parameter(names = {"-lockType", "-l"}, description = "Tipo de blockeo: TCP_SOCKET, FILE, NONE")
+    protected String lockType = "TCP_SOCKET";
+
+    @Parameter(names = {"--copyInFile", "-c"}, description = "Copia de archivo de entrada, Para identificar cada archivo se reemplazara %t% por Calendar.getInstance().getTime().getTime() que es la cantidad de millisegundos que transcurrieron desde el 01/01/1970, 00:00:00 GMT, ej entrada%t%.in")
+    protected String copyInFile = "";
+
+    @Parameter(names = {"--sep", "-s"}, description = "Separador de los campos")
+    protected String sep = "\\|";
+
+    @Parameter(names = {"--outExt", "-e"}, description = "extensión del archivo de salida")
+    protected String outExt = ".out";
+
+    @Parameter(names = {"--in", "--inFile", "-i"}, description = "archivo batch de entrada")
+    protected String inFile = "";
+
+    @Parameter(names = {"--out", "--outFile", "-o"}, description = "archivo de salida")
+    protected String outFile = "";
+    
+    @Parameter(names = {}, description = "Codificacion de caracteres, por defecto \"ISO-8859-1\"")
+    protected String charset = "ISO-8859-1";
+    
+    public JpfbatchConfigs() {
+    }
+
+    public boolean isHelp() {
+        return help;
+    }
+    
+    public void setHelp(boolean help) {
+        this.help = help;
+    }
+    
+    public boolean isFiscalHelp() {
+        return fiscalHelp;
+    }
+
+    public void setFiscalHelp(boolean fiscalHelp) {
+        this.fiscalHelp = fiscalHelp;
+    }
+    
+    public String getSerialPort() {
+        return serialPort;
+    }
+
+    public void setSerialPort(String serialPort) {
+        this.serialPort = serialPort;
+    }
+
+    public Integer getBaudRate() {
+        return baudRate;
+    }
+
+    public void setBaudRate(Integer baudRate) {
+        this.baudRate = baudRate;
+    }
+
+    public Integer getTcpPort() {
+        return tcpPort;
+    }
+
+    public void setTcpPort(Integer tcpPort) {
+        this.tcpPort = tcpPort;
+    }
+
+    public Integer getModo() {
+        return modo;
+    }
+
+    public void setModo(Integer modo) {
+        this.modo = modo;
+    }
+
+    public String getHostName() {
+        return hostName;
+    }
+
+    public void setHostName(String hostName) {
+        this.hostName = hostName;
+    }
+
+    public String getLockType() {
+        return lockType;
+    }
+
+    public void setLockType(String lockType) {
+        this.lockType = lockType;
+    }
+
+    public String getCopyInFile() {
+        return copyInFile;
+    }
+
+    public void setCopyInFile(String copyInFile) {
+        this.copyInFile = copyInFile;
+    }
+
+    public String getSep() {
+        return sep;
+    }
+
+    public void setSep(String sep) {
+        this.sep = sep;
+    }
+
+    public String getOutExt() {
+        return outExt;
+    }
+
+    public void setOutExt(String outExt) {
+        this.outExt = outExt;
+    }
+
+    public Integer getParity() {
+        return parity;
+    }
+
+    public void setParity(Integer parity) {
+        this.parity = parity;
+    }
+
+    public String getInFile() {
+        return inFile;
+    }
+
+    public void setInFile(String inFile) {
+        this.inFile = inFile;
+    }
+
+    public String getOutFile() {
+        return outFile;
+    }
+
+    public void setOutFile(String outFile) {
+        this.outFile = outFile;
+    }
+
+    public boolean isCopiaComandoEnSalida() {
+        return copiaComandoEnSalida;
+    }
+
+    public void setCopiaComandoEnSalida(boolean copiaComandoEnSalida) {
+        this.copiaComandoEnSalida = copiaComandoEnSalida;
+    }
+
+    public String getCharset() {
+        return charset;
+    }
+
+    public void setCharset(String charset) {
+        this.charset = charset;
+    }
+
+}

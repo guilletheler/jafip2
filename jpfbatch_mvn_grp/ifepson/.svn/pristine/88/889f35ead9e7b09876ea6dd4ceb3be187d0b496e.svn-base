@@ -1,0 +1,68 @@
+package com.gt.ifepson.comandos.configuracion;
+
+import com.gt.ifepson.comandos.CampoFiscal;
+import com.gt.ifepson.comandos.TipoComando;
+import com.gt.ifepson.comandos.ClasificacionComando;
+import com.gt.ifepson.comandos.Extension;
+import com.gt.ifepson.comandos.TipoDato;
+
+public class EnviarDatosDeLogoDelUsuario extends TipoComando {
+
+    public EnviarDatosDeLogoDelUsuario() {
+    }
+
+    @Override
+    public String[] getNames() {
+        return new String[]{"EnviarDatosDeLogoDelUsuario"};
+    }
+
+    @Override
+    public String getDescripcion() {
+        return "Enviar Datos de Logo del Usuario";
+    }
+
+    @Override
+    public int getCodigo() {
+        return 0x0531;
+    }
+
+    @Override
+    public ClasificacionComando getClasificacionComando() {
+        return ClasificacionComando.CONFIGURACION;
+    }
+
+    @Override
+    public int[] getComando() {
+        int[] ret = new int[2];
+        ret[0] = 0x05;
+        ret[1] = 0x31;
+        return ret;
+    }
+
+    @Override
+    public Extension[] getExtensiones() {
+        return new Extension[]{};
+    }
+
+    @Override
+    public String getNotas() {
+        return "";
+    }
+
+    @Override
+    public String getRequerimientos() {
+        return "Mecanismo impresor en línea y con papel.\n"
+                + "Carga de logos de usuario iniciada.";
+    }
+
+    @Override
+    public CampoFiscal[] getCamposSalida() {
+        return new CampoFiscal[]{};
+    }
+
+    @Override
+    public CampoFiscal[] getCamposEntrada() {
+        return new CampoFiscal[]{new CampoFiscal(1, "Datos de los logos del usuario", TipoDato.B, -1, false)};
+    }
+
+}

@@ -1,0 +1,40 @@
+package com.gt.ifepson.comandos.jornadaFiscal;
+
+import com.gt.ifepson.comandos.TipoComando;
+import com.gt.ifepson.comandos.ClasificacionComando;
+
+
+public class ComandosDeJornadaFiscalInformacionElectronicaGeneralDeLaJornadaFiscalEnCurso extends TipoComando {
+
+	public ComandosDeJornadaFiscalInformacionElectronicaGeneralDeLaJornadaFiscalEnCurso() {
+	}
+
+	@Override
+	public String[] getNames() {
+		return new String[] {"ComandosDeJornadaFiscalInformacionElectronicaGeneralDeLaJornadaFiscalEnCurso"};
+	}
+
+	@Override
+	public String getDescripcion() {
+		return "Información Electrónica General de la Jornada Fiscal en Curso";
+	}
+
+	@Override
+	public int getCodigo() {
+		return 0x080A;
+	}
+
+	@Override
+	public ClasificacionComando getClasificacionComando() {
+		return ClasificacionComando.JORNADA_FISCAL;
+	}
+
+	@Override
+	public int[] getComando() {
+		int[] ret = new int[2];
+		ret[0] = 0x08;
+		ret[1] = 0x0A;
+		return ret;
+	}
+
+}

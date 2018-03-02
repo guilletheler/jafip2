@@ -1,0 +1,87 @@
+package com.gt.ifepson.comandos.tiqueNc;
+
+import com.gt.ifepson.comandos.CampoFiscal;
+import com.gt.ifepson.comandos.TipoComando;
+import com.gt.ifepson.comandos.ClasificacionComando;
+import com.gt.ifepson.comandos.Extension;
+import com.gt.ifepson.comandos.TipoDato;
+
+public class ObtenerConfiguracionDePreferenciasTiqueNC extends TipoComando {
+
+    public ObtenerConfiguracionDePreferenciasTiqueNC() {
+    }
+
+    @Override
+    public String[] getNames() {
+        return new String[]{"ObtenerConfiguracionDePreferenciasTiqueNC"};
+    }
+
+    @Override
+    public String getDescripcion() {
+        return "Obtiene los valores de configuración para la emisión de tique o tique-nota de crédito que se encuentran almacenados en la memoria de trabajo.";
+    }
+
+    @Override
+    public int getCodigo() {
+        return 0x0A09;
+    }
+
+    @Override
+    public ClasificacionComando getClasificacionComando() {
+        return ClasificacionComando.TIQUE;
+    }
+
+    @Override
+    public int[] getComando() {
+        int[] ret = new int[2];
+        ret[0] = 0x0A;
+        ret[1] = 0x09;
+        return ret;
+    }
+
+    @Override
+    public String getNotas() {
+        return "";
+    }
+
+    @Override
+    public String getRequerimientos() {
+        return "";
+    }
+
+    @Override
+    public Extension[] getExtensiones() {
+        return new Extension[]{};
+    }
+
+    @Override
+    public CampoFiscal[] getCamposEntrada() {
+        return new CampoFiscal[]{};
+    }
+
+    @Override
+    public CampoFiscal[] getCamposSalida() {
+        return new CampoFiscal[]{
+            new CampoFiscal(1, "Imprime información sobre el total pagado y vuelto", TipoDato.Y, 1, false),
+            new CampoFiscal(2, "Reservado", TipoDato.B, 0, false),
+            new CampoFiscal(3, "Imprime line feeds luego del encabezado y antes de las colas", TipoDato.Y, 1, false),
+            new CampoFiscal(4, "Reservado", TipoDato.B, 0, false),
+            new CampoFiscal(5, "Imprime línea 'Cosumidor Final'", TipoDato.Y, 1, false),
+            new CampoFiscal(6, "Reservado", TipoDato.B, 0, false),
+            new CampoFiscal(7, "Imprime domicilio comercial", TipoDato.Y, 1, false),
+            new CampoFiscal(8, "Imprime líneas de nombre de fantasía", TipoDato.Y, 1, false),
+            new CampoFiscal(9, "Imprime líneas de IIBB", TipoDato.Y, 1, false),
+            new CampoFiscal(10, "Reservado", TipoDato.B, 0, false),
+            new CampoFiscal(11, "Imprime líneas de logo de usuario", TipoDato.Y, 1, false),
+            new CampoFiscal(12, "Utiliza pago automático", TipoDato.Y, 1, false),
+            new CampoFiscal(13, "Imprime line feeds luego y antes de TOTAL", TipoDato.Y, 1, false),
+            new CampoFiscal(14, "Imprime cantidad unitaria", TipoDato.Y, 1, false),
+            new CampoFiscal(15, "Reservado", TipoDato.B, 0, false),
+            new CampoFiscal(16, "Reservado", TipoDato.B, 0, false),
+            new CampoFiscal(17, "Imprime QR", TipoDato.Y, 1, false),
+            new CampoFiscal(18, "Descripción del pago automático", TipoDato.RT, -1, false),
+            new CampoFiscal(19, "Código del pago automático", TipoDato.N_E, 2, false)
+        };
+    }
+
+}

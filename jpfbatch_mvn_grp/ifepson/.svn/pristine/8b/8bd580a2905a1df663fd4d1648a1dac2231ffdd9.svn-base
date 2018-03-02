@@ -1,0 +1,85 @@
+package com.gt.ifepson.comandos.tiqueNc;
+
+import com.gt.ifepson.comandos.CampoFiscal;
+import com.gt.ifepson.comandos.TipoComando;
+import com.gt.ifepson.comandos.ClasificacionComando;
+import com.gt.ifepson.comandos.Extension;
+
+
+public class AbrirTiqueNC extends TipoComando {
+
+	public AbrirTiqueNC() {
+    }
+
+    @Override
+    public String[] getNames() {
+        return new String[]{"AbrirTiqueNC"};
+    }
+
+    @Override
+    public String getDescripcion() {
+        return "Realiza la apertura de un documento tique o tique-nota de crédito.";
+    }
+
+    @Override
+    public int getCodigo() {
+        return 0x0A01;
+    }
+
+    @Override
+    public ClasificacionComando getClasificacionComando() {
+        return ClasificacionComando.DNFH;
+    }
+
+    @Override
+    public int[] getComando() {
+        int[] ret = new int[2];
+        ret[0] = 0x0A;
+        ret[1] = 0x01;
+        return ret;
+    }
+
+    @Override
+    public String getNotas() {
+        return " Imprime el logo configurado por el usuario (La impresión del logo depende de las preferencias configuradas para el documento.)\n"
+                + " Se incrementa en uno el contador de documento correspondiente.";
+    }
+
+    @Override
+    public String getRequerimientos() {
+        return " Memoria fiscal no llena.\n"
+                + " Memoria de transacciones no llena.\n"
+                + " Se deben haber configurado previamente los datos de fiscalización y del establecimiento que sean obligatorios.\n"
+                + " Mecanismo impresor en línea y con papel.\n"
+                + " Líneas de establecimiento “Domicilio comercial #1, IIBB #1 y fecha inicio actividades” deben estar configuradas.";
+    }
+
+    @Override
+    public CampoFiscal[] getCamposSalida() {
+        return new CampoFiscal[]{};
+    }
+
+    @Override
+    public CampoFiscal[] getCamposEntrada() {
+        return new CampoFiscal[]{};
+    }
+
+    @Override
+    public Extension[] getExtensiones() {
+        return new Extension[]{
+            new Extension(0b0000000001000000, "DESCRIPCIONES",
+            "NO_ALMACENA_DESCRIPCIONES_ITEMS", 0b0000000000000000,
+            "ALMACENA_DESCRIPCIONES_ITEMS", 0b0000000001000000),
+            new Extension(0b0000000010000000, "ATRIBUTOS_IMPRESION (DNFH de farmacia, talón de envío a domicilio, talón de cambio).",
+            "NO_ALMACENA_DESCRIPCIONES_ITEMS", 0b0000000000000000,
+            "ALMACENA_DESCRIPCIONES_ITEMS", 0b0000000010000000),
+            new Extension(0b0000000100000000, "DESCRIPCIONES EXTRA",
+            "ALMACENA_TODAS_LAS_DESCRIPCIONES_EXTRAS", 0b0000000000000000,
+            "ALMACENA_SOLO_PRIMER_DESCRIPCION_EXTRA", 0b0000000100000000),
+            new Extension(0b0100000000000000, "TIQUE_NC",
+            "IMPRIME_TIQUE", 0b0000000000000000,
+            "IMPRIME_TIQUE_NOTA_DE_CREDITO", 0b0100000000000000)
+        };
+    }
+
+}

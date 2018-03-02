@@ -1,0 +1,79 @@
+########################################################
+#            Configuraci\u00f3n de JPFBatch v2              #
+# Autor: Guillermo G. Theler - guilletheler@yahoo.com  #
+#                                                      #
+########################################################
+
+####################################
+## Configuracion del puerto serie ##
+####################################
+
+SerialPort = 1
+
+# Baudios
+BaudRate = 115200
+
+####################################
+####################################
+
+################################
+#### Opciones de Entrada / Salida ####
+################################
+
+
+# Separador de campos de archivo de entrada, tener
+# en cuenta que como se utiliza expresiones regulares
+# hay que agregarle a algunos caracteres \\ antes
+Sep = \|
+
+# Extension del archivo de salida
+OutExt = .out
+
+################################
+################################
+
+#################################
+#### OPCIONES PARA DEPURACION ####
+#################################
+
+# Si se quiere realizar una copia de todos los archivos de entrada con fines de depuraci\u00f3n hay que setearle el valor a CopyInFile
+# Para identificar cada archivo se reemplazara %t% por Calendar.getInstance().getTime().getTime() que es la cantidad de millisegundos que transcurrieron desde el 01/01/1970, 00:00:00 GMT;
+#CopyInFile = entrada%t%.in
+
+#################################
+#################################
+
+
+#############################################################
+#### OPCIONES DE RED PARA TRABAJAR COMO CLIENTE/SERVIDOR ####
+#############################################################
+
+# Puerto TCP para funcionar en Cliente/Servidor
+#TCPPort = 6932
+
+# Modo de funcionamiento
+# 0 - Standalone
+# 1 - Servidor
+# 2 - Cliente
+
+Modo = 0
+
+# Nombre o direccion IP para funcionar como cliente
+#HostName = localhost
+
+#############################################################
+#############################################################
+
+################################################
+#### OPCIONES PARA TRABAJAR COMO STANDALONE ####
+################################################
+
+# Tipo de bloqueo, es para prevenir ejecuciones simultaneas, puede ser:
+# TCP_SOCKET, simula un comportamiento cliente/servidor en la misma compu, en caso que se quiera ejecutar nuevamente va a dar error por puerto abierto
+# FILE, crea un archivo en la carpeta temporal por defecto jpfbatch.lock que luego borra,
+# NONE, no bloquea
+# por defecto es TCP_SOCKET
+LockType=TCP_SOCKET
+
+################################################
+################################################

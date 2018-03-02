@@ -1,0 +1,40 @@
+package com.gt.ifepson.comandos.notaCreditoAbcm;
+
+import com.gt.ifepson.comandos.TipoComando;
+import com.gt.ifepson.comandos.ClasificacionComando;
+
+
+public class ComandosDeTique_NotaDeCreditoA_B_C_MOtrosTributos extends TipoComando {
+
+	public ComandosDeTique_NotaDeCreditoA_B_C_MOtrosTributos() {
+	}
+
+	@Override
+	public String[] getNames() {
+		return new String[] {"ComandosDeTique_NotaDeCreditoA_B_C_MOtrosTributos"};
+	}
+
+	@Override
+	public String getDescripcion() {
+		return "Otros Tributos";
+	}
+
+	@Override
+	public int getCodigo() {
+		return 0x0D20;
+	}
+
+	@Override
+	public ClasificacionComando getClasificacionComando() {
+		return ClasificacionComando.TNC;
+	}
+
+	@Override
+	public int[] getComando() {
+		int[] ret = new int[2];
+		ret[0] = 0x0D;
+		ret[1] = 0x20;
+		return ret;
+	}
+
+}

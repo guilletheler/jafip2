@@ -1,0 +1,44 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package com.gt.ifepson.enums.estadoImpresor;
+
+/**
+ * Estado fiscal del funcionamiento del equipo
+ * @author guillermot
+ */
+public enum EstadoImpresorSlipSensorCarga {
+    NORMAL_SIN_ESPERA,
+    ESPERANDO_PAPEL,
+    ESPERANDO_RETIRAR_PAPEL,
+    RESERVADO;
+    
+    public static EstadoImpresorSlipSensorCarga parseEstado(int estado) {
+        
+        String bitString = Integer.toBinaryString(estado);
+        
+        bitString = org.apache.commons.lang3.StringUtils.rightPad(bitString, 16, '0');
+        
+        bitString = bitString.substring(5, 7);
+        
+        if(bitString.equals("00")) {
+            return NORMAL_SIN_ESPERA;
+        }
+        
+        if(bitString.equals("01")) {
+            return ESPERANDO_PAPEL;
+        }
+        
+        if(bitString.equals("10")) {
+            return ESPERANDO_RETIRAR_PAPEL;
+        }
+        
+        if(bitString.equals("11")) {
+            return RESERVADO;
+        }
+        
+        throw new RuntimeException("No se puede reconocer el estado EstadoImpresorSlipSensorCarga impresor de " + estado + ":" + bitString);
+    }
+}

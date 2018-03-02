@@ -1,0 +1,40 @@
+package com.gt.ifepson.comandos.dnfh;
+
+import com.gt.ifepson.comandos.TipoComando;
+import com.gt.ifepson.comandos.ClasificacionComando;
+
+
+public class ComandosDeDocumentosNoFiscalesHomologadosPagos extends TipoComando {
+
+	public ComandosDeDocumentosNoFiscalesHomologadosPagos() {
+	}
+
+	@Override
+	public String[] getNames() {
+		return new String[] {"ComandosDeDocumentosNoFiscalesHomologadosPagos"};
+	}
+
+	@Override
+	public String getDescripcion() {
+		return "Pagos";
+	}
+
+	@Override
+	public int getCodigo() {
+		return 0x1005;
+	}
+
+	@Override
+	public ClasificacionComando getClasificacionComando() {
+		return ClasificacionComando.DNFH;
+	}
+
+	@Override
+	public int[] getComando() {
+		int[] ret = new int[2];
+		ret[0] = 0x10;
+		ret[1] = 0x05;
+		return ret;
+	}
+
+}

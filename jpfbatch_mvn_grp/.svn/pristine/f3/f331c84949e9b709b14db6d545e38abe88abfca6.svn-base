@@ -1,0 +1,57 @@
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package com.gt.jpfbatch.net.server;
+
+import com.gt.jpfbatch.JpfbatchConfigs;
+import java.util.EventObject;
+
+/**
+ *
+ * @author guillermot
+ */
+// Declare the event. It must extend EventObject.
+public class JPFBNetEventArgs extends EventObject {
+    
+    String batch = "";
+    
+    boolean testMode = false;
+    
+    JpfbatchConfigs jpfbatchConfigs;
+
+    public boolean isTestMode() {
+        return testMode;
+    }
+
+    public void setTestMode(boolean testMode) {
+        this.testMode = testMode;
+    }
+
+    public JpfbatchConfigs getJpfbatchConfigs() {
+        return jpfbatchConfigs;
+    }
+
+    public void setJpfbatchConfigs(JpfbatchConfigs jpfbatchConfigs) {
+        this.jpfbatchConfigs = jpfbatchConfigs;
+    }
+    
+    public String getBatchString() {
+        return batch;
+    }
+
+    public void setBatch(String batch) {
+        this.batch = batch;
+    }
+
+    public JPFBNetEventArgs(Object source, String batch, JpfbatchConfigs jpfbatchConfigs, boolean testMode) {
+        super(source);
+        this.batch = batch;
+        this.jpfbatchConfigs = jpfbatchConfigs;
+        this.testMode = testMode;
+    }
+
+    public JPFBNetEventArgs(Object source) {
+        super(source);
+    }
+}

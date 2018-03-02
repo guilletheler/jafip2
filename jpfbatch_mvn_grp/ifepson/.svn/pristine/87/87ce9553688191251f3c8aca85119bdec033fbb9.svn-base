@@ -1,0 +1,70 @@
+package com.gt.ifepson.comandos.configuracion;
+
+import com.gt.ifepson.comandos.CampoFiscal;
+import com.gt.ifepson.comandos.TipoComando;
+import com.gt.ifepson.comandos.ClasificacionComando;
+import com.gt.ifepson.comandos.Extension;
+import com.gt.ifepson.comandos.TipoDato;
+
+public class ObtenerConfiguracionDeFechaYHora extends TipoComando {
+
+    public ObtenerConfiguracionDeFechaYHora() {
+    }
+
+    @Override
+    public String[] getNames() {
+        return new String[]{"ObtenerConfiguracionDeFechaYHora", "getFechaHora"};
+    }
+
+    @Override
+    public String getDescripcion() {
+        return "Obtener Configuración de Fecha y Hora";
+    }
+
+    @Override
+    public int getCodigo() {
+        return 0x0502;
+    }
+
+    @Override
+    public ClasificacionComando getClasificacionComando() {
+        return ClasificacionComando.CONFIGURACION;
+    }
+
+    @Override
+    public int[] getComando() {
+        int[] ret = new int[2];
+        ret[0] = 0x05;
+        ret[1] = 0x02;
+        return ret;
+    }
+    
+    @Override
+    public Extension[] getExtensiones() {
+        return new Extension[]{};
+    }
+
+    @Override
+    public String getNotas() {
+        return "Obtiene los valores actuales de configuración del RTC interno de la impresora fiscal.";
+    }
+
+    @Override
+    public String getRequerimientos() {
+        return "La fecha y hora deben estar configuradas previamente.";
+    }
+
+    @Override
+    public CampoFiscal[] getCamposSalida() {
+        return new CampoFiscal[]{
+            new CampoFiscal(1, "Fecha", TipoDato.D, 6, false),
+            new CampoFiscal(2, "Hora", TipoDato.T, 6, false)
+        };
+    }
+
+    @Override
+    public CampoFiscal[] getCamposEntrada() {
+        return new CampoFiscal[]{};
+    }
+
+}

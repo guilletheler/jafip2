@@ -1,0 +1,94 @@
+package com.gt.ifepson.comandos.tiqueFact;
+
+import com.gt.ifepson.comandos.CampoFiscal;
+import com.gt.ifepson.comandos.TipoComando;
+import com.gt.ifepson.comandos.ClasificacionComando;
+import com.gt.ifepson.comandos.Extension;
+import com.gt.ifepson.comandos.TipoDato;
+
+public class DescuentosAjustesGlobalesTiqueFactNCABCM extends TipoComando {
+
+    public DescuentosAjustesGlobalesTiqueFactNCABCM() {
+    }
+
+    @Override
+    public String[] getNames() {
+        return new String[]{"DescuentosAjustesGlobalesTiqueFactNCABCM"};
+    }
+
+    @Override
+    public String getDescripcion() {
+        return "Aplica un descuento o ajuste global/particular a los montos facturados en el tique-factura o nota de débito\n"
+                + "A/B/C/M.";
+    }
+
+    @Override
+    public int getCodigo() {
+        return 0x0B04;
+    }
+
+    @Override
+    public ClasificacionComando getClasificacionComando() {
+        return ClasificacionComando.TFND;
+    }
+
+    @Override
+    public int[] getComando() {
+        int[] ret = new int[2];
+        ret[0] = 0x0B;
+        ret[1] = 0x04;
+        return ret;
+    }
+    
+    @Override
+    public String getNotas() {
+        return " La impresión de las líneas de descuentos y ajustes globales se efectúa en el momento del cierre del\n"
+                + "tique-factura o nota de débito fiscal.\n"
+                + " Los valores aceptados en el campo “Código condición frente al IVA” son:\n"
+                + "0 – No corresponde.\n"
+                + "1 – No gravado.\n"
+                + "2 – Exento.\n"
+                + "7 – Gravado.\n"
+                + "En caso de enviar un valor distinto de cero en el campo “Tasa de IVA”, sólo se acepta el valor 7 (gravado)";
+    }
+
+    @Override
+    public String getRequerimientos() {
+        return "No superar los máximos permitidos para las operaciones matemáticas.\n"
+                + "El total del tique-factura o nota de débito fiscal debe ser superior a cero.\n"
+                + "No haber efectuado pagos dentro del tique-factura o nota de débito fiscal.\n"
+                + "No haber superado la máxima cantidad de descuentos o ajustes globales dentro del tique.\n"
+                + "A fin de emitir descuentos globales se debe enviar vacío el campo número tres (3) Tasa de IVA. De\n"
+                + "lo contrario se emitirá un descuento o ajuste particular.";
+    }
+
+    @Override
+    public Extension[] getExtensiones() {
+        return new Extension[]{
+            new Extension(0b0000000000000011, "TipoAjuste",
+            "DESCUENTO", 0b0000000000000000,
+            "AJUSTE", 0b0000000000000001,
+            "AJUSTE_NEGATIVO", 0b0000000000000010)
+        };
+
+    }
+
+    @Override
+    public CampoFiscal[] getCamposEntrada() {
+        return new CampoFiscal[]{
+            new CampoFiscal(1, "Descripción", TipoDato.RT, -1, false),
+            new CampoFiscal(2, "Monto de descuento/ajuste global", TipoDato.N_10_2, 12, false),
+            new CampoFiscal(3, "Tasa de IVA (Si la responsabilidad del emisor es IVA no responsable, exento, monotributista o monotributista social, esta tasa debe ser cero.)", TipoDato.N_0_4, 12, true),
+            new CampoFiscal(4, "Código interno", TipoDato.A, 50, false),
+            new CampoFiscal(5, "Código de condición frente al IVA", TipoDato.N_E, 1, true)
+        };
+    }
+
+    @Override
+    public CampoFiscal[] getCamposSalida() {
+        return new CampoFiscal[]{
+            new CampoFiscal(1, "Subtotal parcial del tique (bruto)", TipoDato.N_10_2, 12, false)
+        };
+    }
+
+}

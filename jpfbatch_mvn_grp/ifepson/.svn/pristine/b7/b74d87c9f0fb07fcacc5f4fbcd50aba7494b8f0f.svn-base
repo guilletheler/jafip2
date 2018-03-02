@@ -1,0 +1,80 @@
+package com.gt.ifepson.comandos.jornadaFiscal;
+
+import com.gt.ifepson.comandos.CampoFiscal;
+import com.gt.ifepson.comandos.TipoComando;
+import com.gt.ifepson.comandos.ClasificacionComando;
+import com.gt.ifepson.comandos.Extension;
+import com.gt.ifepson.comandos.TipoDato;
+
+public class JornadaFiscalInformeTotalDeVentas extends TipoComando {
+
+    public JornadaFiscalInformeTotalDeVentas() {
+    }
+
+    @Override
+    public String[] getNames() {
+        return new String[]{"JornadaFiscalInformeTotalDeVentas"};
+    }
+
+    @Override
+    public String getDescripcion() {
+        return " A fin incluir el arqueo de pagos ver el comando Impresión de Arqueo de Pagos (05 52).";
+    }
+
+    @Override
+    public int getCodigo() {
+        return 0x0803;
+    }
+
+    @Override
+    public ClasificacionComando getClasificacionComando() {
+        return ClasificacionComando.JORNADA_FISCAL;
+    }
+
+    @Override
+    public int[] getComando() {
+        int[] ret = new int[2];
+        ret[0] = 0x08;
+        ret[1] = 0x03;
+        return ret;
+    }
+
+    @Override
+    public String getNotas() {
+        return " A fin incluir el arqueo de pagos ver el comando Impresión de Arqueo de Pagos (05 52).";
+    }
+
+    @Override
+    public String getRequerimientos() {
+        return " Jornada fiscal abierta.\n"
+                + " Mecanismo impresor en línea y con papel.";
+    }
+
+    @Override
+    public Extension[] getExtensiones() {
+        return new Extension[]{
+            new Extension(0b0000000000100000, "IMPRIME_OTROS_TRIBUTOS_DESCRIMINADOS",
+            "NO_IMPRIME_OTROS_TRIBUTOS_DESCRIMINADOS", 0b0000000000000000,
+            "IMPRIME_OTROS_TRIBUTOS_DESCRIMINADOS", 0b0000000000100000),
+            new Extension(0b0000010000000000, "IMPRIME_ENCABEZADOS_Y_COLAS",
+            "NO_IMPRIME_ENCABEZADOS_Y_COLAS", 0b0000000000000000,
+            "IMPRIME_ENCABEZADOS_Y_COLAS", 0b0000010000000000),
+            new Extension(0b0000100000000000, "IMPRIME_LINEAS_DE_ESTABLECIMIENTO",
+            "NO_IMPRIME_LINEAS_DE_ESTABLECIMIENTO", 0b0000000000000000,
+            "IMPRIME_LINEAS_DE_ESTABLECIMIENTO", 0b0000100000000000),
+        };
+    }
+
+    @Override
+    public CampoFiscal[] getCamposEntrada() {
+        return new CampoFiscal[]{};
+    }
+
+    @Override
+    public CampoFiscal[] getCamposSalida() {
+        return new CampoFiscal[]{
+            new CampoFiscal(1, "Número de Informe Total de Ventas", TipoDato.N_E, 5, false)
+        };
+    }
+
+}

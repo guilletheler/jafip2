@@ -1,0 +1,48 @@
+package com.gt.ifepson.comandos.notaCreditoAbcm;
+
+import com.gt.ifepson.comandos.TipoComando;
+import com.gt.ifepson.comandos.ClasificacionComando;
+import com.gt.ifepson.comandos.Extension;
+
+public class InformacionDeOtrosTributosNotaCreditoABCM extends TipoComando {
+
+    public InformacionDeOtrosTributosNotaCreditoABCM() {
+    }
+
+    @Override
+    public String[] getNames() {
+        return new String[]{"InformacionDeOtrosTributosNotaCreditoABCM"};
+    }
+
+    @Override
+    public String getDescripcion() {
+        return "Información de Otros Tributos";
+    }
+
+    @Override
+    public int getCodigo() {
+        return 0x0D0F;
+    }
+
+    @Override
+    public ClasificacionComando getClasificacionComando() {
+        return ClasificacionComando.TNC;
+    }
+
+    @Override
+    public int[] getComando() {
+        int[] ret = new int[2];
+        ret[0] = 0x0D;
+        ret[1] = 0x0F;
+        return ret;
+    }
+
+    @Override
+    public Extension[] getExtensiones() {
+        return new Extension[]{
+            new Extension(0b0000000000000001, "Discriminar otros tributos",
+            "SIN_INFORMACION_DISCRIMINADA_POR_OTROS_TRIBUTOS", 0b0000000000000000,
+            "CON_INFORMACION_DISCRIMINADA_POR_OTROS_TRIBUTOS", 0b0000000000000001)
+        };
+    }
+}

@@ -1,0 +1,40 @@
+package com.gt.ifepson.comandos.jornadaFiscal;
+
+import com.gt.ifepson.comandos.TipoComando;
+import com.gt.ifepson.comandos.ClasificacionComando;
+
+
+public class ComandosDeJornadaFiscalAuditoriaResumidaComenzarAuditoriaDetalladaDeJornadasFiscalesPorRangoDeFechas extends TipoComando {
+
+	public ComandosDeJornadaFiscalAuditoriaResumidaComenzarAuditoriaDetalladaDeJornadasFiscalesPorRangoDeFechas() {
+	}
+
+	@Override
+	public String[] getNames() {
+		return new String[] {"ComandosDeJornadaFiscalAuditoriaResumidaComenzarAuditoriaDetalladaDeJornadasFiscalesPorRangoDeFechas"};
+	}
+
+	@Override
+	public String getDescripcion() {
+		return "Auditoría Resumida /Comenzar Auditoría Detallada de Jornadas Fiscales por Rango de Fechas";
+	}
+
+	@Override
+	public int getCodigo() {
+		return 0x0812;
+	}
+
+	@Override
+	public ClasificacionComando getClasificacionComando() {
+		return ClasificacionComando.JORNADA_FISCAL;
+	}
+
+	@Override
+	public int[] getComando() {
+		int[] ret = new int[2];
+		ret[0] = 0x08;
+		ret[1] = 0x12;
+		return ret;
+	}
+
+}

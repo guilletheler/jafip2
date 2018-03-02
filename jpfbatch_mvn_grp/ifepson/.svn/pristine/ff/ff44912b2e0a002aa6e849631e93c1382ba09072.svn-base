@@ -1,0 +1,40 @@
+package com.gt.ifepson.comandos.dnfh;
+
+import com.gt.ifepson.comandos.TipoComando;
+import com.gt.ifepson.comandos.ClasificacionComando;
+
+
+public class ComandosDeDocumentosNoFiscalesHomologadosObtenerConfiguracionDePreferencias extends TipoComando {
+
+	public ComandosDeDocumentosNoFiscalesHomologadosObtenerConfiguracionDePreferencias() {
+	}
+
+	@Override
+	public String[] getNames() {
+		return new String[] {"ComandosDeDocumentosNoFiscalesHomologadosObtenerConfiguracionDePreferencias"};
+	}
+
+	@Override
+	public String getDescripcion() {
+		return "Obtener Configuración de Preferencias";
+	}
+
+	@Override
+	public int getCodigo() {
+		return 0x1009;
+	}
+
+	@Override
+	public ClasificacionComando getClasificacionComando() {
+		return ClasificacionComando.DNFH;
+	}
+
+	@Override
+	public int[] getComando() {
+		int[] ret = new int[2];
+		ret[0] = 0x10;
+		ret[1] = 0x09;
+		return ret;
+	}
+
+}

@@ -1,0 +1,84 @@
+package com.gt.ifepson.comandos.diagnostico;
+
+import com.gt.ifepson.comandos.CampoFiscal;
+import com.gt.ifepson.comandos.TipoComando;
+import com.gt.ifepson.comandos.ClasificacionComando;
+import com.gt.ifepson.comandos.Extension;
+import com.gt.ifepson.comandos.TipoDato;
+
+public class ObtenerInformacionDelEquipo extends TipoComando {
+
+    public ObtenerInformacionDelEquipo() {
+    }
+
+    @Override
+    public String[] getNames() {
+        return new String[]{"ObtenerInformacionDelEquipo"};
+    }
+
+    @Override
+    public String getDescripcion() {
+        return "Obtener Información del Equipo";
+    }
+
+    @Override
+    public int getCodigo() {
+        return 0x020A;
+    }
+
+    @Override
+    public ClasificacionComando getClasificacionComando() {
+        return ClasificacionComando.DIAGNOSTICO;
+    }
+
+    @Override
+    public int[] getComando() {
+        int[] ret = new int[2];
+        ret[0] = 0x02;
+        ret[1] = 0x0A;
+        return ret;
+    }
+
+    @Override
+    public Extension[] getExtensiones() {
+        return new Extension[]{
+            new Extension(0b0000000000000001, "IMPRIMIR",
+            "NO_IMPRIME_EL_DOCUMENTO_CON_LAS_CARACTERISTICAS", 0b0000000000000000,
+            "IMPRIME_EL_DOCUMENTO_CON_LAS_CARACTERISTICAS", 0b0000000000000001)
+        };
+    }
+
+    @Override
+    public String getNotas() {
+        return "Obtiene las características fiscales de la impresora fiscal.";
+    }
+
+    @Override
+    public String getRequerimientos() {
+        return "Mecanismo impresor en línea y con papel (En caso de impresión del documento)";
+    }
+
+    @Override
+    public CampoFiscal[] getCamposSalida() {
+        return new CampoFiscal[]{
+            new CampoFiscal(1, "Nombre de la versión", TipoDato.A, -1, false),
+            new CampoFiscal(2, "ID de País", TipoDato.N_E, 3, false),
+            new CampoFiscal(3, "Versión del firmware (mayor)", TipoDato.N_E, 2, false),
+            new CampoFiscal(4, "Versión del firmware (menor)", TipoDato.N_E, 2, false),
+            new CampoFiscal(5, "Versión del firmware (compilación)", TipoDato.N_E, 3, false),
+            new CampoFiscal(6, "ID del mecanismo impresor", TipoDato.N_E, 2, false),
+            new CampoFiscal(7, "Nombre del mecanismo impresor", TipoDato.P, -1, false),
+            new CampoFiscal(8, "Capacidad de la memoria fiscal (en bytes)", TipoDato.N_E, 7, false),
+            new CampoFiscal(9, "Capacidad de la memoria de transacciones (en bytes)", TipoDato.N_E, 10, false),
+            new CampoFiscal(10, "Capacidad de la memoria de trabajo (en bytes)", TipoDato.N_E, 6, false),
+            new CampoFiscal(11, "Jumper de servicio conectado", TipoDato.Y, 1, false),
+            new CampoFiscal(12, "Estado de los dips switches", TipoDato.B, 1, false)
+        };
+    }
+
+    @Override
+    public CampoFiscal[] getCamposEntrada() {
+        return new CampoFiscal[]{};
+    }
+
+}

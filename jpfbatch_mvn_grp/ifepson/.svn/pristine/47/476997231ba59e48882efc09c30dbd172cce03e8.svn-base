@@ -1,0 +1,76 @@
+package com.gt.ifepson.comandos.configuracion;
+
+import com.gt.ifepson.comandos.CampoFiscal;
+import com.gt.ifepson.comandos.TipoComando;
+import com.gt.ifepson.comandos.ClasificacionComando;
+import com.gt.ifepson.comandos.Extension;
+import com.gt.ifepson.comandos.TipoDato;
+
+public class ObtenerConfiguracionDeClavesDeFirmaDigital extends TipoComando {
+
+    public ObtenerConfiguracionDeClavesDeFirmaDigital() {
+    }
+
+    @Override
+    public String[] getNames() {
+        return new String[]{"ObtenerConfiguracionDeClavesDeFirmaDigital"};
+    }
+
+    @Override
+    public String getDescripcion() {
+        return "Obtener configuración de Claves de Firma Digital";
+    }
+
+    @Override
+    public int getCodigo() {
+        return 0x0522;
+    }
+
+    @Override
+    public ClasificacionComando getClasificacionComando() {
+        return ClasificacionComando.CONFIGURACION;
+    }
+
+    @Override
+    public int[] getComando() {
+        int[] ret = new int[2];
+        ret[0] = 0x05;
+        ret[1] = 0x22;
+        return ret;
+    }
+
+    @Override
+    public Extension[] getExtensiones() {
+        return new Extension[]{
+            new Extension(0b0000000000000001, "IMPRIMIR",
+            "NO_IMPRIME_REPORTE", 0b0000000000000000,
+            "IMPRIME_REPORTE", 0b0000000000000001)
+        };
+    }
+
+    @Override
+    public String getNotas() {
+        return " Si la jornada fiscal se encuentra abierta no se realizará la impresión del documento.\n"
+                + " Los valores de salida 1 deben interpretarse de acuerdo a los siguientes valores: 0 = RSA";
+    }
+
+    @Override
+    public String getRequerimientos() {
+        return "";
+    }
+
+    @Override
+    public CampoFiscal[] getCamposSalida() {
+        return new CampoFiscal[]{
+            new CampoFiscal(1, "Tipo de algoritmo", TipoDato.N, 1, false),
+            new CampoFiscal(2, "Datos de clave pública", TipoDato.B, -1, false),
+            new CampoFiscal(3, "Fecha de generación", TipoDato.D, 6, false),
+            new CampoFiscal(4, "Hora de generación", TipoDato.T, 6, false)};
+    }
+
+    @Override
+    public CampoFiscal[] getCamposEntrada() {
+        return new CampoFiscal[]{};
+    }
+
+}

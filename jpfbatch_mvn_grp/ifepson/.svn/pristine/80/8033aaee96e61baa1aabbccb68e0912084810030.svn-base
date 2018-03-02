@@ -1,0 +1,97 @@
+package com.gt.ifepson.comandos.tiqueNc;
+
+import com.gt.ifepson.comandos.CampoFiscal;
+import com.gt.ifepson.comandos.TipoComando;
+import com.gt.ifepson.comandos.ClasificacionComando;
+import com.gt.ifepson.comandos.Extension;
+import com.gt.ifepson.comandos.TipoDato;
+
+public class CerrarTiqueNC extends TipoComando {
+
+    public CerrarTiqueNC() {
+    }
+
+    @Override
+    public String[] getNames() {
+        return new String[]{"CerrarTiqueNC"};
+    }
+
+    @Override
+    public String getDescripcion() {
+        return "Realiza el cierre del tique o tique-nota de crédito almacenando los datos de la transacción en la memoria de transacciones.";
+    }
+
+    @Override
+    public int getCodigo() {
+        return 0x0A06;
+    }
+
+    @Override
+    public ClasificacionComando getClasificacionComando() {
+        return ClasificacionComando.TIQUE;
+    }
+
+    @Override
+    public int[] getComando() {
+        int[] ret = new int[2];
+        ret[0] = 0x0A;
+        ret[1] = 0x06;
+        return ret;
+    }
+
+    @Override
+    public Extension[] getExtensiones() {
+        return new Extension[]{
+            new Extension(0b0000000000000001, "CORTAR",
+            "NO_CORTAR_PAPEL", 0b0000000000000000,
+            "CORTAR_PAPEL", 0b0000000000000001),
+            new Extension(0b0000000000000010, "RESPUESTA_ELECTRONICA",
+            "NO_DEVUELVE_RESPUESTA_ELECTRONICA", 0b0000000000000000,
+            "DEVUELVE_RESPUESTA_ELECTRONICA", 0b0000000000000010),
+            new Extension(0b0000000000000100, "SU_VUELTO",
+            "IMPRIME_SU_VUELTO_SIN_ATRIBUTOS", 0b0000000000000000,
+            "IMPRIME_SU_VUELTO_CON_ATRIBUTOS", 0b0000000000000100),
+            new Extension(0b0000000000001000, "PAGO_AUTOMATICO",
+            "NO_UTILIZA_CTA_CTE_EN_PAGO_AUTOMATICO", 0b0000000000000000,
+            "UTILIZA_CTA_CTE_EN_PAGO_AUTOMATICO", 0b0000000000001000),
+            new Extension(0b0000000010000000, "CANTIDAD_UNIDADES",
+            "NO_IMPRIMIR_CANTIDAD_DE_UNIDADES", 0b0000000000000000,
+            "IMPRIMIR_CANTIDAD_DE_UNIDADES", 0b0000000010000000)
+        };
+    }
+
+    @Override
+    public String getNotas() {
+        return "";
+    }
+
+    @Override
+    public String getRequerimientos() {
+        return " El total del tique fiscal debe ser igual o superior a cero.\n"
+                + " Mecanismo impresor en línea y con papel ó poco papel disponible.";
+    }
+
+    @Override
+    public CampoFiscal[] getCamposEntrada() {
+        return new CampoFiscal[]{
+            new CampoFiscal(1, "Número de línea de cola de reemplazo #1", TipoDato.N, 3, true),
+            new CampoFiscal(2, "Descripción de reemplazo #1", TipoDato.RT, -1, true),
+            new CampoFiscal(3, "Número de línea de cola de reemplazo #2", TipoDato.N, 3, true),
+            new CampoFiscal(4, "Descripción de reemplazo #2", TipoDato.RT, -1, true),
+            new CampoFiscal(5, "Número de línea de cola de reemplazo #3", TipoDato.N, 3, true),
+            new CampoFiscal(6, "Descripción de reemplazo #3", TipoDato.N, 1, true),
+            new CampoFiscal(7, "Líneas reservadas para firma (su rango esta entre 0 y 3. Por defecto se utilizará el máximo valor.)", TipoDato.RT, -1, true)
+        };
+    }
+
+    @Override
+    public CampoFiscal[] getCamposSalida() {
+        return new CampoFiscal[]{
+            new CampoFiscal(1, "Número del tique fiscal", TipoDato.N, 8, false),
+            new CampoFiscal(2, "Monto total del tique fiscal", TipoDato.N, 12, false),
+            new CampoFiscal(3, "Monto total de IVA del tique fiscal", TipoDato.N, 12, false),
+            new CampoFiscal(4, "Vuelto final", TipoDato.N, 12, false)
+        };
+    }
+
+}

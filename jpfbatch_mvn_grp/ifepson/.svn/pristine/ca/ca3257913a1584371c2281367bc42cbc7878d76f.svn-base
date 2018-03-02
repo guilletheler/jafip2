@@ -1,0 +1,40 @@
+package com.gt.ifepson.comandos.inicializacion;
+
+import com.gt.ifepson.comandos.TipoComando;
+import com.gt.ifepson.comandos.ClasificacionComando;
+
+
+public class ComandosDeInicializacionObtenerDatosDeSerializacion extends TipoComando {
+
+	public ComandosDeInicializacionObtenerDatosDeSerializacion() {
+	}
+
+	@Override
+	public String[] getNames() {
+		return new String[] {"ComandosDeInicializacionObtenerDatosDeSerializacion"};
+	}
+
+	@Override
+	public String getDescripcion() {
+		return "Obtener Datos de Serialización";
+	}
+
+	@Override
+	public int getCodigo() {
+		return 0x0402;
+	}
+
+	@Override
+	public ClasificacionComando getClasificacionComando() {
+		return ClasificacionComando.INICIALIZACION;
+	}
+
+	@Override
+	public int[] getComando() {
+		int[] ret = new int[2];
+		ret[0] = 0x04;
+		ret[1] = 0x02;
+		return ret;
+	}
+
+}

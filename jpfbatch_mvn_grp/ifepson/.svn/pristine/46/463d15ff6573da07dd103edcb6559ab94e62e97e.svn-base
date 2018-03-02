@@ -1,0 +1,156 @@
+package com.gt.ifepson.capa_fisica;
+
+import com.sun.jna.Library;
+
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+/**
+ * =============================================================================
+ * EPSON_FISCAL_INTERFACE.H Epson Latin America
+ * =============================================================================
+ * High level of exported functions from DLL
+ * ===========================================================================
+ * -----------------------------------------------------------------------------
+ * DLL Exported Function Prototypes
+ * -----------------------------------------------------------------------------
+ */
+public interface EpsonFiscalInterfaceJNA extends Library {
+
+    /* Connection */
+    int ConfigurarVelocidad(int velocidad);
+
+    int ConfigurarPuerto(byte[] puerto);
+
+    int Conectar();
+
+    int Desconectar();
+
+    int Cancelar();
+
+
+    /* Log */
+    int ComenzarLog(boolean incluir_tramas);
+
+    int DetenerLog();
+
+    int PausarLog();
+
+    int ReanudarLog();
+
+
+    /* Queries */
+    int ConsultarUltimoError();
+
+    int ConsultarDescripcionDeError(int numero_de_error, byte[] respuesta_descripcion, int respuesta_descripcion_largo_maximo);
+
+    int ConsultarEstadoDeConexion();
+
+    /* Obsolete, and undocumented. */
+
+    int ConsultarVersionDll(byte[] respuesta_descripcion, int respuesta_descripcion_largo_maximo, int[] respuesta_mayor, int[] respuesta_menor);
+
+    int ConsultarVersionEquipo(byte[] respuesta_descripcion, int respuesta_descripcion_largo_maximo, int[] respuesta_mayor, int[] respuesta_menor);
+
+    int ConsultarNumeroPuntoDeVenta(byte[] respuesta, int respuesta_largo_maximo);
+
+    int ConsultarNumeroComprobanteUltimo(byte[] tipo_de_comprobante, byte[] respuesta, int respuesta_largo_maximo);
+
+    int ConsultarNumeroComprobanteActual(byte[] respuesta, int respuesta_largo_maximo);
+
+    int ConsultarTipoComprobanteActual(byte[] respuesta, int respuesta_largo_maximo);
+
+    int ConsultarSubTotalBrutoComprobanteActual(byte[] respuesta, int respuesta_largo_maximo);
+
+    int ConsultarSubTotalNetoComprobanteActual(byte[] respuesta, int respuesta_largo_maximo);
+
+    int ConsultarEstado(int id_consulta, int[] respuesta);
+
+
+    /* Set/Get Settings */
+    int EstablecerEncabezado(int numero_encabezado, byte[] descripcion);
+
+    int ConsultarEncabezado(int numero_encabezado, byte[] respuesta, int respuesta_largo_maximo);
+
+    int EstablecerCola(int numero_cola, byte[] descripcion);
+
+    int ConsultarCola(int numero_cola, byte[] respuesta, int respuesta_largo_maximo);
+
+    int EstablecerFechaHora(byte[] fecha_hora);
+
+    int ConsultarFechaHora(byte[] respuesta, int respuesta_largo_maximo);
+
+
+    /* Audit/Download */
+    int ImprimirAuditoria(int id_modificador, byte[] desde, byte[] hasta);
+
+    int Descargar(byte[] desde, byte[] hasta, byte[] directorio_de_descarga);
+
+
+    /* Sales */
+    int CargarDatosCliente(byte[] nombre_o_razon_social1, byte[] nombre_o_razon_social2,
+            byte[] domicilio1, byte[] domicilio2, byte[] domicilio3,
+            int id_tipo_documento, byte[] numero_documento, int id_responsabilidad_iva);
+
+    int CargarComprobanteAsociado(byte[] descripcion);
+
+    int AbrirComprobante(int id_tipo_documento);
+
+    int CargarTextoExtra(byte[] descripcion);
+
+    int ImprimirItem(int id_modificador, byte[] descripcion, byte[] cantidad, byte[] precio, int id_tasa_iva,
+            int ii_id, byte[] ii_valor, int id_codigo, byte[] codigo, byte[] codigo_unidad_matrix,
+            int codigo_unidad_medida);
+
+    int ImprimirTextoLibre(byte[] descripcion);
+
+    int CargarAjuste(int id_modificador, byte[] descripcion, byte[] monto,
+            int id_tasa_iva, byte[] codigo_interno);
+
+    int CargarOtrosTributos(int codigo_otros_tributos, byte[] descripcion, byte[] monto, int id_tasa_iva);
+
+    int CargarPago(int id_modificador, int codigo_forma_pago, int cantidad_cuotas, byte[] monto,
+            byte[] descripcion_de_cupones, byte[] descripcion,
+            byte[] descripcion_extra1, byte[] descripcion_extra2);
+
+    int ImprimirSubtotal();
+
+    int CerrarComprobante();
+
+
+    /* Journal */
+    int ImprimirCierreX();
+
+    int ImprimirCierreZ();
+
+
+    /* User logo */
+    int CargarLogo(byte[] nombre_de_archivo);
+
+    int EliminarLogo();
+
+
+    /* Configuration */
+    int ConfigurarRetardoAlEnviarComando(int milisegundos);
+
+    /*     *** undocumented ***      */
+ /*  The value is in miliseconds. */
+ /*        -1  is disables.       */
+ /*      1000  is one second.     */
+
+ /* Generic */
+    int EnviarComando(byte[] comando);
+
+    int ObtenerCodigoRetorno();
+
+    int ObtenerEstadoFiscal();
+
+    int ObtenerEstadoImpresora();
+
+    int ObtenerCantidadCamposRespuestaExtendida();
+
+    int ObtenerRespuestaExtendida(int numero_campo, byte[] buffer_salida, int largo_buffer_salida, int[] largo_final_buffer_salida);
+
+}

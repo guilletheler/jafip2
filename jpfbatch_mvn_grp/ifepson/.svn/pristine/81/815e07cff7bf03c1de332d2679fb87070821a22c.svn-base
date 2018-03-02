@@ -1,0 +1,106 @@
+package com.gt.ifepson.comandos.tiqueFact;
+
+import com.gt.ifepson.comandos.CampoFiscal;
+import com.gt.ifepson.comandos.TipoComando;
+import com.gt.ifepson.comandos.ClasificacionComando;
+import com.gt.ifepson.comandos.Extension;
+import com.gt.ifepson.comandos.TipoDato;
+
+
+public class InformacionDeImpuestosInternosTiqueFactNDABCM extends TipoComando {
+
+	public InformacionDeImpuestosInternosTiqueFactNDABCM() {
+	}
+
+	@Override
+	public String[] getNames() {
+		return new String[] {"InformacionDeImpuestosInternosTiqueFactNDABCM"};
+	}
+
+	@Override
+	public String getDescripcion() {
+		return "Información de Impuestos Internos";
+	}
+
+	@Override
+	public int getCodigo() {
+		return 0x0B0E;
+	}
+
+	@Override
+	public ClasificacionComando getClasificacionComando() {
+		return ClasificacionComando.TFND;
+	}
+
+	@Override
+	public int[] getComando() {
+		int[] ret = new int[2];
+		ret[0] = 0x0B;
+		ret[1] = 0x0E;
+		return ret;
+	}
+        
+        @Override
+    public Extension[] getExtensiones() {
+        return new Extension[]{
+            new Extension(0b0000000000000001, "Discriminar tasas",
+            "CON_INFORMACION_DISCRIMINADA_POR_TASA_DE_IMPUESTOS", 0b0000000000000000,
+            "SIN_INFORMACION_DISCRIMINADA_POR_TASA_DE_IMPUESTOS", 0b0000000000000001)
+        };
+    }
+    
+     @Override
+    public String getNotas() {
+        return "La impresora fiscal devolverá 3 campos por cada tasa que haya sido utilizada durante el tique fiscal\n"
+                + "en el orden indicado por campos 4 al 6.\n"
+                + "Si se solicitara sin información discriminada, los campos 4 al 18 se retornarán vacíos.";
+    }
+
+    @Override
+    public String getRequerimientos() {
+        return "No posee requerimientos";
+    }
+    
+    @Override
+    public CampoFiscal[] getCamposEntrada() {
+        return new CampoFiscal[]{};
+    }
+
+    @Override
+    public CampoFiscal[] getCamposSalida() {
+        return new CampoFiscal[]{
+            new CampoFiscal(1, "Total impuestos internos", TipoDato.N_10_2, 12, false),
+            new CampoFiscal(2, "Total impuestos internos fijos", TipoDato.N_10_2, 12, false),
+            new CampoFiscal(3, "Total impuestos internos porcentuales", TipoDato.N_10_2, 12, false),
+            new CampoFiscal(4, "Tasa de IVA #1", TipoDato.N_0_4, 4, true),
+            new CampoFiscal(5, "Total impuestos internos x tasa #1", TipoDato.N_10_2, 12, true),
+            new CampoFiscal(6, "Total impuestos internos fijos x tasa #1", TipoDato.N_10_2, 12, true),
+            new CampoFiscal(7, "Total impuestos internos porcentuales x tasa #1", TipoDato.N_10_2, 12, true),
+            new CampoFiscal(8, "Tasa de IVA #2", TipoDato.N_0_4, 4, true),
+            new CampoFiscal(9, "Total impuestos internos x tasa #2", TipoDato.N_10_2, 12, true),
+            new CampoFiscal(10, "Total impuestos internos fijos x tasa #2", TipoDato.N_10_2, 12, true),
+            new CampoFiscal(11, "Total impuestos internos porcentuales x tasa #2", TipoDato.N_10_2, 12, true),
+            new CampoFiscal(12, "Tasa de IVA #3", TipoDato.N_0_4, 4, true),
+            new CampoFiscal(13, "Total impuestos internos x tasa #3", TipoDato.N_10_2, 12, true),
+            new CampoFiscal(14, "Total impuestos internos fijos x tasa #3", TipoDato.N_10_2, 12, true),
+            new CampoFiscal(15, "Total impuestos internos porcentuales x tasa #3", TipoDato.N_10_2, 12, true),
+            new CampoFiscal(16, "Tasa de IVA #4", TipoDato.N_0_4, 4, true),
+            new CampoFiscal(17, "Total impuestos internos x tasa #4", TipoDato.N_10_2, 12, true),
+            new CampoFiscal(18, "Total impuestos internos fijos x tasa #4", TipoDato.N_10_2, 12, true),
+            new CampoFiscal(19, "Total impuestos internos porcentuales x tasa #4", TipoDato.N_10_2, 12, true),
+            new CampoFiscal(20, "Tasa de IVA #5", TipoDato.N_0_4, 4, true),
+            new CampoFiscal(21, "Total impuestos internos x tasa #5", TipoDato.N_10_2, 12, true),
+            new CampoFiscal(22, "Total impuestos internos fijos x tasa #5", TipoDato.N_10_2, 12, true),
+            new CampoFiscal(23, "Total impuestos internos porcentuales x tasa #5", TipoDato.N_10_2, 12, true),
+            new CampoFiscal(24, "Tasa de IVA #6", TipoDato.N_0_4, 4, true),
+            new CampoFiscal(25, "Total impuestos internos x tasa #6", TipoDato.N_10_2, 12, true),
+            new CampoFiscal(26, "Total impuestos internos fijos x tasa #6", TipoDato.N_10_2, 12, true),
+            new CampoFiscal(27, "Total impuestos internos porcentuales x tasa #6", TipoDato.N_10_2, 12, true),
+            new CampoFiscal(28, "Tasa de IVA #7", TipoDato.N_0_4, 4, true),
+            new CampoFiscal(29, "Total impuestos internos x tasa #7", TipoDato.N_10_2, 12, true),
+            new CampoFiscal(30, "Total impuestos internos fijos x tasa #7", TipoDato.N_10_2, 12, true),
+            new CampoFiscal(31, "Total impuestos internos porcentuales x tasa #7", TipoDato.N_10_2, 12, true)
+        };
+    }
+
+}

@@ -1,0 +1,64 @@
+package com.gt.ifepson.comandos.tiqueNc;
+
+import com.gt.ifepson.comandos.TipoComando;
+import com.gt.ifepson.comandos.ClasificacionComando;
+import com.gt.ifepson.comandos.Extension;
+
+public class CerrartIQUEnc extends TipoComando {
+
+    public CerrartIQUEnc() {
+    }
+
+    @Override
+    public String[] getNames() {
+        return new String[]{"ComandosDeTiqueTiqueNotaDeCreditoCerrar"};
+    }
+
+    @Override
+    public String getDescripcion() {
+        return "Cerrar";
+    }
+
+    @Override
+    public int getCodigo() {
+        return 0x0A06;
+    }
+
+    @Override
+    public ClasificacionComando getClasificacionComando() {
+        return ClasificacionComando.TIQUE;
+    }
+
+    @Override
+    public int[] getComando() {
+        int[] ret = new int[2];
+        ret[0] = 0x0A;
+        ret[1] = 0x06;
+        return ret;
+    }
+
+    @Override
+    public Extension[] getExtensiones() {
+        return new Extension[]{
+            new Extension(0b0000000000000001, "CORTAR",
+            "NO_CORTAR_PAPEL", 0b0000000000000000,
+            "CORTAR_PAPEL", 0b0000000000000001),
+            new Extension(0b0000000000000010, "RESPUESTA_ELECTRONICA",
+            "NO_DEVUELVE_RESPUESTA_ELECTRONICA", 0b0000000000000000,
+            "DEVUELVE_RESPUESTA_ELECTRONICA", 0b0000000000000010),
+            new Extension(0b0000000000000100, "SU_VUELTO",
+            "IMPRIME_SU_VUELTO_SIN_ATRIBUTOS", 0b0000000000000000,
+            "IMPRIME_SU_VUELTO_CON_ATRIBUTOS", 0b0000000000000100),
+            new Extension(0b0000000000001000, "PAGO_AUTOMATICO",
+            "NO_UTILIZA_CTA_CTE_EN_PAGO_AUTOMATICO", 0b0000000000000000,
+            "UTILIZA_CTA_CTE_EN_PAGO_AUTOMATICO", 0b0000000000001000),
+            new Extension(0b0000000000001000, "PAGO_AUTOMATICO",
+            "NO_UTILIZA_CTA_CTE_EN_PAGO_AUTOMATICO", 0b0000000000000000,
+            "UTILIZA_CTA_CTE_EN_PAGO_AUTOMATICO", 0b0000000000001000),
+            new Extension(0b0000000010000000, "CANTIDAD_UNIDADES",
+            "NO_IMPRIMIR_CANTIDAD_DE_UNIDADES", 0b0000000000000000,
+            "IMPRIMIR_CANTIDAD_DE_UNIDADES", 0b0000000010000000)
+        };
+    }
+
+}

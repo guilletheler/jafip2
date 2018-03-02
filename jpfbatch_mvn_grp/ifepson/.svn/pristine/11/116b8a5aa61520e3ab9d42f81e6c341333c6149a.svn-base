@@ -1,0 +1,70 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package com.gt.ifepson.comandos;
+
+/**
+ *
+ * @author guillermot
+ */
+public enum TipoDato {
+    /**
+     * Alfanumerico
+     */
+    A("Alfanumerico", "'a'-'z', 'A'-'Z', '0'-'9'"),
+    /**
+     * Alfabetico
+     */
+    L("Alfabetico", "'a'-'z', 'A'-'Z'"),
+    /**
+     * Numerico
+     */
+    N("Numerico", "'0'-'9'"),
+    /**
+     * Binario
+     */
+    B("Binario", "0x00-0xFF"),
+    /**
+     * Imprimible
+     */
+    P("Imprimible", "0x20-0xFF"),
+    /**
+     * Hexadecimal
+     */
+    H("Hexadecimal", "'a'-'f', 'A'-'F', '0'-'9'"),
+    /**
+     * Fecha
+     */
+    D("Fecha", "Ddmmyyyy"),
+    /**
+     * Hora
+     */
+    T("Hora", "Hhmmss"),
+    /**
+     * Booleano
+     */
+    Y("Booleano", "'S', 'N'"),
+    /**
+     * Texto Fiscal Enriquecido
+     */
+    RT("Texto Fiscal Enriquecido", "0x20-0xFF, aceptando atributos y códigos de barra");
+    
+    String descripcion;
+    String regex;
+
+    private TipoDato(String descripcion, String regex) {
+        this.descripcion = descripcion;
+        this.regex = regex;
+    }
+
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public String getRegex() {
+        return regex;
+    }
+    
+}
